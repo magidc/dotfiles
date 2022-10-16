@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,13 +111,38 @@ bindkey -v
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 neofetch
+nerd
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND='fd --type f --follow --exclude .git'
-export FZF_ALT_C_COMMAND='fd --type d --follow --exclude .git'
+# Function to show pygmentize with line numbers
+pyg() {
+pygmentize $1 | perl -e 'print ++$i." $_" for <>'
+}
 
+
+export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND='fd --follow --exclude .git'
+#export FZF_CTRL_T_COMMAND='fd --type f --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fd --type d --follow --exclude .git . $HOME'
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export FREEPLANE_JAVA_HOME=/opt/java/jdk-12.0.2
