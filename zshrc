@@ -123,11 +123,10 @@ pyg() {
 pygmentize $1 | perl -e 'print ++$i." $_" for <>'
 }
 
-
-export FZF_DEFAULT_COMMAND='fd --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND='fd --follow --exclude .git'
-#export FZF_CTRL_T_COMMAND='fd --type f --follow --exclude .git'
-export FZF_ALT_C_COMMAND='fd --type d --follow --exclude .git . $HOME'
+export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
+#export FZF_CTRL_T_COMMAND='fdfind --type f --follow --exclude .git'
+export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 # >>> conda initialize >>>
