@@ -122,6 +122,15 @@ copyFilePath(){
   readlink -f $1 | xclip -selection c
 }
 
+function expand-alias() {
+	zle _expand_alias
+}
+
+zle -N expand-alias
+bindkey -M emacs '^a' expand-alias
+bindkey -M vicmd '^a' expand-alias
+bindkey -M viins '^a' expand-alias
+
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 ### FZF
