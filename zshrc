@@ -122,15 +122,15 @@ copyFilePath(){
   readlink -f $1 | xclip -selection c
 }
 
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+
 ### FZF
-export PROJECT_LIST_DIR='/home/magidc/Proxectos/dev/project_list'
 export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 #export FZF_CTRL_T_COMMAND='fdfind --type f --follow --exclude .git'
 export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
-export FZF_ALT_P_COMMAND='/bin/ls -d -1 $PROJECT_LIST_DIR/** | xargs -I {} readlink -f {} '
-export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
+export FZF_ALT_P_COMMAND='cat $HOME/.projects'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
