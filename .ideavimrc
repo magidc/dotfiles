@@ -1,0 +1,208 @@
+"" .ideavimrc - magidc
+
+"" Settings ========================================================
+set scrolloff=10
+set linenumber
+set showmode
+set showcmd
+set smartcase
+set incsearch
+set hlsearch
+set visualbell
+set clipboard+=unnamed   
+let mapleader = " "
+
+"" Key mappings ========================================================
+inoremap jk <Esc>
+vnoremap jk <Esc>
+
+" Edit (leader p, Bs, x, /, a, o, O)
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+"Replace word with paste
+nnoremap <leader>p "_diwP
+nnoremap <leader>Bs diw
+nnoremap <leader>x ciw
+"Change inside parentheses
+nnoremap <leader>/ ci(
+"Delete function argument
+nnoremap <leader>a daa
+nnoremap <leader>o o<ESC>
+nnoremap <leader>O O<ESC>
+nnoremap <C-Y> <C-R>
+
+" Motions
+nnoremap m ]m
+nnoremap M [m
+nnoremap H ^
+nnoremap L $
+map s <Plug>(easymotion-s)
+
+" Windows and buffers (leader w)
+nnoremap <leader>wh <C-w>h
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>ww :action CloseAllEditorsButActive<cr>
+nnoremap <leader>wq :action CloseContent<cr>
+map WQ :wqall<CR>
+map W :wall<CR>
+nnoremap <leader>wv :action SplitVertically<cr>
+nnoremap <leader>ws :action SplitHorizontally<cr>
+nnoremap <leader>wu :action Unsplit<cr>
+nnoremap <leader>wm :action MoveEditorToOppositeTabGroup<cr>
+
+" Folds
+map | :action CollapseAllRegions<CR>
+map -- :action ExpandAllRegions<CR>
+
+" Macros and registers
+" Execute macro saved in 'q' register
+nnoremap qj @q
+" Repeat las command
+nnoremap , @:
+nnoremap "_ t
+
+" Search (leader f)
+nnoremap ;; :nohlsearch<CR>
+map <leader>ff :action GotoFile<cr>
+map <leader>fd :action GotoClass<cr>
+map <leader>fr :action RecentFiles<cr>
+map <leader>fc :action FindInPath<cr>
+map <leader>fl :action RecentLocations<cr>
+map <leader>fs :action NewScratchFile<cr>
+map <leader>fa :action SearchEverywhere<cr>
+
+" Views (leader v)
+nnoremap <leader>v1 :action ActivateProjectToolWindow<cr>
+nnoremap <leader>v2 :action ActivateProblemsViewToolWindow<cr>
+nnoremap <leader>v3 :action ActivateStructureToolWindow<cr>
+nnoremap <leader>v4 :action ActivateTerminalToolWindow<cr>
+
+" Debug (leader d)
+nnoremap <leader>dr :action Run<cr>
+nnoremap <leader>dd :action Debug<cr>
+nnoremap <leader>dk :action Stop<cr>
+nnoremap <leader>db :action ToggleLineBreakpoint<cr>
+nnoremap <leader>da :action XDebugger.MuteBreakpoints<cr>
+nnoremap <leader>dv :action StepOver<cr>
+nnoremap <leader>di :action StepInto<cr>
+nnoremap <leader>do :action StepOut<cr>
+nnoremap <leader>dc :action Resume<cr>
+nnoremap <leader>dx :action QuickEvaluateExpression<cr>
+
+" Code and refactoring (leader c)
+nnoremap <leader>cd :action GotoDeclaration<cr>
+nnoremap <leader>cc :action GotoTypeDeclaration<cr>
+nnoremap <leader>ci :action GotoImplementation<cr>
+nnoremap <leader>cs :action GotoSuperMethod<cr>
+nnoremap <leader>cr :action ShowUsages<cr>
+nnoremap <leader>ca :action ShowIntentionActions<cr>
+nnoremap <leader>cf :action Back<cr>
+nnoremap <leader>cb :action Forward<cr>
+nnoremap <leader>cn :action RenameElement<cr>
+nnoremap <leader>cm :action ExtractMethod<cr>
+nnoremap <leader>cv :action IntroduceVariable<cr>
+nnoremap <leader>cf :action IntroduceField<cr>
+nnoremap <leader>cg :action ChangeSignature<cr>
+nnoremap <leader>cl :action Refactorings.QuickListPopupAction<cr>
+
+" Git (leader g)
+map <leader>gc :action CheckinProject<cr>
+map <leader>gs :action ActivateVersionControlToolWindow<cr>
+map <leader>gb :action Git.Branches<cr>
+
+" Errors (Intellij) (leader e)
+map <leader>en :action GotoNextError<cr>
+map <leader>ep :action GotoPreviousError<cr>
+
+" Popup navigation (Intellij) 
+
+" Display options (Intellij) (leader s)
+map <leader>sd :action ToggleDistractionFreeMode<cr>
+map <leader>sz :action ToggleZenMode<cr>
+map <leader>sf :action ToggleFullScreen<cr>
+
+" Plugin Settings ========================================================
+set surround
+set highlightedyank
+set sneak
+set nerdtree
+set argtextobj
+
+" Easymotion settings
+set easymotion
+set notimeout
+
+" " Which-key settings
+" set which-key
+" let g:WhichKey_FontSize = 16
+" let g:WhichKey_CommandColor = "#41ead4"
+" let g:WhichKey_PrefixColor = "#f335b2"
+" let g:WhichKey_SortOrder = "by_key_prefix_first"
+"
+" let g:WhichKeyDesc_leader = "<leader> Leader key"
+"
+" let g:WhichKeyDesc_leader = "<leader>x Open file explorer"
+"
+" let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
+" let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
+"
+" let g:WhichKeyDesc_comment = "<leader>c Comment line"
+"
+" let g:WhichKeyDesc_fold = "<leader>z Folding"
+" let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
+" let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
+"
+" let g:WhichKeyDesc_window = "<leader>w Window splits"
+" let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
+" let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
+" let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
+" let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
+"
+"
+" let g:WhichKeyDesc_display = "<leader>d Display options"
+" let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
+" let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
+" let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
+"
+" let g:WhichKeyDesc_action= "<leader>a Actions"
+" let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
+" let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
+"
+" let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
+"
+" let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
+" let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
+" let g:WhichKeyDesc_file_nav_goto_content = "<leader>fc Search for file content"
+" let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
+" let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
+"
+" let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
+"
+" let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
+" let g:WhichKeyDesc_refactoring_rename = "<leader>rn Rename element"
+" let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
+" let g:WhichKeyDesc_refactoring_variable = "<leader>rv Introduce variable"
+" let g:WhichKeyDesc_refactoring_field = "<leader>rf Introduce field"
+" let g:WhichKeyDesc_refactoring_signature = "<leader>rs Change signature"
+" let g:WhichKeyDesc_refactoring_all = "<leader>rr Open refactorings list"
+"
+" let g:WhichKeyDesc_goto = "<leader>g Go to X"
+" let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
+" let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Definition"
+" let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
+" let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
+" let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
+" let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
+" let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
+"
+" let g:WhichKeyDesc_git = "<leader>g Git operations"
+" let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit dialog"
+" let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
+" let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
+"
+" let g:WhichKeyDesc_errors = "<leader>e Error navigation"
+" let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
+" let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"

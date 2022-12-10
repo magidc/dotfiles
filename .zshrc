@@ -143,6 +143,7 @@ export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
+## Must create and maintain ".project" file with a plain list of paths to your project directories
 export FZF_ALT_P_COMMAND='cat $HOME/.projects'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
