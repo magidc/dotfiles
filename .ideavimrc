@@ -31,6 +31,8 @@ nnoremap <leader>a daa
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
 nnoremap <C-Y> <C-R>
+vnoremap + :action EditorSelectWord<cr>
+vnoremap _ :action EditorUnSelectWord<cr>
 
 " Motions
 nnoremap m ]m
@@ -78,10 +80,10 @@ map <leader>fx :action PasteMultiple<cr>
 map <leader>ft :action ActivateTODOToolWindow<cr>
 
 " Views (leader v)
-map <leader>v1 :action ActivateProjectToolWindow<cr>
-map <leader>v2 :action ActivateProblemsViewToolWindow<cr>
-map <leader>v3 :action ActivateStructureToolWindow<cr>
-map <leader>v4 :action ActivateTerminalToolWindow<cr>
+map <leader>vf :action ActivateProjectToolWindow<cr>
+map <leader>vp :action ActivateProblemsViewToolWindow<cr>
+map <leader>vs :action ActivateStructureToolWindow<cr>
+map <leader>vt :action ActivateTerminalToolWindow<cr>
 
 " Debug (leader d)
 nnoremap <leader>dr :action Run<cr>
