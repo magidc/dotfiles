@@ -66,19 +66,22 @@ nnoremap "_ t
 
 " Search (leader f)
 nnoremap ;; :nohlsearch<CR>
-map <leader>ff :action GotoFile<cr>
-map <leader>fd :action GotoClass<cr>
-map <leader>fr :action RecentFiles<cr>
-map <leader>fc :action FindInPath<cr>
+map <leader>ff :action GotoClass<cr>
+map <leader>fn :action GotoFile<cr>
+map <leader>fg :action FindInPath<cr>
+map <leader>fh :action RecentFiles<cr>
 map <leader>fl :action RecentLocations<cr>
-map <leader>fs :action NewScratchFile<cr>
-map <leader>fa :action SearchEverywhere<cr>
+map <leader>fs :action GotoSymbol<cr>
+map <leader>fz :action Find<cr>
+map <leader>fr :action Replace<cr>
+map <leader>fx :action PasteMultiple<cr>
+map <leader>ft :action ActivateTODOToolWindow<cr>
 
 " Views (leader v)
-nnoremap <leader>v1 :action ActivateProjectToolWindow<cr>
-nnoremap <leader>v2 :action ActivateProblemsViewToolWindow<cr>
-nnoremap <leader>v3 :action ActivateStructureToolWindow<cr>
-nnoremap <leader>v4 :action ActivateTerminalToolWindow<cr>
+map <leader>v1 :action ActivateProjectToolWindow<cr>
+map <leader>v2 :action ActivateProblemsViewToolWindow<cr>
+map <leader>v3 :action ActivateStructureToolWindow<cr>
+map <leader>v4 :action ActivateTerminalToolWindow<cr>
 
 " Debug (leader d)
 nnoremap <leader>dr :action Run<cr>
@@ -92,34 +95,43 @@ nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
 nnoremap <leader>dx :action QuickEvaluateExpression<cr>
 
-" Code and refactoring (leader c)
+" Code navigation (leader c)
 nnoremap <leader>cd :action GotoDeclaration<cr>
 nnoremap <leader>cc :action GotoTypeDeclaration<cr>
 nnoremap <leader>ci :action GotoImplementation<cr>
 nnoremap <leader>cs :action GotoSuperMethod<cr>
 nnoremap <leader>cr :action ShowUsages<cr>
 nnoremap <leader>ca :action ShowIntentionActions<cr>
-nnoremap <leader>cf :action Back<cr>
-nnoremap <leader>cb :action Forward<cr>
-nnoremap <leader>cn :action RenameElement<cr>
-nnoremap <leader>cm :action ExtractMethod<cr>
-nnoremap <leader>cv :action IntroduceVariable<cr>
-nnoremap <leader>cf :action IntroduceField<cr>
-nnoremap <leader>cg :action ChangeSignature<cr>
-nnoremap <leader>cl :action Refactorings.QuickListPopupAction<cr>
+nnoremap <leader>cv :action QuickJavaDoc<cr>
+nnoremap <leader>cp :action Back<cr>
+nnoremap <leader>cn :action Forward<cr>
+
+" Code refactoring (leader r)
+nnoremap <leader>rn :action RenameElement<cr>
+nnoremap <leader>rv :action IntroduceVariable<cr>
+nnoremap <leader>rc :action IntroduceConstant<cr>
+nnoremap <leader>rf :action IntroduceField<cr>
+nnoremap <leader>rm :action ExtractMethod<cr>
+nnoremap <leader>rl :action Refactorings.QuickListPopupAction<cr>
+nnoremap <leader>rf :action ReformatCode<cr>
+
+" Code generation (leader s)
+nnoremap <leader>sc :action GenerateConstructor<cr>
+nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
+nnoremap <leader>se :action GenerateEquals<cr>
+nnoremap <leader>sn :action NewClass<cr>
+nnoremap <leader>sf :action NewScratchFile<cr>
+
+" Diagnostics (leader e)
+map <leader>en :action GotoNextError<cr>
+map <leader>ep :action GotoPreviousError<cr>
 
 " Git (leader g)
 map <leader>gc :action CheckinProject<cr>
 map <leader>gs :action ActivateVersionControlToolWindow<cr>
 map <leader>gb :action Git.Branches<cr>
-
-" Errors (Intellij) (leader e)
-map <leader>en :action GotoNextError<cr>
-map <leader>ep :action GotoPreviousError<cr>
-
-" Popup navigation (Intellij) 
-
-" Display options (Intellij) (leader s)
+ 
+" Display options (leader s)
 map <leader>sd :action ToggleDistractionFreeMode<cr>
 map <leader>sz :action ToggleZenMode<cr>
 map <leader>sf :action ToggleFullScreen<cr>
