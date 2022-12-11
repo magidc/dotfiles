@@ -66,7 +66,7 @@ nnoremap qj @q
 nnoremap , @:
 nnoremap "_ t
 
-" Search (leader f)
+" Finder (leader f)
 nnoremap ;; :nohlsearch<CR>
 map <leader>ff :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
@@ -96,6 +96,7 @@ nnoremap <leader>di :action StepInto<cr>
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
 nnoremap <leader>dx :action QuickEvaluateExpression<cr>
+nnoremap <leader>dw :action Debugger.AddToWatch<cr>
 
 " Code navigation (leader c)
 nnoremap <leader>cd :action GotoDeclaration<cr>
@@ -108,7 +109,7 @@ nnoremap <leader>cv :action QuickJavaDoc<cr>
 nnoremap <leader>cp :action Back<cr>
 nnoremap <leader>cn :action Forward<cr>
 
-" Code refactoring (leader r)
+" Refactoring (leader r)
 nnoremap <leader>rn :action RenameElement<cr>
 nnoremap <leader>rv :action IntroduceVariable<cr>
 nnoremap <leader>rc :action IntroduceConstant<cr>
@@ -116,15 +117,18 @@ nnoremap <leader>rf :action IntroduceField<cr>
 nnoremap <leader>rm :action ExtractMethod<cr>
 nnoremap <leader>rl :action Refactorings.QuickListPopupAction<cr>
 nnoremap <leader>rf :action ReformatCode<cr>
+nnoremap <leader>ro :action OptimizeImports<CR>
+nnoremap <leader>ri :action Inline<CR>
+nnoremap <leader>ra :action AnonymousToInner<CR>
 
-" Code generation (leader s)
+" Source generation (leader s)
 nnoremap <leader>sc :action GenerateConstructor<cr>
 nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
 nnoremap <leader>sn :action NewClass<cr>
 nnoremap <leader>sf :action NewScratchFile<cr>
 
-" Diagnostics (leader e)
+" Errors and diagnostics (leader e)
 map <leader>en :action GotoNextError<cr>
 map <leader>ep :action GotoPreviousError<cr>
 
@@ -133,7 +137,7 @@ map <leader>gc :action CheckinProject<cr>
 map <leader>gs :action ActivateVersionControlToolWindow<cr>
 map <leader>gb :action Git.Branches<cr>
  
-" Display options (leader s)
+" Screen display options (leader s)
 map <leader>sd :action ToggleDistractionFreeMode<cr>
 map <leader>sz :action ToggleZenMode<cr>
 map <leader>sf :action ToggleFullScreen<cr>
