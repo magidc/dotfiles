@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-copyq-clipboard fzf-projects)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -143,12 +143,10 @@ export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
-## Must create and maintain ".project" file with a plain list of paths to your project directories
-export FZF_ALT_P_COMMAND='cat $HOME/.projects'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-## Custom binding CTRL-Y - Paste the selected file path(s) into the command line
+## Custom binding CTRL-y - Paste the selected file path(s) into the command line
 __fselhidden() {
   local cmd="${FZF_CTRL_Y_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type f -print \
@@ -175,7 +173,7 @@ bindkey -M emacs '^Y' fzf-file-hidden-widget
 bindkey -M vicmd '^Y' fzf-file-hidden-widget
 bindkey -M viins '^Y' fzf-file-hidden-widget
 
-## Custom binding ALT-V - cd into the selected subdirectory of current location
+## Custom binding ALT-v - cd into the selected subdirectory of current location
 fzf-cd-subdir-widget() {
   local cmd="${FZF_ALT_V_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"}"
@@ -197,29 +195,6 @@ zle     -N             fzf-cd-subdir-widget
 bindkey -M emacs '\ev' fzf-cd-subdir-widget
 bindkey -M vicmd '\ev' fzf-cd-subdir-widget
 bindkey -M viins '\ev' fzf-cd-subdir-widget
-
-## Custom binding ALT-P - cd into the selected PROJECT directory
-fzf-cd-project-widget() {
-  local cmd="${FZF_ALT_P_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_P_OPTS-}" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="builtin cd -- ${(q)dir}"
-  zle accept-line
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle reset-prompt
-  return $ret
-}
-zle     -N             fzf-cd-project-widget
-bindkey -M emacs '\ep' fzf-cd-project-widget
-bindkey -M vicmd '\ep' fzf-cd-project-widget
-bindkey -M viins '\ep' fzf-cd-project-widget
 
 # >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
