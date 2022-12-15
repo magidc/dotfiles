@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-copyq-clipboard fzf-projects)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-clipboard-indicator fzf-projects)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -143,6 +143,8 @@ export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
+## Must create and maintain ".project" file with a plain list of paths to your project directories
+export FZF_ALT_P_COMMAND='cat $HOME/.projects'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

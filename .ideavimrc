@@ -62,8 +62,6 @@ map -- :action ExpandAllRegions<CR>
 " Macros and registers
 " Execute macro saved in 'q' register
 nnoremap qj @q
-" Repeat las command
-nnoremap , @:
 nnoremap "_ t
 
 " Finder (leader f)
@@ -72,7 +70,7 @@ map <leader>ff :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
 map <leader>fg :action FindInPath<cr>
 map <leader>fh :action RecentFiles<cr>
-map <leader>fl :action RecentLocations<cr>
+map <leader>fm :action RecentLocations<cr>
 map <leader>fs :action GotoSymbol<cr>
 map <leader>fz :action Find<cr>
 map <leader>fr :action Replace<cr>
@@ -95,27 +93,26 @@ nnoremap <leader>dv :action StepOver<cr>
 nnoremap <leader>di :action StepInto<cr>
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
-nnoremap <leader>dx :action QuickEvaluateExpression<cr>
-nnoremap <leader>dw :action Debugger.AddToWatch<cr>
+map <leader>dx :action QuickEvaluateExpression<cr>
+map <leader>dw :action Debugger.AddToWatch<cr>
 
 " Code navigation (leader c)
 nnoremap <leader>cd :action GotoDeclaration<cr>
-nnoremap <leader>cc :action GotoTypeDeclaration<cr>
+nnoremap <leader>ct :action GotoTypeDeclaration<cr>
 nnoremap <leader>ci :action GotoImplementation<cr>
 nnoremap <leader>cs :action GotoSuperMethod<cr>
 nnoremap <leader>cr :action ShowUsages<cr>
-nnoremap <leader>ca :action ShowIntentionActions<cr>
 nnoremap <leader>cv :action QuickJavaDoc<cr>
 nnoremap <leader>cp :action Back<cr>
 nnoremap <leader>cn :action Forward<cr>
 
 " Refactoring (leader r)
+nnoremap <leader>rr :action ShowIntentionActions<cr>
 nnoremap <leader>rn :action RenameElement<cr>
 nnoremap <leader>rv :action IntroduceVariable<cr>
 nnoremap <leader>rc :action IntroduceConstant<cr>
 nnoremap <leader>rf :action IntroduceField<cr>
 nnoremap <leader>rm :action ExtractMethod<cr>
-nnoremap <leader>rl :action Refactorings.QuickListPopupAction<cr>
 nnoremap <leader>rf :action ReformatCode<cr>
 nnoremap <leader>ro :action OptimizeImports<CR>
 nnoremap <leader>ri :action Inline<CR>
@@ -133,11 +130,8 @@ map <leader>en :action GotoNextError<cr>
 map <leader>ep :action GotoPreviousError<cr>
 
 " Git (leader g)
-map <leader>gc :action CheckinProject<cr>
-map <leader>gs :action ActivateVersionControlToolWindow<cr>
-map <leader>gb :action Git.Branches<cr>
  
-" Screen display options (leader s)
+" Display Modes (leader m)
 map <leader>sd :action ToggleDistractionFreeMode<cr>
 map <leader>sz :action ToggleZenMode<cr>
 map <leader>sf :action ToggleFullScreen<cr>
@@ -153,74 +147,114 @@ set argtextobj
 set easymotion
 set notimeout
 
-" " Which-key settings
-" set which-key
-" let g:WhichKey_FontSize = 16
-" let g:WhichKey_CommandColor = "#41ead4"
-" let g:WhichKey_PrefixColor = "#f335b2"
-" let g:WhichKey_SortOrder = "by_key_prefix_first"
-"
-" let g:WhichKeyDesc_leader = "<leader> Leader key"
-"
-" let g:WhichKeyDesc_leader = "<leader>x Open file explorer"
-"
-" let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
-" let g:WhichKeyDesc_easymotion_prefix = "<leader><leader>"
-"
-" let g:WhichKeyDesc_comment = "<leader>c Comment line"
-"
-" let g:WhichKeyDesc_fold = "<leader>z Folding"
-" let g:WhichKeyDesc_fold_all = "<leader>zc Fold all regions"
-" let g:WhichKeyDesc_unfold_all = "<leader>zo Unfold all regions"
-"
-" let g:WhichKeyDesc_window = "<leader>w Window splits"
-" let g:WhichKeyDesc_window_split_vertically = "<leader>wv Split vertically"
-" let g:WhichKeyDesc_window_split_horizontally = "<leader>wh Split horizontally"
-" let g:WhichKeyDesc_window_split_unsplit = "<leader>wu Unsplit"
-" let g:WhichKeyDesc_window_split_move_editor = "<leader>wm Move editor to opposite tab group"
-"
-"
-" let g:WhichKeyDesc_display = "<leader>d Display options"
-" let g:WhichKeyDesc_zen_mode = "<leader>dz Toggle Zen mode"
-" let g:WhichKeyDesc_df_mode = "<leader>dd Toggle Distraction-Free mode"
-" let g:WhichKeyDesc_fullscreen = "<leader>df Toggle full screen"
-"
-" let g:WhichKeyDesc_action= "<leader>a Actions"
-" let g:WhichKeyDesc_action_context_menu = "<leader>am Open context menu"
-" let g:WhichKeyDesc_action_search = "<leader>as Open command modal"
-"
-" let g:WhichKeyDesc_file_quickLook = "<leader><leader> Recent files"
-"
-" let g:WhichKeyDesc_file_nav = "<leader>f File navigation"
-" let g:WhichKeyDesc_file_nav_goto_file = "<leader>ff Go to file"
-" let g:WhichKeyDesc_file_nav_goto_content = "<leader>fc Search for file content"
-" let g:WhichKeyDesc_file_nav_show_recent_files = "<leader>fr Show recent files"
-" let g:WhichKeyDesc_file_nav_show_recent_locations = "<leader>fl Show recent locations"
-"
-" let g:WhichKeyDesc_close_tab = "<leader>q Close active tab"
-"
-" let g:WhichKeyDesc_refactoring = "<leader>r Refactoring menu"
-" let g:WhichKeyDesc_refactoring_rename = "<leader>rn Rename element"
-" let g:WhichKeyDesc_refactoring_method = "<leader>rm Extract method"
-" let g:WhichKeyDesc_refactoring_variable = "<leader>rv Introduce variable"
-" let g:WhichKeyDesc_refactoring_field = "<leader>rf Introduce field"
-" let g:WhichKeyDesc_refactoring_signature = "<leader>rs Change signature"
-" let g:WhichKeyDesc_refactoring_all = "<leader>rr Open refactorings list"
-"
-" let g:WhichKeyDesc_goto = "<leader>g Go to X"
-" let g:WhichKeyDesc_goto_declaration = "<leader>gd Go to Definition"
-" let g:WhichKeyDesc_goto_type_declaration = "<leader>gy Go to Type Definition"
-" let g:WhichKeyDesc_goto_implementation = "<leader>gi Go to Implementation"
-" let g:WhichKeyDesc_goto_usages = "<leader>gu Go to Usages"
-" let g:WhichKeyDesc_goto_test = "<leader>gt Go to Test"
-" let g:WhichKeyDesc_goto_back = "<leader>gb Go Back"
-" let g:WhichKeyDesc_goto_forward = "<leader>gf Go Forward"
-"
-" let g:WhichKeyDesc_git = "<leader>g Git operations"
-" let g:WhichKeyDesc_git_commit = "<leader>gc Open Git commit dialog"
-" let g:WhichKeyDesc_git_status = "<leader>gs Open Git status dialog"
-" let g:WhichKeyDesc_git_branches = "<leader>gb Open Git branches list"
-"
-" let g:WhichKeyDesc_errors = "<leader>e Error navigation"
-" let g:WhichKeyDesc_errors_next = "<leader>en Go to next error in solution"
-" let g:WhichKeyDesc_errors_prev = "<leader>ep Go to previous error in solution"
+" Which-key settings
+set which-key
+let g:WhichKey_FontSize = 16
+let g:WhichKey_CommandColor = "#41ead4"
+let g:WhichKey_PrefixColor = "#f335b2"
+let g:WhichKey_SortOrder = "by_key_prefix_first"
+
+let g:WhichKeyDesc_leader = "<leader> Leader key"
+let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
+let g:WhichKeyDesc_window_savequitall = "<leader>WQ Save all and close"
+let g:WhichKeyDesc_window_saveall = "<leader>W Save all"
+
+" Windows and buffers (leader w)
+let g:WhichKeyDesc_leader_window = "<leader>w Window actions"
+let g:WhichKeyDesc_window_focusleft = "<leader>wh Focus left window"
+let g:WhichKeyDesc_window_focusdown = "<leader>wj Focus down window"
+let g:WhichKeyDesc_window_focusup = "<leader>wk Focus up window"
+let g:WhichKeyDesc_window_focusright = "<leader>wl Focus right window"
+let g:WhichKeyDesc_window_close = "<leader>wq Close tab"
+let g:WhichKeyDesc_window_closeallbutactive = "<leader>ww Close other tabs"
+let g:WhichKeyDesc_window_splitvertical = "<leader>wv Split vertically"
+let g:WhichKeyDesc_window_splithorizontal = "<leader>ws Split horizontally"
+let g:WhichKeyDesc_window_splitundo = "<leader>wu Unsplit"
+let g:WhichKeyDesc_window_splitmovetooppositetabgroup = "<leader>wm Move editor to opposite tab group"
+
+" Folds
+let g:WhichKeyDesc_fold_collapseall = "| Collapse all folds"
+let g:WhichKeyDesc_fold_expandall = "-- Expand all folds"
+
+" Macros and registers
+let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in 'q' register"
+
+" Finder (leader f)
+let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
+let g:WhichKeyDesc_finder_class = "<leader>ff Find class"
+let g:WhichKeyDesc_finder_file = "<leader>fn Find files (Name)"
+let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
+let g:WhichKeyDesc_finder_history = "<leader>fh Find recent files (History)"
+let g:WhichKeyDesc_finder_location = "<leader>fm Find recent locations (Marks)"
+let g:WhichKeyDesc_finder_symbol = "<leader>fs Find symbol"
+let g:WhichKeyDesc_finder_find = "<leader>fz Find in current file (Ctrl-z)"
+let g:WhichKeyDesc_finder_replace = "<leader>fr Find and replace in current file <Ctrl-r>"
+let g:WhichKeyDesc_finder_clipboard = "<leader>fx Find in clipboard"
+let g:WhichKeyDesc_finder_todo = "<leader>ft Find in TODO list"
+
+" Views (leader v)
+let g:WhichKeyDesc_leader_views = "<leader>v View actions"
+let g:WhichKeyDesc_views_project = "<leader>vf Project view (Files)"
+let g:WhichKeyDesc_views_problems = "<leader>vp Problems and diganostics view"
+let g:WhichKeyDesc_views_structure = "<leader>vs Structure view"
+let g:WhichKeyDesc_views_terminal = "<leader>vt Terminal"
+
+" Debug (leader d)
+let g:WhichKeyDesc_leader_debug = "<leader>d Debug actions"
+let g:WhichKeyDesc_debug_run = "<leader>dr Run"
+let g:WhichKeyDesc_debug_debug = "<leader>dd Debug"
+let g:WhichKeyDesc_debug_stop = "<leader>dk Stop (Kill)"
+let g:WhichKeyDesc_debug_togglelinebreakpoint = "<leader>db Toggle breakpoint"
+let g:WhichKeyDesc_debug_muteallbreakpoints = "<leader>da Mute All breakpoints"
+let g:WhichKeyDesc_debug_stepover = "<leader>dv Step oVer"
+let g:WhichKeyDesc_debug_stepinto = "<leader>di Step into"
+let g:WhichKeyDesc_debug_stepout = "<leader>do Step Out"
+let g:WhichKeyDesc_debug_continue = "<leader>dc Continue"
+let g:WhichKeyDesc_debug_evaluate = "<leader>dx Evaluate expression"
+let g:WhichKeyDesc_debug_watch = "<leader>da Add to watch"
+
+" Code navigation (leader c)
+let g:WhichKeyDesc_leader_code = "<leader>c Code actions"
+let g:WhichKeyDesc_code_gotodeclaration = "<leader>cd Go to declaration"
+let g:WhichKeyDesc_code_gototypedeclaration = "<leader>ct Go to type declaration"
+let g:WhichKeyDesc_code_gotoimplementation = "<leader>ci Go to implementation"
+let g:WhichKeyDesc_code_gotosupermethod = "<leader>cs Go to super method"
+let g:WhichKeyDesc_code_gotousages = "<leader>cr Show usages (References)"
+let g:WhichKeyDesc_code_doc = "<leader>cv Show docs (hooVer)"
+let g:WhichKeyDesc_code_back = "<leader>cp Go back (Previous)"
+let g:WhichKeyDesc_code_forward = "<leader>cn Go forward (Next)"
+
+" Refactoring (leader r)
+let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"
+let g:WhichKeyDesc_refactor_showactions = "<leader>rr Show actions"
+let g:WhichKeyDesc_refactor_renameelement = "<leader>rn Rename element"
+let g:WhichKeyDesc_refactor_introducevariable = "<leader>rv Introduce variable"
+let g:WhichKeyDesc_refactor_introduceconstant = "<leader>rc Introduce constant"
+let g:WhichKeyDesc_refactor_introducefield = "<leader>rf Introduce field"
+let g:WhichKeyDesc_refactor_extractmethod = "<leader>rm Extract method"
+let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
+let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
+let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
+let g:WhichKeyDesc_refactor_anonymoustoinner = "<leader>ra Anonymous To inner"
+
+" Source generation (leader s)
+let g:WhichKeyDesc_leader_source = "<leader>s Source generation actions"
+let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
+let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
+let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
+let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
+let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
+
+" Errors and diagnostics (leader e)
+let g:WhichKeyDesc_leader_error = "<leader>e Error and diagnostics actions"
+let g:WhichKeyDesc_error_next = "<leader>en Go to next error"
+let g:WhichKeyDesc_error_previous = "<leader>ep Go to previous error"
+
+" Git (leader g)
+
+" Display Modes (leader m)
+let g:WhichKeyDesc_leader_display = "<leader>m Display modes"
+let g:WhichKeyDesc_display_distractionfreemode = "<leader>md Toggle distraction free mode"
+let g:WhichKeyDesc_display_zenmode = "<leader>mz Toggle Zen mode"
+let g:WhichKeyDesc_display_fullscreen = "<leader>mf Toggle full screen"
+
