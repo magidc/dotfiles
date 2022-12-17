@@ -1,8 +1,10 @@
 "" .ideavimrc - magidc
+"" https://github.com/magidc/dotfiles/blob/master/.ideavimrc
 
 "" Settings ========================================================
 set scrolloff=10
 set linenumber
+set relativenumber
 set showmode
 set showcmd
 set smartcase
@@ -12,7 +14,12 @@ set visualbell
 set clipboard+=unnamed   
 let mapleader = " "
 
-"" Key mappings ========================================================
+"" Choosing handlers in conflicting Intellij/IdeaVim keymaps =======
+sethandler <C-i> n-v-i:vim
+sethandler <C-o> n-v-i:vim
+sethandler <C-r> n-v-i:vim
+
+"" Key mappings ====================================================
 inoremap jk <Esc>
 vnoremap jk <Esc>
 
@@ -22,15 +29,17 @@ vnoremap < <gv
 vnoremap > >gv
 "Replace word with paste
 nnoremap <leader>p "_diwP
-nnoremap <leader>Bs diw
+nnoremap <leader><BS> diw
 nnoremap <leader>x ciw
 "Change inside parentheses
 nnoremap <leader>/ ci(
+nnoremap E ge
 "Delete function argument
 nnoremap <leader>a daa
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
-nnoremap <C-Y> <C-R>
+map <C-o> :action Back<cr>
+map <C-i> :action Forward<cr>
 vnoremap + :action EditorSelectWord<cr>
 vnoremap _ :action EditorUnSelectWord<cr>
 
@@ -48,8 +57,6 @@ nnoremap <leader>wk <C-w>k
 nnoremap <leader>wj <C-w>j
 nnoremap <leader>ww :action CloseAllEditorsButActive<cr>
 nnoremap <leader>wq :action CloseContent<cr>
-map WQ :wqall<CR>
-map W :wall<CR>
 nnoremap <leader>wv :action SplitVertically<cr>
 nnoremap <leader>ws :action SplitHorizontally<cr>
 nnoremap <leader>wu :action Unsplit<cr>
@@ -82,10 +89,13 @@ map <leader>vf :action ActivateProjectToolWindow<cr>
 map <leader>vp :action ActivateProblemsViewToolWindow<cr>
 map <leader>vs :action ActivateStructureToolWindow<cr>
 map <leader>vt :action ActivateTerminalToolWindow<cr>
+map <leader>vv :action ActivateServicesToolWindow<cr>
 
 " Debug (leader d)
 nnoremap <leader>dr :action Run<cr>
+nnoremap <leader>dR :action ChooseRunConfiguration<cr>
 nnoremap <leader>dd :action Debug<cr>
+nnoremap <leader>dD :action ChooseDebugConfiguration<cr>
 nnoremap <leader>dk :action Stop<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
 nnoremap <leader>da :action XDebugger.MuteBreakpoints<cr>
@@ -136,7 +146,7 @@ map <leader>sd :action ToggleDistractionFreeMode<cr>
 map <leader>sz :action ToggleZenMode<cr>
 map <leader>sf :action ToggleFullScreen<cr>
 
-" Plugin Settings ========================================================
+" Plugin Settings ==================================================
 set surround
 set highlightedyank
 set sneak
@@ -156,8 +166,12 @@ let g:WhichKey_SortOrder = "by_key_prefix_first"
 
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
-let g:WhichKeyDesc_window_savequitall = "<leader>WQ Save all and close"
-let g:WhichKeyDesc_window_saveall = "<leader>W Save all"
+let g:WhichKeyDesc_leader_deleteargument = "<leader>a Delete function argument"
+let g:WhichKeyDesc_leader_replacewithpaste = "<leader>p Replace with paste"
+let g:WhichKeyDesc_leader_changeparentheses = "<leader>/ Change inside parentheses"
+let g:WhichKeyDesc_leader_changeword = "<leader>x Change whole word"
+let g:WhichKeyDesc_leader_newline = "<leader>o New line in normal mode"
+let g:WhichKeyDesc_leader_newprevline = "<leader>O New line before in normal mode"
 
 " Windows and buffers (leader w)
 let g:WhichKeyDesc_leader_window = "<leader>w Window actions"
