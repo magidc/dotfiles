@@ -8,9 +8,9 @@ set incsearch
 set hlsearch
 set visualbell
 set clipboard+=unnamed   
-let mapleader = " "
+let mapleader = ","
 
-"" Key mappings ========================================================
+"" Key mappings ====================================================
 inoremap jk <Esc>
 vnoremap jk <Esc>
 
@@ -20,15 +20,23 @@ vnoremap < <gv
 vnoremap > >gv
 "Replace word with paste
 nnoremap <leader>p "_diwP
-nnoremap <leader>Bs diw
+nnoremap <leader><BS> diw
 nnoremap <leader>x ciw
 "Change inside parentheses
 nnoremap <leader>/ ci(
+nnoremap E ge
 "Delete function argument
 nnoremap <leader>a daa
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
-nnoremap <C-Y> <C-R>
+map <C-o> :eclipseaction Back<cr>
+map <C-i> :eclipseaction Forward<cr>
+vnoremap + :eclipseaction EditorSelectWord<cr>
+vnoremap _ :eclipseaction EditorUnSelectWord<cr>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
 
 " Motions
 nnoremap m ]m
@@ -41,14 +49,110 @@ nnoremap <leader>wh <C-w>h
 nnoremap <leader>wl <C-w>l
 nnoremap <leader>wk <C-w>k
 nnoremap <leader>wj <C-w>j
-map WQ :wqall<CR>
-map W :wall<CR>
-map Q :qall!<CR>
+nnoremap <leader>ww :eclipseaction CloseAllEditorsButActive<cr>
+nnoremap <leader>ww :eclipseaction CloseAllEditorsButActive<cr>
+nnoremap <leader>wq :eclipseaction CloseContent<cr>
+nnoremap <leader>wv :eclipseaction SplitVertically<cr>
+nnoremap <leader>ws :eclipseaction SplitHorizontally<cr>
+nnoremap <leader>wu :eclipseaction Unsplit<cr>
+nnoremap <leader>wm :eclipseaction MoveEditorToOppositeTabGroup<cr>
+nnoremap W :wall<CR>
+
+" Folds
+map | :eclipseaction CollapseAllRegions<CR>
+map -- :eclipseaction ExpandAllRegions<CR>
 
 " Macros and registers
 " Execute macro saved in 'q' register
 nnoremap qj @q
-" Repeat las command
-nnoremap , @:
 nnoremap "_ t
+
+" Finder (leader f)
+nnoremap ;; :nohlsearch<CR>
+map <leader>ff :eclipseaction GotoClass<cr>
+map <leader>fn :eclipseaction GotoFile<cr>
+map <leader>fg :eclipseaction FindInPath<cr>
+map <leader>fh :eclipseaction RecentFiles<cr>
+map <leader>fm :eclipseaction RecentLocations<cr>
+map <leader>fs :eclipseaction GotoSymbol<cr>
+map <leader>fz :eclipseaction Find<cr>
+map <leader>fr :eclipseaction Replace<cr>
+map <leader>fx :eclipseaction PasteMultiple<cr>
+map <leader>ft :eclipseaction ActivateTODOToolWindow<cr>
+
+" Debug (leader d)
+nnoremap <leader>dr :eclipseaction Run<cr>
+nnoremap <leader>dR :eclipseaction ChooseRunConfiguration<cr>
+nnoremap <leader>dd :eclipseaction Debug<cr>
+nnoremap <leader>dD :eclipseaction ChooseDebugConfiguration<cr>
+nnoremap <leader>dk :eclipseaction Stop<cr>
+nnoremap <leader>db :eclipseaction ToggleLineBreakpoint<cr>
+nnoremap <leader>da :eclipseaction XDebugger.MuteBreakpoints<cr>
+nnoremap <leader>dv :eclipseaction StepOver<cr>
+nnoremap <leader>di :eclipseaction StepInto<cr>
+nnoremap <leader>do :eclipseaction StepOut<cr>
+nnoremap <leader>dc :eclipseaction Resume<cr>
+map <leader>dx :eclipseaction QuickEvaluateExpression<cr>
+map <leader>dw :eclipseaction Debugger.AddToWatch<cr>
+
+" Code navigation (leader c)
+eclipseaction findDeclarations org.eclipse.jdt.ui.edit.text.java.search.declarations.in.workspace
+nnoremap <leader>cd :findDeclarations<cr>
+eclipseaction goToType org.eclipse.jdt.ui.actions.GoToType
+nnoremap <leader>ct :goToType<cr>
+eclipseaction goToImplementation org.eclipse.jdt.ui.edit.text.java.open.implementation
+nnoremap <leader>ci :goToImplementation<cr>
+eclipseaction goToSuperImplementation org.eclipse.jdt.ui.edit.text.java.open.super.implementation
+nnoremap <leader>cs :goToSuperImplementation<cr>
+eclipseaction showReferences org.eclipse.jdt.ui.edit.text.java.search.references.in.workspace
+nnoremap <leader>cr :showReferences<cr>
+eclipseaction showJavaDoc org.eclipse.jdt.ui.edit.text.java.show.javadoc
+nnoremap <leader>cv :showJavaDoc<cr>
+nnoremap <leader>cp :eclipseaction Back<cr>
+nnoremap <leader>cn :eclipseaction Forward<cr>
+
+" Refactoring (leader r)
+eclipseaction contentAssist org.eclipse.jdt.ui.edit.text.java.complete.prefix
+nnoremap <leader>rr :contentAssist<cr>
+eclipseaction rename org.eclipse.jdt.ui.edit.text.java.rename.element
+nnoremap <leader>rn :rename<cr>
+eclipseaction extractParameter org.eclipse.jdt.ui.edit.text.java.introduce.parameter
+nnoremap <leader>rv :extractParameter<cr>
+eclipseaction extractConstant org.eclipse.jdt.ui.edit.text.java.extract.constant
+nnoremap <leader>rc :extractConstant<cr>
+eclipseaction introduceParameter org.eclipse.jdt.ui.edit.text.java.introduce.parameter
+nnoremap <leader>rf :introduceParameter<cr>
+nnoremap <leader>rm :eclipseaction org.eclipse.jdt.ui.actions.ExtractMethod<cr>
+eclipseaction format org.eclipse.jdt.ui.edit.text.java.format
+nnoremap <leader>rf :format<cr>
+eclipseaction organizeImports org.eclipse.jdt.ui.edit.text.java.organize.imports
+nnoremap <leader>ro :organizeImports<cr>
+eclipseaction inline org.eclipse.jdt.ui.edit.text.java.inline
+nnoremap <leader>ri :inline<cr>
+eclipseaction convertAnonymousToNested org.eclipse.jdt.ui.edit.text.java.convert.anonymous.to.nested
+nnoremap <leader>ra :convertAnonymousToNested<cr>
+
+" Source generation (leader s)
+eclipseaction generateConstructor org.eclipse.jdt.ui.edit.text.java.generate.constructor.using.fields
+nnoremap <leader>sc :generateConstructor<cr>
+eclipseaction generateGetterSetter org.eclipse.jdt.ui.edit.text.java.create.getter.setter
+nnoremap <leader>sg :generateGetterSetter<cr>
+eclipseaction generateHashcodeEquals org.eclipse.jdt.ui.edit.text.java.generate.hashcode.equals
+nnoremap <leader>se :generateHashcodeEquals<cr>
+nnoremap <leader>sn :eclipseaction NewClass<cr>
+nnoremap <leader>sf :eclipseaction NewScratchFile<cr>
+
+" Errors and diagnostics (leader e)
+eclipseaction goToNextProblem org.eclipse.jdt.ui.edit.text.java.show.next.problem
+map <leader>en :goToNextProblem<cr>
+eclipseaction goToPreviousProblem org.eclipse.jdt.ui.edit.text.java.show.previous.problem
+map <leader>ep :goToPreviousProblem<cr>
+
+" Git (leader g)
+ 
+" Display Modes (leader m)
+map <leader>md :eclipseaction ToggleDistractionFreeMode<cr>
+map <leader>mz :eclipseaction ToggleZenMode<cr>
+map <leader>mf :eclipseaction ToggleFullScreen<cr>
+
 

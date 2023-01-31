@@ -82,7 +82,7 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-comple
 source $ZSH/oh-my-zsh.sh
 
 # Enable vi mode
-bindkey -v
+# bindkey -v
 
 # User configuration
 
@@ -130,9 +130,9 @@ function expand-alias() {
 }
 
 zle -N expand-alias
-bindkey -M emacs '^a' expand-alias
-bindkey -M vicmd '^a' expand-alias
-bindkey -M viins '^a' expand-alias
+bindkey -M emacs '^ ' expand-alias
+bindkey -M vicmd '^ ' expand-alias
+bindkey -M viins '^ ' expand-alias
 
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 

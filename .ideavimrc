@@ -3,7 +3,7 @@
 
 "" Settings ========================================================
 set scrolloff=10
-set linenumber
+set number
 set relativenumber
 set showmode
 set showcmd
@@ -18,6 +18,8 @@ let mapleader = " "
 sethandler <C-i> n-v-i:vim
 sethandler <C-o> n-v-i:vim
 sethandler <C-r> n-v-i:vim
+sethandler <C-d> n-v-i:vim
+sethandler <C-u> n-v-i:vim
 
 "" Key mappings ====================================================
 inoremap jk <Esc>
@@ -31,17 +33,32 @@ vnoremap > >gv
 nnoremap <leader>p "_diwP
 nnoremap <leader><BS> diw
 nnoremap <leader>x ciw
+nnoremap <leader>z ci"
 "Change inside parentheses
 nnoremap <leader>/ ci(
 nnoremap E ge
 "Delete function argument
 nnoremap <leader>a daa
+
+" Method text objects operation replacement
+nnoremap yim :action MethodUp<cr>f{vi{y
+nnoremap dim :action MethodUp<cr>f{vi{d
+nnoremap cim :action MethodUp<cr>f{vi{c
+nnoremap yam :action MethodUp<cr>v0Of{%y
+nnoremap dam :action MethodUp<cr>v0Of{%d
+nnoremap cam :action MethodUp<cr>v0Of{%c
+
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
-map <C-o> :action Back<cr>
-map <C-i> :action Forward<cr>
+map <C-o> :action Back<cr>zz
+map <C-i> :action Forward<cr>zz
+nnoremap + v
 vnoremap + :action EditorSelectWord<cr>
 vnoremap _ :action EditorUnSelectWord<cr>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
 
 " Motions
 nnoremap m ]m
@@ -90,6 +107,7 @@ map <leader>vp :action ActivateProblemsViewToolWindow<cr>
 map <leader>vs :action ActivateStructureToolWindow<cr>
 map <leader>vt :action ActivateTerminalToolWindow<cr>
 map <leader>vv :action ActivateServicesToolWindow<cr>
+map <leader>vq :action HideActiveWindow<cr>
 
 " Debug (leader d)
 nnoremap <leader>dr :action Run<cr>
@@ -142,9 +160,9 @@ map <leader>ep :action GotoPreviousError<cr>
 " Git (leader g)
  
 " Display Modes (leader m)
-map <leader>sd :action ToggleDistractionFreeMode<cr>
-map <leader>sz :action ToggleZenMode<cr>
-map <leader>sf :action ToggleFullScreen<cr>
+map <leader>md :action ToggleDistractionFreeMode<cr>
+map <leader>mz :action ToggleZenMode<cr>
+map <leader>mf :action ToggleFullScreen<cr>
 
 " Plugin Settings ==================================================
 set surround
@@ -152,6 +170,7 @@ set highlightedyank
 set sneak
 set nerdtree
 set argtextobj
+set vim-multiple-cursors
 
 " Easymotion settings
 set easymotion
@@ -216,7 +235,9 @@ let g:WhichKeyDesc_views_terminal = "<leader>vt Terminal"
 " Debug (leader d)
 let g:WhichKeyDesc_leader_debug = "<leader>d Debug actions"
 let g:WhichKeyDesc_debug_run = "<leader>dr Run"
+let g:WhichKeyDesc_debug_run = "<leader>dR Choose run"
 let g:WhichKeyDesc_debug_debug = "<leader>dd Debug"
+let g:WhichKeyDesc_debug_debug = "<leader>dD Choose debug"
 let g:WhichKeyDesc_debug_stop = "<leader>dk Stop (Kill)"
 let g:WhichKeyDesc_debug_togglelinebreakpoint = "<leader>db Toggle breakpoint"
 let g:WhichKeyDesc_debug_muteallbreakpoints = "<leader>da Mute All breakpoints"
@@ -225,7 +246,7 @@ let g:WhichKeyDesc_debug_stepinto = "<leader>di Step into"
 let g:WhichKeyDesc_debug_stepout = "<leader>do Step Out"
 let g:WhichKeyDesc_debug_continue = "<leader>dc Continue"
 let g:WhichKeyDesc_debug_evaluate = "<leader>dx Evaluate expression"
-let g:WhichKeyDesc_debug_watch = "<leader>da Add to watch"
+let g:WhichKeyDesc_debug_watch = "<leader>dw Add to watch"
 
 " Code navigation (leader c)
 let g:WhichKeyDesc_leader_code = "<leader>c Code actions"
