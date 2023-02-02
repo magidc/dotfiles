@@ -14,37 +14,79 @@ set relativenumber  " Enable relative line numbers
 let mapleader = " "
 
 "" Key mappings ========================================================
-inoremap jk <Esc>
-vnoremap jk <Esc>
-
-" Edit (leader p, Bs, x, /, a, o, O)
-" Easy visual indentation
-vnoremap < <gv
-vnoremap > >gv
+" NORMAL MODE
+"Edit
 "Replace word with paste
-nnoremap <leader>p "_diwP
-nnoremap <leader>Bs diw
-nnoremap <leader>x ciw
-"Change inside parentheses
-nnoremap <leader>/ ci(
-nnoremap <leader>o o<ESC>
-nnoremap <leader>O O<ESC>
+nnoremap <a-p> "_diwP
+
+nnoremap <a-j> :m .+1<cr>==
+nnoremap <a-k> :m .-2<cr>==
+
+nnoremap <a-Bs> "_diw
+nnoremap <a-c> "_ciw
+nnoremap <a-z> "_ci"
+nnoremap <a-/> "_ci(
+
+nnoremap <a-o> o<ESC>
+nnoremap <a-O> O<ESC>
 
 " Motions
+nnoremap E ge
 nnoremap m ]m
 nnoremap M [m
 nnoremap H ^
 nnoremap L $
+nnoremap <C-o> <c-i>
+nnoremap <C-i> <c-o>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
 
-" Windows and buffers (leader w)
-map WQ :wqall<CR>
-map W :wall<CR>
-map Q :qall!<CR>
+" Windows and buffers
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+nnoremap <a-right> <cmd>bn<cr>
+nnoremap <a-left> <cmd>bp<cr>
+nnoremap <a-t> <cmd>ene<cr>
+nnoremap WQ <cmd>wqall<cr>
+nnoremap W <cmd>wall<cr>
+nnoremap Q <cmd>qall!<cr>
+nnoremap <a-q> <cmd>bd!<cr>
+nnoremap <a-w> <cmd>%bd!|e#|bd#<cr>
+
+" Folds
+nnoremap | zM
+nnoremap -- zR
 
 " Macros and registers
 " Execute macro saved in 'q' register
 nnoremap qj @q
 " Repeat las command
 nnoremap , @:
-nnoremap "_ t
+nnoremap "_ 
+" Find
+" Clean search highlights
+nnoremap ;; <cmd>noh<cr>
 
+" INSERT MODE
+inoremap jk <Esc>
+inoremap <a-d> <Del>
+inoremap <a-Bs> <C-o>"_diw
+inoremap <a-c> <C-o>"_ciw
+inoremap <a-e> <C-o>"_de
+inoremap <a-w> <C-o>w
+inoremap <a-b> <C-o>b
+inoremap <a-j> <ESC>:m .+1<cr>==gi
+inoremap <a-k> <ESC>:m .-2<cr>==gi 
+
+" VISUAL MODE
+vnoremap jk <Esc>
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+" Select all
+nnoremap <c-s> ggOG
+vnoremap <c-s> ggOG

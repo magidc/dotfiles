@@ -22,24 +22,17 @@ sethandler <C-d> n-v-i:vim
 sethandler <C-u> n-v-i:vim
 
 "" Key mappings ====================================================
-inoremap jk <Esc>
-vnoremap jk <Esc>
-
-" Edit (leader p, Bs, x, /, a, o, O)
-" Easy visual indentation
-vnoremap < <gv
-vnoremap > >gv
+" NORMAL MODE
+" Edit (leader p, Bs, /, a, o, O, c)
 "Replace word with paste
 nnoremap <leader>p "_diwP
-nnoremap <leader><BS> diw
-nnoremap <leader>x ciw
-nnoremap <leader>z ci"
-"Change inside parentheses
-nnoremap <leader>/ ci(
-nnoremap E ge
+nnoremap <leader><BS> "_diw
+nnoremap <leader>c "_ciw
+nnoremap <leader>z "_ci"
+nnoremap <leader>/ "_ci(
 "Delete function argument
-nnoremap <leader>a daa
-
+nnoremap <leader>x daa
+nnoremap <leader>a cia
 " Method text objects operation replacement
 nnoremap yim :action MethodUp<cr>f{vi{y
 nnoremap dim :action MethodUp<cr>f{vi{d
@@ -50,21 +43,19 @@ nnoremap cam :action MethodUp<cr>v0Of{%c
 
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
-map <C-o> :action Back<cr>zz
-map <C-i> :action Forward<cr>zz
-nnoremap + v
-vnoremap + :action EditorSelectWord<cr>
-vnoremap _ :action EditorUnSelectWord<cr>
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-nnoremap n nzz
-nnoremap N Nzz
 
 " Motions
+nnoremap E ge
 nnoremap m ]m
 nnoremap M [m
 nnoremap H ^
 nnoremap L $
+nnoremap <C-o> :action Back<cr>
+nnoremap <C-i> :action Forward<cr>
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzz
+nnoremap N Nzz
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
@@ -92,6 +83,7 @@ nnoremap "_ t
 nnoremap ;; :nohlsearch<CR>
 map <leader>ff :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
+map <leader>fa :action GotoAction<cr>
 map <leader>fg :action FindInPath<cr>
 map <leader>fh :action RecentFiles<cr>
 map <leader>fm :action RecentLocations<cr>
@@ -107,6 +99,7 @@ map <leader>vp :action ActivateProblemsViewToolWindow<cr>
 map <leader>vs :action ActivateStructureToolWindow<cr>
 map <leader>vt :action ActivateTerminalToolWindow<cr>
 map <leader>vv :action ActivateServicesToolWindow<cr>
+map <leader>vd :action ActivateDebugToolWindow<cr>
 map <leader>vq :action HideActiveWindow<cr>
 
 " Debug (leader d)
@@ -164,6 +157,21 @@ map <leader>md :action ToggleDistractionFreeMode<cr>
 map <leader>mz :action ToggleZenMode<cr>
 map <leader>mf :action ToggleFullScreen<cr>
 
+" INSERT MODE
+inoremap jk <Esc>
+
+" VISUAL MODE
+vnoremap jk <Esc>
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+nnoremap + v
+vnoremap + :action EditorSelectWord<cr>
+vnoremap _ :action EditorUnSelectWord<cr>
+" Select all
+nnoremap <c-s> ggVG
+vnoremap <c-s> ggOG
+
 " Plugin Settings ==================================================
 set surround
 set highlightedyank
@@ -185,10 +193,12 @@ let g:WhichKey_SortOrder = "by_key_prefix_first"
 
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
-let g:WhichKeyDesc_leader_deleteargument = "<leader>a Delete function argument"
+let g:WhichKeyDesc_leader_deleteargument = "<leader>x Delete function argument"
+let g:WhichKeyDesc_leader_changeargument = "<leader>a Delete function argument"
 let g:WhichKeyDesc_leader_replacewithpaste = "<leader>p Replace with paste"
 let g:WhichKeyDesc_leader_changeparentheses = "<leader>/ Change inside parentheses"
-let g:WhichKeyDesc_leader_changeword = "<leader>x Change whole word"
+let g:WhichKeyDesc_leader_changequotes = "<leader>z Change inside quotes"
+let g:WhichKeyDesc_leader_changeword = "<leader>c Change whole word"
 let g:WhichKeyDesc_leader_newline = "<leader>o New line in normal mode"
 let g:WhichKeyDesc_leader_newprevline = "<leader>O New line before in normal mode"
 
@@ -215,6 +225,7 @@ let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in
 " Finder (leader f)
 let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
 let g:WhichKeyDesc_finder_class = "<leader>ff Find class"
+let g:WhichKeyDesc_finder_actions = "<leader>fa Find actions"
 let g:WhichKeyDesc_finder_file = "<leader>fn Find files (Name)"
 let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
 let g:WhichKeyDesc_finder_history = "<leader>fh Find recent files (History)"
@@ -231,6 +242,8 @@ let g:WhichKeyDesc_views_project = "<leader>vf Project view (Files)"
 let g:WhichKeyDesc_views_problems = "<leader>vp Problems and diganostics view"
 let g:WhichKeyDesc_views_structure = "<leader>vs Structure view"
 let g:WhichKeyDesc_views_terminal = "<leader>vt Terminal"
+let g:WhichKeyDesc_views_services = "<leader>vv Services view"
+let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
 
 " Debug (leader d)
 let g:WhichKeyDesc_leader_debug = "<leader>d Debug actions"

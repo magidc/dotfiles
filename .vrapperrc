@@ -11,38 +11,35 @@ set clipboard+=unnamed
 let mapleader = ","
 
 "" Key mappings ====================================================
-inoremap jk <Esc>
-vnoremap jk <Esc>
+" NORMAL MODE"
 
-" Edit (leader p, Bs, x, /, a, o, O)
-" Easy visual indentation
-vnoremap < <gv
-vnoremap > >gv
+" Edit (leader p, Bs, x, /, a, o, O, c)
 "Replace word with paste
 nnoremap <leader>p "_diwP
-nnoremap <leader><BS> diw
-nnoremap <leader>x ciw
-"Change inside parentheses
-nnoremap <leader>/ ci(
-nnoremap E ge
+
+nnoremap <leader><BS> "_diw
+nnoremap <leader>c "_ciw
+nnoremap <leader>z "_ci"
+nnoremap <leader>/ "_ci(
 "Delete function argument
-nnoremap <leader>a daa
+nnoremap <leader>x daa
+nnoremap <leader>a cia
+
 nnoremap <leader>o o<ESC>
 nnoremap <leader>O O<ESC>
-map <C-o> :eclipseaction Back<cr>
-map <C-i> :eclipseaction Forward<cr>
-vnoremap + :eclipseaction EditorSelectWord<cr>
-vnoremap _ :eclipseaction EditorUnSelectWord<cr>
-nnoremap <C-d> <C-d>zz
-nnoremap <C-u> <C-u>zz
-nnoremap n nzz
-nnoremap N Nzz
 
 " Motions
+nnoremap E ge
 nnoremap m ]m
 nnoremap M [m
 nnoremap H ^
 nnoremap L $
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap <C-o> :eclipseaction Back<cr>
+nnoremap <C-i> :eclipseaction Forward<cr>
+nnoremap n nzz
+nnoremap N Nzz
 
 " Windows and buffers (leader w)
 nnoremap <leader>wh <C-w>h
@@ -59,8 +56,8 @@ nnoremap <leader>wm :eclipseaction MoveEditorToOppositeTabGroup<cr>
 nnoremap W :wall<CR>
 
 " Folds
-map | :eclipseaction CollapseAllRegions<CR>
-map -- :eclipseaction ExpandAllRegions<CR>
+nnoremap | :eclipseaction CollapseAllRegions<CR>
+nnoremap -- :eclipseaction ExpandAllRegions<CR>
 
 " Macros and registers
 " Execute macro saved in 'q' register
@@ -155,4 +152,25 @@ map <leader>md :eclipseaction ToggleDistractionFreeMode<cr>
 map <leader>mz :eclipseaction ToggleZenMode<cr>
 map <leader>mf :eclipseaction ToggleFullScreen<cr>
 
+" INSERT MODE
+inoremap jk <Esc>
+inoremap <a-d> <Del>
+inoremap <a-Bs> <C-o>"_diw
+inoremap <a-c> <C-o>"_ciw
+inoremap <a-e> <C-o>"_de
+inoremap <a-w> <C-o>w
+inoremap <a-b> <C-o>b
+inoremap <a-j> <ESC>:m .+1<cr>==gi
+inoremap <a-k> <ESC>:m .-2<cr>==gi 
+
+" VISUAL MODE
+vnoremap jk <Esc>
+" Easy visual indentation
+vnoremap < <gv
+vnoremap > >gv
+nnoremap + v
+vnoremap + :eclipseaction EditorSelectWord<cr>
+vnoremap _ :eclipseaction EditorUnSelectWord<cr>
+nnoremap <c-s> ggVG
+vnoremap <c-s> ggOG
 
