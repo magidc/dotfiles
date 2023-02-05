@@ -22,10 +22,10 @@ nnoremap <a-p> "_diwP
 nnoremap <a-j> :m .+1<cr>==
 nnoremap <a-k> :m .-2<cr>==
 
-nnoremap <a-Bs> "_diw
+nnoremap <a-d> "_diw
 nnoremap <a-c> "_ciw
 nnoremap <a-z> "_ci"
-nnoremap <a-/> "_ci(
+nnoremap <a-x> "_ci(
 
 nnoremap <a-o> o<ESC>
 nnoremap <a-O> O<ESC>
@@ -73,8 +73,8 @@ nnoremap ;; <cmd>noh<cr>
 
 " INSERT MODE
 inoremap jk <Esc>
-inoremap <a-d> <Del>
-inoremap <a-Bs> <C-o>"_diw
+inoremap <a-s> <Del>
+inoremap <a-d> <C-o>"_diw
 inoremap <a-c> <C-o>"_ciw
 inoremap <a-e> <C-o>"_de
 inoremap <a-w> <C-o>w
@@ -88,5 +88,5 @@ vnoremap jk <Esc>
 vnoremap < <gv
 vnoremap > >gv
 " Select all
-nnoremap <c-s> ggOG
+nnoremap <c-s> ggVG
 vnoremap <c-s> ggOG

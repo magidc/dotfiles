@@ -23,16 +23,21 @@ sethandler <C-u> n-v-i:vim
 
 "" Key mappings ====================================================
 " NORMAL MODE
-" Edit (leader p, Bs, /, a, o, O, c)
+" Edit 
 "Replace word with paste
-nnoremap <leader>p "_diwP
-nnoremap <leader><BS> "_diw
-nnoremap <leader>c "_ciw
-nnoremap <leader>z "_ci"
-nnoremap <leader>/ "_ci(
-"Delete function argument
-nnoremap <leader>x daa
-nnoremap <leader>a cia
+nnoremap <a-p> "_diwP
+
+nnoremap <a-j> :m .+1<cr>==
+nnoremap <a-k> :m .-2<cr>==
+
+nnoremap <a-d> "_diw
+nnoremap <a-c> "_ciw
+nnoremap <a-z> "_ci"
+nnoremap <a-x> "_ci(
+
+"Change function argument
+nmap <a-a> cia
+nmap <a-s> daa
 " Method text objects operation replacement
 nnoremap yim :action MethodUp<cr>f{vi{y
 nnoremap dim :action MethodUp<cr>f{vi{d
@@ -41,8 +46,8 @@ nnoremap yam :action MethodUp<cr>v0Of{%y
 nnoremap dam :action MethodUp<cr>v0Of{%d
 nnoremap cam :action MethodUp<cr>v0Of{%c
 
-nnoremap <leader>o o<ESC>
-nnoremap <leader>O O<ESC>
+nnoremap <a-o> o<ESC>
+nnoremap <a-O> O<ESC>
 
 " Motions
 nnoremap E ge
@@ -159,6 +164,14 @@ map <leader>mf :action ToggleFullScreen<cr>
 
 " INSERT MODE
 inoremap jk <Esc>
+inoremap <a-s> <Del>
+inoremap <a-d> <C-o>"_diw
+inoremap <a-c> <C-o>"_ciw
+inoremap <a-e> <C-o>"_de
+inoremap <a-w> <C-o>w
+inoremap <a-b> <C-o>b
+inoremap <a-j> <ESC>:m .+1<cr>==gi
+inoremap <a-k> <ESC>:m .-2<cr>==gi 
 
 " VISUAL MODE
 vnoremap jk <Esc>
