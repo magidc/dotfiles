@@ -46,8 +46,8 @@ nnoremap yam :action MethodUp<cr>v0Of{%y
 nnoremap dam :action MethodUp<cr>v0Of{%d
 nnoremap cam :action MethodUp<cr>v0Of{%c
 
-nnoremap <a-o> o<ESC>
-nnoremap <a-O> O<ESC>
+nmap <a-o> o<ESC>
+nmap <a-O> O<ESC>
 
 " Motions
 nnoremap E ge
@@ -120,6 +120,7 @@ nnoremap <leader>di :action StepInto<cr>
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
 map <leader>dx :action QuickEvaluateExpression<cr>
+map <leader>de :action EvaluateExpression<cr>
 map <leader>dw :action Debugger.AddToWatch<cr>
 
 " Code navigation (leader c)
@@ -133,16 +134,16 @@ nnoremap <leader>cp :action Back<cr>
 nnoremap <leader>cn :action Forward<cr>
 
 " Refactoring (leader r)
-nnoremap <leader>rr :action ShowIntentionActions<cr>
-nnoremap <leader>rn :action RenameElement<cr>
-nnoremap <leader>rv :action IntroduceVariable<cr>
-nnoremap <leader>rc :action IntroduceConstant<cr>
-nnoremap <leader>rf :action IntroduceField<cr>
-nnoremap <leader>rm :action ExtractMethod<cr>
-nnoremap <leader>rf :action ReformatCode<cr>
-nnoremap <leader>ro :action OptimizeImports<CR>
-nnoremap <leader>ri :action Inline<CR>
-nnoremap <leader>ra :action AnonymousToInner<CR>
+map <leader>rr :action ShowIntentionActions<cr>
+map <leader>rn :action RenameElement<cr>
+map <leader>rv :action IntroduceVariable<cr>
+map <leader>rc :action IntroduceConstant<cr>
+map <leader>rf :action IntroduceField<cr>
+map <leader>rm :action ExtractMethod<cr>
+map <leader>rf :action ReformatCode<cr>
+map <leader>ro :action OptimizeImports<CR>
+map <leader>ri :action Inline<CR>
+map <leader>ra :action AnonymousToInner<CR>
 
 " Source generation (leader s)
 nnoremap <leader>sc :action GenerateConstructor<cr>
@@ -165,9 +166,9 @@ map <leader>mf :action ToggleFullScreen<cr>
 " INSERT MODE
 inoremap jk <Esc>
 inoremap <a-s> <Del>
-inoremap <a-d> <C-o>"_diw
-inoremap <a-c> <C-o>"_ciw
-inoremap <a-e> <C-o>"_de
+inoremap <a-d> <Esc>"_diwi
+inoremap <a-c> <Esc>"_ciw
+inoremap <a-e> <Esc>"_dei
 inoremap <a-w> <C-o>w
 inoremap <a-b> <C-o>b
 inoremap <a-j> <ESC>:m .+1<cr>==gi
@@ -261,9 +262,9 @@ let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
 " Debug (leader d)
 let g:WhichKeyDesc_leader_debug = "<leader>d Debug actions"
 let g:WhichKeyDesc_debug_run = "<leader>dr Run"
-let g:WhichKeyDesc_debug_run = "<leader>dR Choose run"
+let g:WhichKeyDesc_debug_chooserun = "<leader>dR Choose run"
 let g:WhichKeyDesc_debug_debug = "<leader>dd Debug"
-let g:WhichKeyDesc_debug_debug = "<leader>dD Choose debug"
+let g:WhichKeyDesc_debug_choosedebug = "<leader>dD Choose debug"
 let g:WhichKeyDesc_debug_stop = "<leader>dk Stop (Kill)"
 let g:WhichKeyDesc_debug_togglelinebreakpoint = "<leader>db Toggle breakpoint"
 let g:WhichKeyDesc_debug_muteallbreakpoints = "<leader>da Mute All breakpoints"
@@ -271,7 +272,8 @@ let g:WhichKeyDesc_debug_stepover = "<leader>dv Step oVer"
 let g:WhichKeyDesc_debug_stepinto = "<leader>di Step into"
 let g:WhichKeyDesc_debug_stepout = "<leader>do Step Out"
 let g:WhichKeyDesc_debug_continue = "<leader>dc Continue"
-let g:WhichKeyDesc_debug_evaluate = "<leader>dx Evaluate expression"
+let g:WhichKeyDesc_debug_quickevaluate = "<leader>dx Evaluate selectec expression"
+let g:WhichKeyDesc_debug_evaluate = "<leader>de Evaluate expression"
 let g:WhichKeyDesc_debug_watch = "<leader>dw Add to watch"
 
 " Code navigation (leader c)

@@ -10,7 +10,6 @@ set visualbell
 set clipboard+=unnamed   
 set number          " Enable line numbers
 set relativenumber  " Enable relative line numbers
-set mouse=a
 
 let mapleader = " "
 
@@ -56,13 +55,18 @@ nnoremap WQ <cmd>wqall<cr>
 nnoremap W <cmd>wall<cr>
 nnoremap Q <cmd>qall!<cr>
 nnoremap <a-q> <cmd>bd!<cr>
+nnoremap <a-w> <cmd>%bd!|e#|bd#<cr>
+
+" Folds
+nnoremap | zM
+nnoremap -- zR
 
 " Macros and registers
 " Execute macro saved in 'q' register
 nnoremap qj @q
 " Repeat last command
 nnoremap , @:
-nnoremap t "_
+nnoremap t "_ 
 
 " Find
 " Clean search highlights

@@ -160,7 +160,6 @@ __fselhidden() {
     echo -n "${(q)item} "
   done
   local ret=$?
-  echo
   return $ret
 }
 
