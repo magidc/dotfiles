@@ -95,6 +95,7 @@ map <leader>fm :action RecentLocations<cr>
 map <leader>fs :action GotoSymbol<cr>
 map <leader>fz :action Find<cr>
 map <leader>fr :action Replace<cr>
+map <leader>fR :action ReplaceInPath<cr>
 map <leader>fx :action PasteMultiple<cr>
 map <leader>ft :action ActivateTODOToolWindow<cr>
 
@@ -245,8 +246,9 @@ let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
 let g:WhichKeyDesc_finder_history = "<leader>fh Find recent files (History)"
 let g:WhichKeyDesc_finder_location = "<leader>fm Find recent locations (Marks)"
 let g:WhichKeyDesc_finder_symbol = "<leader>fs Find symbol"
-let g:WhichKeyDesc_finder_find = "<leader>fz Find in current file (Ctrl-z)"
+let g:WhichKeyDesc_finder_find = "<leader>fz Find in current file"
 let g:WhichKeyDesc_finder_replace = "<leader>fr Find and replace in current file <Ctrl-r>"
+let g:WhichKeyDesc_finder_replaceinfiles = "<leader>fR Find and replace in files"
 let g:WhichKeyDesc_finder_clipboard = "<leader>fx Find in clipboard"
 let g:WhichKeyDesc_finder_todo = "<leader>ft Find in TODO list"
 
