@@ -109,12 +109,10 @@ eclipseaction showReferences org.eclipse.jdt.ui.edit.text.java.search.references
 nnoremap <leader>cr :showReferences<cr>
 eclipseaction showJavaDoc org.eclipse.jdt.ui.edit.text.java.show.javadoc
 nnoremap <leader>cv :showJavaDoc<cr>
-nnoremap <leader>cp :eclipseaction Back<cr>
-nnoremap <leader>cn :eclipseaction Forward<cr>
 
 " Refactoring (leader r)
 eclipseaction contentAssist org.eclipse.jdt.ui.edit.text.java.complete.prefix
-nnoremap <leader>rr :contentAssist<cr>
+nnoremap <leader>re :contentAssist<cr>
 eclipseaction rename org.eclipse.jdt.ui.edit.text.java.rename.element
 nnoremap <leader>rn :rename<cr>
 eclipseaction extractParameter org.eclipse.jdt.ui.edit.text.java.introduce.parameter
@@ -123,7 +121,7 @@ eclipseaction extractConstant org.eclipse.jdt.ui.edit.text.java.extract.constant
 nnoremap <leader>rc :extractConstant<cr>
 eclipseaction introduceParameter org.eclipse.jdt.ui.edit.text.java.introduce.parameter
 nnoremap <leader>rf :introduceParameter<cr>
-nnoremap <leader>rm :eclipseaction org.eclipse.jdt.ui.actions.ExtractMethod<cr>
+nnoremap <leader>rx :eclipseaction org.eclipse.jdt.ui.actions.ExtractMethod<cr>
 eclipseaction format org.eclipse.jdt.ui.edit.text.java.format
 nnoremap <leader>rf :format<cr>
 eclipseaction organizeImports org.eclipse.jdt.ui.edit.text.java.organize.imports

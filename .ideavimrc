@@ -12,14 +12,18 @@ set incsearch
 set hlsearch
 set visualbell
 set clipboard+=unnamed   
+set clipboard+=ideaput
 let mapleader = " "
 
 "" Choosing handlers in conflicting Intellij/IdeaVim keymaps =======
 sethandler <C-i> n-v-i:vim
 sethandler <C-o> n-v-i:vim
-sethandler <C-r> n-v-i:vim
 sethandler <C-d> n-v-i:vim
 sethandler <C-u> n-v-i:vim
+sethandler <C-h> n-v-i:vim
+sethandler <C-j> n-v-i:vim
+sethandler <C-k> n-v-i:vim
+sethandler <C-l> n-v-i:vim
 
 "" Key mappings ====================================================
 " NORMAL MODE
@@ -64,16 +68,18 @@ nnoremap N Nzz
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
-nnoremap <leader>wh <C-w>h
-nnoremap <leader>wl <C-w>l
-nnoremap <leader>wk <C-w>k
-nnoremap <leader>wj <C-w>j
-nnoremap <leader>ww :action CloseAllEditorsButActive<cr>
-nnoremap <leader>wq :action CloseContent<cr>
+nnoremap <c-h> <c-w>h  
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k  
+nnoremap <c-l> <c-w>l  
+nnoremap <a-w> :action CloseAllEditorsButActive<cr>
+nnoremap <a-q> :action CloseContent<cr>
+nnoremap <a-t> :action NewScratchFile<cr>
 nnoremap <leader>wv :action SplitVertically<cr>
 nnoremap <leader>ws :action SplitHorizontally<cr>
 nnoremap <leader>wu :action Unsplit<cr>
 nnoremap <leader>wm :action MoveEditorToOppositeTabGroup<cr>
+nnoremap <Leader>wn :action EditSourceInNewWindow<CR>  
 
 " Folds
 map | :action CollapseAllRegions<CR>
@@ -106,12 +112,13 @@ map <leader>vs :action ActivateStructureToolWindow<cr>
 map <leader>vt :action ActivateTerminalToolWindow<cr>
 map <leader>vv :action ActivateServicesToolWindow<cr>
 map <leader>vd :action ActivateDebugToolWindow<cr>
-map <leader>vq :action HideActiveWindow<cr>
+map <leader>vq :action CloseActiveTab<cr>
 
 " Debug (leader d)
 nnoremap <leader>dr :action Run<cr>
 nnoremap <leader>dR :action ChooseRunConfiguration<cr>
 nnoremap <leader>dd :action Debug<cr>
+
 nnoremap <leader>dD :action ChooseDebugConfiguration<cr>
 nnoremap <leader>dk :action Stop<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
@@ -131,27 +138,28 @@ nnoremap <leader>ci :action GotoImplementation<cr>
 nnoremap <leader>cs :action GotoSuperMethod<cr>
 nnoremap <leader>cr :action ShowUsages<cr>
 nnoremap <leader>cv :action QuickJavaDoc<cr>
-nnoremap <leader>cp :action Back<cr>
-nnoremap <leader>cn :action Forward<cr>
+nnoremap <leader>ch :action CallHierarchy<CR>  
+nnoremap <leader>cn :action ShowNavBar<CR>
+nnoremap <leader>cf :action FileStructurePopup<CR> 
 
 " Refactoring (leader r)
-map <leader>rr :action ShowIntentionActions<cr>
+map <leader>re :action Refactorings.QuickListPopupAction<CR>
 map <leader>rn :action RenameElement<cr>
 map <leader>rv :action IntroduceVariable<cr>
 map <leader>rc :action IntroduceConstant<cr>
 map <leader>rf :action IntroduceField<cr>
-map <leader>rm :action ExtractMethod<cr>
+map <leader>rx :action ExtractMethod<cr>
 map <leader>rf :action ReformatCode<cr>
-map <leader>ro :action OptimizeImports<CR>
-map <leader>ri :action Inline<CR>
-map <leader>ra :action AnonymousToInner<CR>
+map <leader>ro :action OptimizeImports<cr>
+map <leader>ri :action Inline<cr>
+map <leader>ra :action AnonymousToInner<cr>
+map <leader>rm :action Move<cr>
 
 " Source generation (leader s)
 nnoremap <leader>sc :action GenerateConstructor<cr>
 nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
 nnoremap <leader>sn :action NewClass<cr>
-nnoremap <leader>sf :action NewScratchFile<cr>
 
 " Errors and diagnostics (leader e)
 map <leader>en :action GotoNextError<cr>
@@ -219,16 +227,11 @@ let g:WhichKeyDesc_leader_newprevline = "<leader>O New line before in normal mod
 
 " Windows and buffers (leader w)
 let g:WhichKeyDesc_leader_window = "<leader>w Window actions"
-let g:WhichKeyDesc_window_focusleft = "<leader>wh Focus left window"
-let g:WhichKeyDesc_window_focusdown = "<leader>wj Focus down window"
-let g:WhichKeyDesc_window_focusup = "<leader>wk Focus up window"
-let g:WhichKeyDesc_window_focusright = "<leader>wl Focus right window"
-let g:WhichKeyDesc_window_close = "<leader>wq Close tab"
-let g:WhichKeyDesc_window_closeallbutactive = "<leader>ww Close other tabs"
 let g:WhichKeyDesc_window_splitvertical = "<leader>wv Split vertically"
 let g:WhichKeyDesc_window_splithorizontal = "<leader>ws Split horizontally"
 let g:WhichKeyDesc_window_splitundo = "<leader>wu Unsplit"
-let g:WhichKeyDesc_window_splitmovetooppositetabgroup = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_window_movetooppositetabgroup = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_window_editinnewwindow = "<leader>wn Edit in new window"
 
 " Folds
 let g:WhichKeyDesc_fold_collapseall = "| Collapse all folds"
@@ -260,6 +263,7 @@ let g:WhichKeyDesc_views_structure = "<leader>vs Structure view"
 let g:WhichKeyDesc_views_terminal = "<leader>vt Terminal"
 let g:WhichKeyDesc_views_services = "<leader>vv Services view"
 let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
+let g:WhichKeyDesc_views_close = "<leader>vq Close view"
 
 " Debug (leader d)
 let g:WhichKeyDesc_leader_debug = "<leader>d Debug actions"
@@ -286,21 +290,23 @@ let g:WhichKeyDesc_code_gotoimplementation = "<leader>ci Go to implementation"
 let g:WhichKeyDesc_code_gotosupermethod = "<leader>cs Go to super method"
 let g:WhichKeyDesc_code_gotousages = "<leader>cr Show usages (References)"
 let g:WhichKeyDesc_code_doc = "<leader>cv Show docs (hooVer)"
-let g:WhichKeyDesc_code_back = "<leader>cp Go back (Previous)"
-let g:WhichKeyDesc_code_forward = "<leader>cn Go forward (Next)"
+let g:WhichKeyDesc_code_callhierarchy = "<leader>ch Show call hierarchy"
+let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
+let g:WhichKeyDesc_code_filestructure = "<leader>cf Show file structure"
 
 " Refactoring (leader r)
 let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"
-let g:WhichKeyDesc_refactor_showactions = "<leader>rr Show actions"
+let g:WhichKeyDesc_refactor_showactions = "<leader>re Show actions"
 let g:WhichKeyDesc_refactor_renameelement = "<leader>rn Rename element"
 let g:WhichKeyDesc_refactor_introducevariable = "<leader>rv Introduce variable"
 let g:WhichKeyDesc_refactor_introduceconstant = "<leader>rc Introduce constant"
 let g:WhichKeyDesc_refactor_introducefield = "<leader>rf Introduce field"
-let g:WhichKeyDesc_refactor_extractmethod = "<leader>rm Extract method"
+let g:WhichKeyDesc_refactor_extractmethod = "<leader>re Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
 let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
 let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
 let g:WhichKeyDesc_refactor_anonymoustoinner = "<leader>ra Anonymous To inner"
+let g:WhichKeyDesc_refactor_move = "<leader>rm Move"
 
 " Source generation (leader s)
 let g:WhichKeyDesc_leader_source = "<leader>s Source generation actions"
@@ -308,7 +314,6 @@ let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
 let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
-let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
 
 " Errors and diagnostics (leader e)
 let g:WhichKeyDesc_leader_error = "<leader>e Error and diagnostics actions"
