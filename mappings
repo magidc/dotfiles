@@ -15,7 +15,7 @@ else
 endif
 badd +1 /mnt/data/Proxectos/nvim/lua/mappings.lua
 badd +30 ~/.tmux.conf
-badd +91 ~/.ideavimrc
+badd +1 ~/.ideavimrc
 badd +127 .vrapperrc
 badd +45 .vimrc
 argglobal
@@ -38,8 +38,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 159 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 158 + 159) / 318)
+exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
+exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 argglobal
 balt .vrapperrc
 setlocal fdm=manual
@@ -52,12 +52,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 91 - ((14 * winheight(0) + 34) / 69)
+let s:l = 94 - ((8 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 91
-normal! 025|
+keepjumps 94
+normal! 037|
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
 argglobal
@@ -74,7 +74,7 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 30 - ((28 * winheight(0) + 34) / 69)
+let s:l = 30 - ((22 * winheight(0) + 26) / 53)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -82,8 +82,8 @@ keepjumps 30
 normal! 0
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
-exe 'vert 1resize ' . ((&columns * 159 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 158 + 159) / 318)
+exe 'vert 1resize ' . ((&columns * 127 + 127) / 254)
+exe 'vert 2resize ' . ((&columns * 126 + 127) / 254)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

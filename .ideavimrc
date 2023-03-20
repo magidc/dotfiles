@@ -28,6 +28,12 @@ sethandler <C-l> n-v-i:vim
 "" Key mappings ====================================================
 " NORMAL MODE
 " Edit 
+" nnoremap dd "_dd
+" nnoremap D "_D
+" nnoremap d "_d
+nnoremap c "_c
+nnoremap C "_C
+nnoremap cc "_cc
 "Replace word with paste
 nnoremap <a-p> "_diwP
 
@@ -40,23 +46,21 @@ nnoremap <a-z> "_ci"
 nnoremap <a-x> "_ci(
 
 "Change function argument
-nmap <a-a> cia
-nmap <a-s> daa
+nnoremap <a-a> "_cia
+nnoremap <a-s> "_daa
 " Method text objects operation replacement
-nnoremap yim :action MethodUp<cr>f{vi{y
-nnoremap dim :action MethodUp<cr>f{vi{d
-nnoremap cim :action MethodUp<cr>f{vi{c
-nnoremap yam :action MethodUp<cr>v0Of{%y
-nnoremap dam :action MethodUp<cr>v0Of{%d
-nnoremap cam :action MethodUp<cr>v0Of{%c
+nnoremap yim j:action MethodUp<cr>f{vi{y
+nnoremap dim j:action MethodUp<cr>f{vi{d
+nnoremap cim j:action MethodUp<cr>f{vi{c
+nnoremap yam j:action MethodUp<cr>v0Of{%y
+nnoremap dam j:action MethodUp<cr>v0Of{%d
+nnoremap cam j:action MethodUp<cr>v0Of{%c
 
 nmap <a-o> o<ESC>
 nmap <a-O> O<ESC>
 
 " Motions
 nnoremap E ge
-nnoremap m ]m
-nnoremap M [m
 nnoremap H ^
 nnoremap L $
 nnoremap <C-o> :action Back<cr>
@@ -65,6 +69,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
+nnoremap [[ [[:action MethodDown<cr> 
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
@@ -77,13 +82,13 @@ nnoremap <a-q> :action CloseContent<cr>
 nnoremap <a-t> :action NewScratchFile<cr>
 nnoremap <leader>wv :action SplitVertically<cr>
 nnoremap <leader>ws :action SplitHorizontally<cr>
-nnoremap <leader>wu :action Unsplit<cr>
-nnoremap <leader>wm :action MoveEditorToOppositeTabGroup<cr>
-nnoremap <Leader>wn :action EditSourceInNewWindow<CR>  
+nnoremap <leader>wc :action Unsplit<cr>
+nnoremap <leader>wp :action MoveEditorToOppositeTabGroup<cr>
+nnoremap <Leader>wn :action EditSourceInNewWindow<cr>  
 
 " Folds
-map | :action CollapseAllRegions<CR>
-map -- :action ExpandAllRegions<CR>
+map | :action CollapseAllRegions<cr>
+map -- :action ExpandAllRegions<cr>
 
 " Macros and registers
 " Execute macro saved in 'q' register
@@ -91,7 +96,7 @@ nnoremap qj @q
 nnoremap "_ t
 
 " Finder (leader f)
-nnoremap ;; :nohlsearch<CR>
+nnoremap ;; :nohlsearch<cr>
 map <leader>ff :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
 map <leader>fa :action GotoAction<cr>
@@ -112,6 +117,7 @@ map <leader>vs :action ActivateStructureToolWindow<cr>
 map <leader>vt :action ActivateTerminalToolWindow<cr>
 map <leader>vv :action ActivateServicesToolWindow<cr>
 map <leader>vd :action ActivateDebugToolWindow<cr>
+map <leader>vo :action ActivateTODOToolWindow<cr>
 map <leader>vq :action CloseActiveTab<cr>
 
 " Debug (leader d)
@@ -123,8 +129,9 @@ nnoremap <leader>dD :action ChooseDebugConfiguration<cr>
 nnoremap <leader>dk :action Stop<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
 nnoremap <leader>da :action XDebugger.MuteBreakpoints<cr>
+nnoremap <leader>ds :action ViewBreakpoints<cr>
 nnoremap <leader>dv :action StepOver<cr>
-nnoremap <leader>di :action StepInto<cr>
+nnoremap <leader>di :action StepInto<cr>e
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
 map <leader>dx :action QuickEvaluateExpression<cr>
@@ -156,6 +163,7 @@ map <leader>ra :action AnonymousToInner<cr>
 map <leader>rm :action Move<cr>
 
 " Source generation (leader s)
+nnoremap <leader>sa :action Generate<CR>
 nnoremap <leader>sc :action GenerateConstructor<cr>
 nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
@@ -191,6 +199,8 @@ vnoremap > >gv
 nnoremap + v
 vnoremap + :action EditorSelectWord<cr>
 vnoremap _ :action EditorUnSelectWord<cr>
+vnoremap <a-j> :m '>+1<cr>gv=gv
+vnoremap <a-k> :m '<-2<cr>gv=gv
 " Select all
 nnoremap <c-s> ggVG
 vnoremap <c-s> ggOG
@@ -229,8 +239,8 @@ let g:WhichKeyDesc_leader_newprevline = "<leader>O New line before in normal mod
 let g:WhichKeyDesc_leader_window = "<leader>w Window actions"
 let g:WhichKeyDesc_window_splitvertical = "<leader>wv Split vertically"
 let g:WhichKeyDesc_window_splithorizontal = "<leader>ws Split horizontally"
-let g:WhichKeyDesc_window_splitundo = "<leader>wu Unsplit"
-let g:WhichKeyDesc_window_movetooppositetabgroup = "<leader>wm Move editor to opposite tab group"
+let g:WhichKeyDesc_window_splitundo = "<leader>wc Unsplit"
+let g:WhichKeyDesc_window_movetooppositetabgroup = "<leader>wp Move editor to opposite tab group"
 let g:WhichKeyDesc_window_editinnewwindow = "<leader>wn Edit in new window"
 
 " Folds
@@ -263,6 +273,7 @@ let g:WhichKeyDesc_views_structure = "<leader>vs Structure view"
 let g:WhichKeyDesc_views_terminal = "<leader>vt Terminal"
 let g:WhichKeyDesc_views_services = "<leader>vv Services view"
 let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
+let g:WhichKeyDesc_views_todo = "<leader>vo TODO view"
 let g:WhichKeyDesc_views_close = "<leader>vq Close view"
 
 " Debug (leader d)
@@ -274,11 +285,12 @@ let g:WhichKeyDesc_debug_choosedebug = "<leader>dD Choose debug"
 let g:WhichKeyDesc_debug_stop = "<leader>dk Stop (Kill)"
 let g:WhichKeyDesc_debug_togglelinebreakpoint = "<leader>db Toggle breakpoint"
 let g:WhichKeyDesc_debug_muteallbreakpoints = "<leader>da Mute All breakpoints"
+let g:WhichKeyDesc_debug_showbreakpoints = "<leader>ds Show all breakpoints"
 let g:WhichKeyDesc_debug_stepover = "<leader>dv Step oVer"
 let g:WhichKeyDesc_debug_stepinto = "<leader>di Step into"
 let g:WhichKeyDesc_debug_stepout = "<leader>do Step Out"
 let g:WhichKeyDesc_debug_continue = "<leader>dc Continue"
-let g:WhichKeyDesc_debug_quickevaluate = "<leader>dx Evaluate selectec expression"
+let g:WhichKeyDesc_debug_quickevaluate = "<leader>dx Evaluate select expression"
 let g:WhichKeyDesc_debug_evaluate = "<leader>de Evaluate expression"
 let g:WhichKeyDesc_debug_watch = "<leader>dw Add to watch"
 
@@ -301,7 +313,7 @@ let g:WhichKeyDesc_refactor_renameelement = "<leader>rn Rename element"
 let g:WhichKeyDesc_refactor_introducevariable = "<leader>rv Introduce variable"
 let g:WhichKeyDesc_refactor_introduceconstant = "<leader>rc Introduce constant"
 let g:WhichKeyDesc_refactor_introducefield = "<leader>rf Introduce field"
-let g:WhichKeyDesc_refactor_extractmethod = "<leader>re Extract method"
+let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
 let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
 let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
@@ -310,6 +322,7 @@ let g:WhichKeyDesc_refactor_move = "<leader>rm Move"
 
 " Source generation (leader s)
 let g:WhichKeyDesc_leader_source = "<leader>s Source generation actions"
+let g:WhichKeyDesc_source_actions = "<leader>sa Show source generation actions"
 let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
