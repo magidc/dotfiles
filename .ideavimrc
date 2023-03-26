@@ -97,7 +97,7 @@ nnoremap "_ t
 
 " Finder (leader f)
 nnoremap ;; :nohlsearch<cr>
-map <leader>ff :action GotoClass<cr>
+map <leader>fe :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
 map <leader>fa :action GotoAction<cr>
 map <leader>fg :action FindInPath<cr>
@@ -121,11 +121,10 @@ map <leader>vo :action ActivateTODOToolWindow<cr>
 map <leader>vq :action CloseActiveTab<cr>
 
 " Debug (leader d)
+nnoremap <leader>de :action Debug<cr>
+nnoremap <leader>dE :action ChooseDebugConfiguration<cr>
 nnoremap <leader>dr :action Run<cr>
 nnoremap <leader>dR :action ChooseRunConfiguration<cr>
-nnoremap <leader>dd :action Debug<cr>
-
-nnoremap <leader>dD :action ChooseDebugConfiguration<cr>
 nnoremap <leader>dk :action Stop<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
 nnoremap <leader>da :action XDebugger.MuteBreakpoints<cr>
@@ -135,7 +134,7 @@ nnoremap <leader>di :action StepInto<cr>e
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
 map <leader>dx :action QuickEvaluateExpression<cr>
-map <leader>de :action EvaluateExpression<cr>
+map <leader>dt :action EvaluateExpression<cr>
 map <leader>dw :action Debugger.AddToWatch<cr>
 
 " Code navigation (leader c)
@@ -167,6 +166,7 @@ nnoremap <leader>sa :action Generate<CR>
 nnoremap <leader>sc :action GenerateConstructor<cr>
 nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
+nnoremap <leader>so :action OverrideMethods<cr>
 nnoremap <leader>sn :action NewClass<cr>
 
 " Errors and diagnostics (leader e)
@@ -252,7 +252,7 @@ let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in
 
 " Finder (leader f)
 let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
-let g:WhichKeyDesc_finder_class = "<leader>ff Find class"
+let g:WhichKeyDesc_finder_class = "<leader>fd Find class"
 let g:WhichKeyDesc_finder_actions = "<leader>fa Find actions"
 let g:WhichKeyDesc_finder_file = "<leader>fn Find files (Name)"
 let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
@@ -278,10 +278,10 @@ let g:WhichKeyDesc_views_close = "<leader>vq Close view"
 
 " Debug (leader d)
 let g:WhichKeyDesc_leader_debug = "<leader>d Debug actions"
+let g:WhichKeyDesc_debug_debug = "<leader>de Debug"
+let g:WhichKeyDesc_debug_choosedebug = "<leader>dE Choose debug"
 let g:WhichKeyDesc_debug_run = "<leader>dr Run"
 let g:WhichKeyDesc_debug_chooserun = "<leader>dR Choose run"
-let g:WhichKeyDesc_debug_debug = "<leader>dd Debug"
-let g:WhichKeyDesc_debug_choosedebug = "<leader>dD Choose debug"
 let g:WhichKeyDesc_debug_stop = "<leader>dk Stop (Kill)"
 let g:WhichKeyDesc_debug_togglelinebreakpoint = "<leader>db Toggle breakpoint"
 let g:WhichKeyDesc_debug_muteallbreakpoints = "<leader>da Mute All breakpoints"
@@ -290,8 +290,8 @@ let g:WhichKeyDesc_debug_stepover = "<leader>dv Step oVer"
 let g:WhichKeyDesc_debug_stepinto = "<leader>di Step into"
 let g:WhichKeyDesc_debug_stepout = "<leader>do Step Out"
 let g:WhichKeyDesc_debug_continue = "<leader>dc Continue"
-let g:WhichKeyDesc_debug_quickevaluate = "<leader>dx Evaluate select expression"
-let g:WhichKeyDesc_debug_evaluate = "<leader>de Evaluate expression"
+let g:WhichKeyDesc_debug_quickevaluate = "<leader>dx Evaluate selected expression"
+let g:WhichKeyDesc_debug_evaluate = "<leader>dt EvaluaTe expression"
 let g:WhichKeyDesc_debug_watch = "<leader>dw Add to watch"
 
 " Code navigation (leader c)
@@ -327,6 +327,7 @@ let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
 let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
+let g:WhichKeyDesc_source_override = "<leader>so Override methods"
 
 " Errors and diagnostics (leader e)
 let g:WhichKeyDesc_leader_error = "<leader>e Error and diagnostics actions"
