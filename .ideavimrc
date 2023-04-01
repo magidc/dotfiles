@@ -69,7 +69,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap [[ [[:action MethodDown<cr> 
+nnoremap [[ gg:action MethodDown<cr> 
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
