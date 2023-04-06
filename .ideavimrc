@@ -99,6 +99,7 @@ nnoremap "_ t
 nnoremap ;; :nohlsearch<cr>
 map <leader>fe :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
+map <leader>fp :action ManageRecentProjects<cr>
 map <leader>fa :action GotoAction<cr>
 map <leader>fg :action FindInPath<cr>
 map <leader>fh :action RecentFiles<cr>
@@ -254,6 +255,7 @@ let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in
 let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
 let g:WhichKeyDesc_finder_class = "<leader>fd Find class"
 let g:WhichKeyDesc_finder_actions = "<leader>fa Find actions"
+let g:WhichKeyDesc_finder_projects = "<leader>fp Find recent projects"
 let g:WhichKeyDesc_finder_file = "<leader>fn Find files (Name)"
 let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
 let g:WhichKeyDesc_finder_history = "<leader>fh Find recent files (History)"
