@@ -14,7 +14,7 @@ else
   set shortmess=aoO
 endif
 badd +21 ~/.tmux.conf
-badd +127 ~/.ideavimrc
+badd +126 ~/.ideavimrc
 argglobal
 %argdel
 edit ~/.ideavimrc
@@ -48,12 +48,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 127 - ((39 * winheight(0) + 34) / 69)
+let s:l = 126 - ((38 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 127
-normal! 0
+keepjumps 126
+normal! 056|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/.tmux.conf", ":p")) | buffer ~/.tmux.conf | else | edit ~/.tmux.conf | endif

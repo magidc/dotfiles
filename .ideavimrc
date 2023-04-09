@@ -49,12 +49,17 @@ nnoremap <a-x> "_ci(
 nnoremap <a-a> "_cia
 nnoremap <a-s> "_daa
 " Method text objects operation replacement
-nnoremap yim j:action MethodUp<cr>f{vi{y
-nnoremap dim j:action MethodUp<cr>f{vi{d
-nnoremap cim j:action MethodUp<cr>f{vi{c
-nnoremap yam j:action MethodUp<cr>v0Of{%y
-nnoremap dam j:action MethodUp<cr>v0Of{%d
-nnoremap cam j:action MethodUp<cr>v0Of{%c
+nnoremap Vam j:action MethodUp<cr>V]M
+nnoremap vam j:action MethodUp<cr>V]M
+nnoremap Vim j:action MethodUp<cr>jV]Mk
+nnoremap vim j:action MethodUp<cr>jV]Mk
+
+nnoremap dam j:action MethodUp<cr>V]Md
+nnoremap dim j:action MethodUp<cr>jV]Mkd
+nnoremap yam j:action MethodUp<cr>V]My
+nnoremap yim j:action MethodUp<cr>jV]Mky
+nnoremap cam j:action MethodUp<cr>V]Mc
+nnoremap cim j:action MethodUp<cr>jV]Mkc
 
 nmap <a-o> o<ESC>
 nmap <a-O> O<ESC>
