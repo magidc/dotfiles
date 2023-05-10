@@ -48,12 +48,10 @@ nnoremap <a-x> "_ci(
 "Change function argument
 nnoremap <a-a> "_cia
 nnoremap <a-s> "_daa
-" Method text objects operation replacement
-nnoremap Vam j:action MethodUp<cr>V]M
-nnoremap vam j:action MethodUp<cr>V]M
-nnoremap Vim j:action MethodUp<cr>jV]Mk
-nnoremap vim j:action MethodUp<cr>jV]Mk
 
+" Method text objects operation replacement
+nnoremap vam j:action MethodUp<cr>V]M
+nnoremap vim j:action MethodUp<cr>jV]Mk
 nnoremap dam j:action MethodUp<cr>V]Md
 nnoremap dim j:action MethodUp<cr>jV]Mkd
 nnoremap yam j:action MethodUp<cr>V]My
@@ -74,7 +72,10 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
-nnoremap [[ gg:action MethodDown<cr> 
+nnoremap [[ gg :action MethodDown<cr> 
+nnoremap [] gg :action MethodDown<cr>f{ 
+nnoremap m :action MethodDown<cr> 
+nnoremap M :action MethodUp<cr> 
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
@@ -152,7 +153,7 @@ nnoremap <leader>cr :action ShowUsages<cr>
 nnoremap <leader>cv :action QuickJavaDoc<cr>
 nnoremap <leader>ch :action CallHierarchy<CR>  
 nnoremap <leader>cn :action ShowNavBar<CR>
-nnoremap <leader>cf :action FileStructurePopup<CR> 
+nnoremap <leader>cm :action FileStructurePopup<CR> 
 
 " Refactoring (leader r)
 map <leader>re :action Refactorings.QuickListPopupAction<CR>
@@ -311,7 +312,7 @@ let g:WhichKeyDesc_code_gotousages = "<leader>cr Show usages (References)"
 let g:WhichKeyDesc_code_doc = "<leader>cv Show docs (hooVer)"
 let g:WhichKeyDesc_code_callhierarchy = "<leader>ch Show call hierarchy"
 let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
-let g:WhichKeyDesc_code_filestructure = "<leader>cf Show file structure"
+let g:WhichKeyDesc_code_filestructure = "<leader>cm Show file structure"
 
 " Refactoring (leader r)
 let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"

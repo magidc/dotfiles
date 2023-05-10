@@ -79,9 +79,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-clipboard-indicator fzf-projects mvn)
 
+export ZSH_HIGHLIGHT_MAXLENGTH=10
+
 source $ZSH/oh-my-zsh.sh
 
 # Enable vi mode
+set -o vi
 # bindkey -v
 
 # User configuration
@@ -127,12 +130,13 @@ copyFilePath(){
 
 function expand-alias() {
 	zle _expand_alias
+  zle backward-delete-char
 }
 
 zle -N expand-alias
-bindkey -M emacs '^ ' expand-alias
-bindkey -M vicmd '^ ' expand-alias
-bindkey -M viins '^ ' expand-alias
+bindkey -M emacs '^z' expand-alias
+bindkey -M vicmd '^z' expand-alias
+bindkey -M viins '^z' expand-alias
 
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
@@ -197,6 +201,9 @@ bindkey -M emacs '\ev' fzf-cd-subdir-widget
 bindkey -M vicmd '\ev' fzf-cd-subdir-widget
 bindkey -M viins '\ev' fzf-cd-subdir-widget
 
+
+## Custom binding for kill -9 ** assited with fzf
+# bindkey '^i' 'kill -9 ** autosuggest-accept'
 
 # CD-LS config
 export CDLS_COMMAND='exa --icons'
