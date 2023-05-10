@@ -50,14 +50,14 @@ nnoremap <a-a> "_cia
 nnoremap <a-s> "_daa
 
 " Method text objects operation replacement
-nnoremap vam j:action MethodUp<cr>V]M
-nnoremap vim j:action MethodUp<cr>jV]Mk
-nnoremap dam j:action MethodUp<cr>V]Md
-nnoremap dim j:action MethodUp<cr>jV]Mkd
-nnoremap yam j:action MethodUp<cr>V]My
-nnoremap yim j:action MethodUp<cr>jV]Mky
-nnoremap cam j:action MethodUp<cr>V]Mc
-nnoremap cim j:action MethodUp<cr>jV]Mkc
+nnoremap vam j:action MethodUp<cr>0v]M
+nnoremap vim j:action MethodUp<cr>]m<cr>v]M<bs>
+nnoremap dam j:action MethodUp<cr>0v]Md
+nnoremap dim j:action MethodUp<cr>]m<cr>v]M<bs>d
+nnoremap yam j:action MethodUp<cr>0v]My
+nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
+nnoremap cam j:action MethodUp<cr>0v]Mc
+nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>c
 
 nmap <a-o> o<ESC>
 nmap <a-O> O<ESC>
@@ -74,8 +74,8 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap [[ gg :action MethodDown<cr> 
 nnoremap [] gg :action MethodDown<cr>f{ 
-nnoremap m :action MethodDown<cr> 
-nnoremap M :action MethodUp<cr> 
+nnoremap m :action MethodDown<cr>0 
+nnoremap M :action MethodUp<cr>0
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
