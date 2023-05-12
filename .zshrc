@@ -77,14 +77,14 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-clipboard-indicator fzf-projects mvn)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-clipboard-indicator fzf-projects mvn z fzf-z)
 
 export ZSH_HIGHLIGHT_MAXLENGTH=10
 
 source $ZSH/oh-my-zsh.sh
 
 # Enable vi mode
-set -o vi
+# set -o vi
 # bindkey -v
 
 # User configuration
@@ -141,6 +141,8 @@ bindkey -M viins '^z' expand-alias
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 # FZF config
+export FZF_CTRL_T_OPTS="--preview 'cat {}'"
+export FZF_CTRL_Y_OPTS="--preview 'cat {}'"
 export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 #export FZF_CTRL_T_COMMAND='fdfind --type f --follow --exclude .git'
@@ -148,7 +150,7 @@ export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
 ## Must create and maintain ".project" file with a plain list of paths to your project directories
-export FZF_ALT_P_COMMAND='cat $HOME/.projects'
+export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
