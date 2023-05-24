@@ -77,11 +77,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips fzf-clipboard-indicator fzf-projects mvn z fzf-z)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips mvn z)
 
 export ZSH_HIGHLIGHT_MAXLENGTH=10
 
 source $ZSH/oh-my-zsh.sh
+
+# FZF
+source $HOME/.fzf-config.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Enable vi mode
 # set -o vi
@@ -139,70 +143,6 @@ bindkey -M vicmd '^z' expand-alias
 bindkey -M viins '^z' expand-alias
 
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
-
-# FZF config
-export FZF_CTRL_T_OPTS="--preview 'cat {}'"
-export FZF_CTRL_Y_OPTS="--preview 'cat {}'"
-export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
-#export FZF_CTRL_T_COMMAND='fdfind --type f --follow --exclude .git'
-export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
-export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
-export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
-## Must create and maintain ".project" file with a plain list of paths to your project directories
-export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-## Custom binding CTRL-y - Paste the selected file path(s) into the command line
-__fselhidden() {
-  local cmd="${FZF_CTRL_Y_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type f -print \
-    -o -type d -print \
-    -o -type l -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local item
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_CTRL_Y_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "${(q)item} "
-  done
-  local ret=$?
-  return $ret
-}
-
-fzf-file-hidden-widget() {
-  LBUFFER="${LBUFFER}$(__fselhidden)"
-  local ret=$?
-  zle reset-prompt
-  return $ret
-}
-zle     -N            fzf-file-hidden-widget
-bindkey -M emacs '^Y' fzf-file-hidden-widget
-bindkey -M vicmd '^Y' fzf-file-hidden-widget
-bindkey -M viins '^Y' fzf-file-hidden-widget
-
-## Custom binding ALT-v - cd into the selected subdirectory of current location
-fzf-cd-subdir-widget() {
-  local cmd="${FZF_ALT_V_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"}"
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_V_OPTS-}" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="builtin cd -- ${(q)dir}"
-  zle accept-line
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle reset-prompt
-  return $ret
-}
-zle     -N             fzf-cd-subdir-widget
-bindkey -M emacs '\ev' fzf-cd-subdir-widget
-bindkey -M vicmd '\ev' fzf-cd-subdir-widget
-bindkey -M viins '\ev' fzf-cd-subdir-widget
-
 
 ## Custom binding for kill -9 ** assited with fzf
 # bindkey '^i' 'kill -9 ** autosuggest-accept'

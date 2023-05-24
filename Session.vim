@@ -13,20 +13,23 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +16 /mnt/data/Proxectos/nvim/lua/mappings.lua
-badd +30 ~/.tmux.conf
-badd +342 ~/.ideavimrc
-badd +127 .vrapperrc
-badd +45 .vimrc
+badd +33 ~/.ideavimrc
+badd +1 .vimrc
+badd +1 ~/.tmux.conf
+badd +1 .vrapperrc
+badd +2 nvim/lua/mappings.lua
 argglobal
 %argdel
-edit ~/.ideavimrc
+edit nvim/lua/mappings.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-1wincmd h
+wincmd _ | wincmd |
+vsplit
+2wincmd h
+wincmd w
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -37,34 +40,11 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 125 + 127) / 254)
-exe 'vert 2resize ' . ((&columns * 128 + 127) / 254)
+exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 106 + 159) / 318)
+exe 'vert 3resize ' . ((&columns * 105 + 159) / 318)
 argglobal
-balt .vrapperrc
-setlocal fdm=manual
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 342 - ((44 * winheight(0) + 27) / 55)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 342
-normal! 061|
-lcd /mnt/data/Proxectos/dotfiles
-wincmd w
-argglobal
-if bufexists(fnamemodify("/mnt/data/Proxectos/nvim/lua/mappings.lua", ":p")) | buffer /mnt/data/Proxectos/nvim/lua/mappings.lua | else | edit /mnt/data/Proxectos/nvim/lua/mappings.lua | endif
-if &buftype ==# 'terminal'
-  silent file /mnt/data/Proxectos/nvim/lua/mappings.lua
-endif
-balt ~/.tmux.conf
+balt ~/.ideavimrc
 setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -95,16 +75,65 @@ silent! normal! zE
 233,239fold
 240,245fold
 let &fdl = &fdl
-let s:l = 19 - ((5 * winheight(0) + 27) / 55)
+let s:l = 2 - ((1 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
+keepjumps 2
 normal! 0
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
-exe 'vert 1resize ' . ((&columns * 125 + 127) / 254)
-exe 'vert 2resize ' . ((&columns * 128 + 127) / 254)
+argglobal
+if bufexists(fnamemodify("~/.ideavimrc", ":p")) | buffer ~/.ideavimrc | else | edit ~/.ideavimrc | endif
+if &buftype ==# 'terminal'
+  silent file ~/.ideavimrc
+endif
+balt ~/.tmux.conf
+setlocal fdm=manual
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 33 - ((32 * winheight(0) + 34) / 69)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 33
+normal! 016|
+lcd /mnt/data/Proxectos/dotfiles
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/.tmux.conf", ":p")) | buffer ~/.tmux.conf | else | edit ~/.tmux.conf | endif
+if &buftype ==# 'terminal'
+  silent file ~/.tmux.conf
+endif
+balt /mnt/data/Proxectos/dotfiles/.vrapperrc
+setlocal fdm=manual
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=99
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+lcd /mnt/data/Proxectos/dotfiles
+wincmd w
+exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 106 + 159) / 318)
+exe 'vert 3resize ' . ((&columns * 105 + 159) / 318)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

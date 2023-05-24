@@ -95,6 +95,7 @@ nnoremap <Leader>wn :action EditSourceInNewWindow<cr>
 " Folds
 map | :action CollapseAllRegions<cr>
 map -- :action ExpandAllRegions<cr>
+map za :action ExpandCollapseToggleAction<cr>
 
 " Macros and registers
 " Execute macro saved in 'q' register
@@ -153,7 +154,7 @@ nnoremap <leader>cr :action ShowUsages<cr>
 nnoremap <leader>cv :action QuickJavaDoc<cr>
 nnoremap <leader>ch :action CallHierarchy<CR>  
 nnoremap <leader>cn :action ShowNavBar<CR>
-nnoremap <leader>cm :action FileStructurePopup<CR> 
+nnoremap <leader>cx :action FileStructurePopup<CR> 
 
 " Refactoring (leader r)
 map <leader>re :action Refactorings.QuickListPopupAction<CR>
@@ -253,6 +254,7 @@ let g:WhichKeyDesc_window_editinnewwindow = "<leader>wn Edit in new window"
 " Folds
 let g:WhichKeyDesc_fold_collapseall = "| Collapse all folds"
 let g:WhichKeyDesc_fold_expandall = "-- Expand all folds"
+let g:WhichKeyDesc_fold_toggle = "za Toggle fold under the cursor"
 
 " Macros and registers
 let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in 'q' register"
@@ -312,7 +314,7 @@ let g:WhichKeyDesc_code_gotousages = "<leader>cr Show usages (References)"
 let g:WhichKeyDesc_code_doc = "<leader>cv Show docs (hooVer)"
 let g:WhichKeyDesc_code_callhierarchy = "<leader>ch Show call hierarchy"
 let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
-let g:WhichKeyDesc_code_filestructure = "<leader>cm Show file structure"
+let g:WhichKeyDesc_code_filestructure = "<leader>cx Show file structure"
 
 " Refactoring (leader r)
 let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"
