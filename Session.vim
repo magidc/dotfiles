@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd /mnt/data/Proxectos/dotfiles
+cd /mnt/data/Proxectos/dotfiles/nvim
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,14 +13,15 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +33 ~/.ideavimrc
-badd +1 .vimrc
-badd +1 ~/.tmux.conf
-badd +1 .vrapperrc
-badd +2 nvim/lua/mappings.lua
+badd +168 ~/.ideavimrc
+badd +1 /mnt/data/Proxectos/dotfiles/.vimrc
+badd +67 ~/.tmux.conf
+badd +1 /mnt/data/Proxectos/dotfiles/.vrapperrc
+badd +51 lua/mappings.lua
+badd +1 lua/plugins/configs/treesitter.lua
 argglobal
 %argdel
-edit nvim/lua/mappings.lua
+edit lua/mappings.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -44,7 +45,7 @@ exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
 exe 'vert 2resize ' . ((&columns * 106 + 159) / 318)
 exe 'vert 3resize ' . ((&columns * 105 + 159) / 318)
 argglobal
-balt ~/.ideavimrc
+balt lua/plugins/configs/treesitter.lua
 setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -54,34 +55,35 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-3,5fold
-12,18fold
-87,102fold
-105,112fold
-122,123fold
-124,125fold
-115,136fold
-139,150fold
-153,159fold
-162,166fold
-169,176fold
-20,177fold
-180,186fold
-188,198fold
-201,207fold
-208,217fold
-220,226fold
-227,230fold
-233,239fold
-240,245fold
+3,4fold
+12,17fold
+96,110fold
+114,120fold
+131,132fold
+133,134fold
+124,143fold
+158,159fold
+148,159fold
+163,168fold
+172,175fold
+179,185fold
+188,190fold
+20,191fold
+195,200fold
+203,212fold
+216,221fold
+223,240fold
+245,250fold
+252,254fold
+258,263fold
+265,269fold
 let &fdl = &fdl
-let s:l = 2 - ((1 * winheight(0) + 34) / 69)
+let s:l = 51 - ((14 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 0
-lcd /mnt/data/Proxectos/dotfiles
+keepjumps 51
+normal! 088|
 wincmd w
 argglobal
 if bufexists(fnamemodify("~/.ideavimrc", ":p")) | buffer ~/.ideavimrc | else | edit ~/.ideavimrc | endif
@@ -99,12 +101,12 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 33 - ((32 * winheight(0) + 34) / 69)
+let s:l = 168 - ((37 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 33
-normal! 016|
+keepjumps 168
+normal! 038|
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
 argglobal
@@ -117,20 +119,21 @@ setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=99
+setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 34) / 69)
+let s:l = 73 - ((5 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 73
+normal! 027|
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
 exe 'vert 2resize ' . ((&columns * 106 + 159) / 318)
 exe 'vert 3resize ' . ((&columns * 105 + 159) / 318)

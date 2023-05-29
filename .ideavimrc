@@ -74,8 +74,6 @@ nnoremap n nzz
 nnoremap N Nzz
 nnoremap [[ gg :action MethodDown<cr> 
 nnoremap [] gg :action MethodDown<cr>f{ 
-nnoremap m :action MethodDown<cr>0 
-nnoremap M :action MethodUp<cr>0
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
@@ -162,10 +160,12 @@ map <leader>rn :action RenameElement<cr>
 map <leader>rv :action IntroduceVariable<cr>
 map <leader>rc :action IntroduceConstant<cr>
 map <leader>rf :action IntroduceField<cr>
+map <leader>rp :action IntroduceParameter<cr>
 map <leader>rx :action ExtractMethod<cr>
 map <leader>rf :action ReformatCode<cr>
 map <leader>ro :action OptimizeImports<cr>
 map <leader>ri :action Inline<cr>
+map <leader>rs :action ChangeSignature<cr>
 map <leader>ra :action AnonymousToInner<cr>
 map <leader>rm :action Move<cr>
 
@@ -323,10 +323,12 @@ let g:WhichKeyDesc_refactor_renameelement = "<leader>rn Rename element"
 let g:WhichKeyDesc_refactor_introducevariable = "<leader>rv Introduce variable"
 let g:WhichKeyDesc_refactor_introduceconstant = "<leader>rc Introduce constant"
 let g:WhichKeyDesc_refactor_introducefield = "<leader>rf Introduce field"
+let g:WhichKeyDesc_refactor_introduceparameter = "<leader>rp Introduce parameter"
 let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
 let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
 let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
+let g:WhichKeyDesc_refactor_changesignature = "<leader>rs Change signature"
 let g:WhichKeyDesc_refactor_anonymoustoinner = "<leader>ra Anonymous To inner"
 let g:WhichKeyDesc_refactor_move = "<leader>rm Move"
 
