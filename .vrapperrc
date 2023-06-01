@@ -84,8 +84,8 @@ map <leader>ft :eclipseaction ActivateTODOToolWindow<cr>
 " Debug (leader d)
 nnoremap <leader>dr :eclipseaction Run<cr>
 nnoremap <leader>dR :eclipseaction ChooseRunConfiguration<cr>
-nnoremap <leader>dd :eclipseaction Debug<cr>
-nnoremap <leader>dD :eclipseaction ChooseDebugConfiguration<cr>
+nnoremap <leader>de :eclipseaction Debug<cr>
+nnoremap <leader>dE :eclipseaction ChooseDebugConfiguration<cr>
 nnoremap <leader>dk :eclipseaction Stop<cr>
 nnoremap <leader>db :eclipseaction ToggleLineBreakpoint<cr>
 nnoremap <leader>da :eclipseaction XDebugger.MuteBreakpoints<cr>

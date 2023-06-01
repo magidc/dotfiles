@@ -34,6 +34,7 @@ sethandler <C-l> n-v-i:vim
 nnoremap c "_c
 nnoremap C "_C
 nnoremap cc "_cc
+nnoremap Y y$
 "Replace word with paste
 nnoremap <a-p> "_diwP
 
