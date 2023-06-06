@@ -1,14 +1,15 @@
 <scheme name="TokyoDark" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2023-05-23T09:12:49</property>
+    <property name="created">2023-06-05T14:53:16</property>
     <property name="ide">Idea</property>
     <property name="ideVersion">2023.1.2.0.0</property>
-    <property name="modified">2023-05-23T09:13:37</property>
+    <property name="modified">2023-06-05T14:53:25</property>
     <property name="originalScheme">TokyoDark</property>
   </metaInfo>
   <colors>
     <option name="ADDED_LINES_COLOR" value="73daca" />
     <option name="ANNOTATIONS_COLOR" value="c0caf5" />
+    <option name="BREADCRUMBS_BORDER_COLOR" value="2c2e40" />
     <option name="CARET_COLOR" value="c0caf5" />
     <option name="CARET_ROW_COLOR" value="373850" />
     <option name="CONSOLE_BACKGROUND_KEY" value="161720" />
@@ -23,6 +24,7 @@
     <option name="DIAGRAM_NOTE_BORDER" value="414868" />
     <option name="DIAGRAM_REALIZATION_EDGE" value="73daca" />
     <option name="DIFF_SEPARATORS_BACKGROUND" value="2c2e40" />
+    <option name="EDITOR_GUTTER_BACKGROUND" value="" />
     <option name="ERROR_HINT" value="414868" />
     <option name="FILESTATUS_ADDED" value="c3e887" />
     <option name="FILESTATUS_COPIED" value="a6cc70" />
@@ -59,10 +61,11 @@
     <option name="NOTIFICATION_BACKGROUND" value="2c2e40" />
     <option name="QUESTION_HINT" value="414868" />
     <option name="RECURSIVE_CALL_ATTRIBUTES" value="" />
-    <option name="RIGHT_MARGIN_COLOR" value="2c2e40" />
+    <option name="RIGHT_MARGIN_COLOR" value="" />
     <option name="SELECTED_INDENT_GUIDE" value="565f89" />
-    <option name="SELECTED_TEARLINE_COLOR" value="414868" />
+    <option name="SELECTED_TEARLINE_COLOR" value="2c2e40" />
     <option name="SELECTION_BACKGROUND" value="65709f" />
+    <option name="SELECTION_FOREGROUND" value="ebebf1" />
     <option name="SEPARATOR_ABOVE_COLOR" value="2c2e40" />
     <option name="SEPARATOR_BELOW_COLOR" value="2c2e40" />
     <option name="SOFT_WRAP_SIGN_COLOR" value="2c2e40" />
@@ -72,7 +75,7 @@
     <option name="VCS_ANNOTATIONS_COLOR_3" value="232433" />
     <option name="VCS_ANNOTATIONS_COLOR_4" value="232433" />
     <option name="VCS_ANNOTATIONS_COLOR_5" value="232433" />
-    <option name="VISUAL_INDENT_GUIDE" value="2c2e40" />
+    <option name="VISUAL_INDENT_GUIDE" value="" />
     <option name="WHITESPACES" value="2c2e40" />
     <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="e0af68" />
   </colors>
@@ -630,7 +633,9 @@
       </value>
     </option>
     <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
-      <value />
+      <value>
+        <option name="BACKGROUND" value="4d4e70" />
+      </value>
     </option>
     <option name="INACTIVE_HYPERLINK_ATTRIBUTES">
       <value>
@@ -958,6 +963,7 @@
     <option name="MATCHED_BRACE_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ffffff" />
+        <option name="BACKGROUND" value="65709f" />
         <option name="FONT_TYPE" value="1" />
         <option name="EFFECT_COLOR" value="42465d" />
       </value>
@@ -1217,7 +1223,9 @@
       </value>
     </option>
     <option name="WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES">
-      <value />
+      <value>
+        <option name="BACKGROUND" value="4d4e70" />
+      </value>
     </option>
     <option name="WRITE_SEARCH_RESULT_ATTRIBUTES">
       <value>

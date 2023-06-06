@@ -14,10 +14,12 @@ else
   set shortmess=aoO
 endif
 badd +166 ~/.ideavimrc
-badd +67 ~/.tmux.conf
+badd +84 ~/.tmux.conf
 badd +1 /mnt/data/Proxectos/dotfiles/.vrapperrc
-badd +54 lua/mappings.lua
+badd +1 lua/mappings.lua
 badd +1 lua/plugins/configs/treesitter.lua
+badd +24 ~/.bash_aliases
+badd +1 /mnt/data/Proxectos/dev/projects
 argglobal
 %argdel
 edit lua/mappings.lua
@@ -41,8 +43,8 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 106 + 159) / 318)
-exe 'vert 3resize ' . ((&columns * 105 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 105 + 159) / 318)
+exe 'vert 3resize ' . ((&columns * 106 + 159) / 318)
 argglobal
 balt lua/plugins/configs/treesitter.lua
 setlocal fdm=manual
@@ -61,7 +63,6 @@ silent! normal! zE
 126,127fold
 128,129fold
 119,140fold
-153,154fold
 143,155fold
 158,164fold
 167,171fold
@@ -85,10 +86,11 @@ keepjumps 54
 normal! 061|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.tmux.conf", ":p")) | buffer ~/.tmux.conf | else | edit ~/.tmux.conf | endif
+if bufexists(fnamemodify("~/.ideavimrc", ":p")) | buffer ~/.ideavimrc | else | edit ~/.ideavimrc | endif
 if &buftype ==# 'terminal'
-  silent file ~/.tmux.conf
+  silent file ~/.ideavimrc
 endif
+balt ~/.tmux.conf
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -97,11 +99,11 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 67 - ((35 * winheight(0) + 34) / 69)
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 67
+keepjumps 1
 normal! 0
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
@@ -110,29 +112,29 @@ if bufexists(fnamemodify("~/.tmux.conf", ":p")) | buffer ~/.tmux.conf | else | e
 if &buftype ==# 'terminal'
   silent file ~/.tmux.conf
 endif
-balt /mnt/data/Proxectos/dotfiles/.vrapperrc
+balt /mnt/data/Proxectos/dev/projects
 setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 92 - ((5 * winheight(0) + 34) / 69)
+let s:l = 84 - ((52 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 92
-normal! 015|
+keepjumps 84
+normal! 046|
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
-2wincmd w
+3wincmd w
 exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 106 + 159) / 318)
-exe 'vert 3resize ' . ((&columns * 105 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 105 + 159) / 318)
+exe 'vert 3resize ' . ((&columns * 106 + 159) / 318)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
