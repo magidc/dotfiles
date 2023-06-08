@@ -28,53 +28,61 @@ sethandler <C-l> n-v-i:vim
 "" Key mappings ====================================================
 " NORMAL MODE
 " Edit 
-" nnoremap dd "_dd
-" nnoremap D "_D
 " nnoremap d "_d
+" nnoremap D "_D
+" nnoremap dd "_dd
 nnoremap c "_c
 nnoremap C "_C
 nnoremap cc "_cc
 nnoremap Y y$
-"Replace word with paste
-nnoremap <a-p> "_diwP
+
+"-- Replace word with paste
+nnoremap <a-p> "_diwp
 
 nnoremap <a-j> :m .+1<cr>==
 nnoremap <a-k> :m .-2<cr>==
 
 nnoremap <a-d> "_diw
 nnoremap <a-c> "_ciw
+nnoremap <a-s-d> ]b[w"_d]w
+nnoremap <a-s-c> ]b[w"_c]w
 nnoremap <a-z> "_ci"
 nnoremap <a-x> "_ci(
 
-"Change function argument
+"-- Change function argument
 nnoremap <a-a> "_cia
 nnoremap <a-s> "_daa
 
-" Method text objects operation replacement
+"--  Method text objects operation replacement
 nnoremap vam j:action MethodUp<cr>0v]M
 nnoremap vim j:action MethodUp<cr>]m<cr>v]M<bs>
-nnoremap dam j:action MethodUp<cr>0v]Md
-nnoremap dim j:action MethodUp<cr>]m<cr>v]M<bs>d
+nnoremap dam j:action MethodUp<cr>0v]M"_d
+nnoremap dim j:action MethodUp<cr>]m<cr>v]M<bs>"_d
 nnoremap yam j:action MethodUp<cr>0v]My
 nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
-nnoremap cam j:action MethodUp<cr>0v]Mc
-nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>c
+nnoremap cam j:action MethodUp<cr>0v]M"_c
+nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
 
 nmap <a-o> o<ESC>
 nmap <a-O> O<ESC>
 
 " Motions
-nnoremap E ge
 nnoremap H ^
 nnoremap L $
-nnoremap <C-o> :action Back<cr>
-nnoremap <C-i> :action Forward<cr>
+map W [w
+map B [b
+map E ]w
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
+
+"--  Class motions
 nnoremap [[ gg :action MethodDown<cr> 
 nnoremap [] gg :action MethodDown<cr>f{ 
+
+nnoremap <C-o> :action Back<cr>
+nnoremap <C-i> :action Forward<cr>
 map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
@@ -97,7 +105,7 @@ map -- :action ExpandAllRegions<cr>
 map za :action ExpandCollapseToggleAction<cr>
 
 " Macros and registers
-" Execute macro saved in 'q' register
+"--  Execute macro saved in 'q' register
 nnoremap qj @q
 nnoremap "_ t
 
@@ -124,6 +132,7 @@ map <leader>vs :action ActivateStructureToolWindow<cr>
 map <leader>vt :action ActivateTerminalToolWindow<cr>
 map <leader>vv :action ActivateServicesToolWindow<cr>
 map <leader>vd :action ActivateDebugToolWindow<cr>
+map <leader>vg :action ActivateVersionControlToolWindow<cr>
 map <leader>vo :action ActivateTODOToolWindow<cr>
 map <leader>vq :action CloseActiveTab<cr>
 
@@ -185,7 +194,10 @@ map <leader>en :action GotoNextError<cr>
 map <leader>ep :action GotoPreviousError<cr>
 
 " Git (leader g)
- 
+map <leader>gd :action Compare.LastVersion<cr>
+map <leader>gn :action NextDiff<cr>
+map <leader>gp :action PreviousDiff<cr>
+
 " Display Modes (leader m)
 map <leader>md :action ToggleDistractionFreeMode<cr>
 map <leader>mz :action ToggleZenMode<cr>
@@ -196,15 +208,15 @@ inoremap jk <Esc>
 inoremap <a-s> <Del>
 inoremap <a-d> <Esc>"_diwi
 inoremap <a-c> <Esc>"_ciw
-inoremap <a-e> <Esc>"_dei
 inoremap <a-w> <C-o>w
 inoremap <a-b> <C-o>b
+inoremap <a-e> <Esc>ea
 inoremap <a-j> <ESC>:m .+1<cr>==gi
 inoremap <a-k> <ESC>:m .-2<cr>==gi 
 
 " VISUAL MODE
 vnoremap jk <Esc>
-" Easy visual indentation
+"--  Easy visual indentation
 vnoremap < <gv
 vnoremap > >gv
 nnoremap + v
@@ -212,7 +224,7 @@ vnoremap + :action EditorSelectWord<cr>
 vnoremap _ :action EditorUnSelectWord<cr>
 vnoremap <a-j> :m '>+1<cr>gv=gv
 vnoremap <a-k> :m '<-2<cr>gv=gv
-" Select all
+"--  Select all
 nnoremap <c-s> ggVG
 vnoremap <c-s> ggOG
 
@@ -285,6 +297,7 @@ let g:WhichKeyDesc_views_problems = "<leader>vp Problems and diganostics view"
 let g:WhichKeyDesc_views_structure = "<leader>vs Structure view"
 let g:WhichKeyDesc_views_terminal = "<leader>vt Terminal"
 let g:WhichKeyDesc_views_services = "<leader>vv Services view"
+let g:WhichKeyDesc_views_git = "<leader>vg Git view"
 let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
 let g:WhichKeyDesc_views_todo = "<leader>vo TODO view"
 let g:WhichKeyDesc_views_close = "<leader>vq Close view"
@@ -352,6 +365,10 @@ let g:WhichKeyDesc_error_next = "<leader>en Go to next error"
 let g:WhichKeyDesc_error_previous = "<leader>ep Go to previous error"
 
 " Git (leader g)
+let g:WhichKeyDesc_leader_git = "<leader>g Git actions"
+let g:WhichKeyDesc_leader_diff = "<leader>gd Show differences"
+let g:WhichKeyDesc_leader_nextdiff = "<leader>gn Next difference"
+let g:WhichKeyDesc_leader_previousdiff = "<leader>gp Previous difference"
 
 " Display Modes (leader m)
 let g:WhichKeyDesc_leader_display = "<leader>m Display modes"

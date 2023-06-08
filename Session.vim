@@ -14,7 +14,7 @@ else
   set shortmess=aoO
 endif
 badd +166 ~/.ideavimrc
-badd +84 ~/.tmux.conf
+badd +60 ~/.tmux.conf
 badd +1 /mnt/data/Proxectos/dotfiles/.vrapperrc
 badd +1 lua/mappings.lua
 badd +1 lua/plugins/configs/treesitter.lua
@@ -28,10 +28,7 @@ let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
-wincmd _ | wincmd |
-vsplit
-2wincmd h
-wincmd w
+1wincmd h
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -42,9 +39,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 105 + 159) / 318)
-exe 'vert 3resize ' . ((&columns * 106 + 159) / 318)
+exe 'vert 1resize ' . ((&columns * 158 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 159 + 159) / 318)
 argglobal
 balt lua/plugins/configs/treesitter.lua
 setlocal fdm=manual
@@ -58,25 +54,26 @@ setlocal fen
 silent! normal! zE
 3,5fold
 12,18fold
-91,106fold
-109,116fold
-126,127fold
-128,129fold
-119,140fold
-143,155fold
-158,164fold
-167,171fold
-174,181fold
-183,186fold
-20,187fold
-190,196fold
-198,208fold
-211,217fold
-218,241fold
-244,250fold
-251,254fold
-257,263fold
-264,269fold
+96,111fold
+114,121fold
+131,134fold
+135,138fold
+124,148fold
+162,165fold
+151,166fold
+169,177fold
+180,184fold
+187,193fold
+195,198fold
+21,199fold
+202,208fold
+210,220fold
+223,229fold
+230,253fold
+256,262fold
+263,266fold
+269,275fold
+276,281fold
 let &fdl = &fdl
 let s:l = 54 - ((16 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
@@ -99,42 +96,17 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 34) / 69)
+let s:l = 30 - ((29 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 30
+normal! 07|
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
-argglobal
-if bufexists(fnamemodify("~/.tmux.conf", ":p")) | buffer ~/.tmux.conf | else | edit ~/.tmux.conf | endif
-if &buftype ==# 'terminal'
-  silent file ~/.tmux.conf
-endif
-balt /mnt/data/Proxectos/dev/projects
-setlocal fdm=manual
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=99
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 84 - ((52 * winheight(0) + 34) / 69)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 84
-normal! 046|
-lcd /mnt/data/Proxectos/dotfiles
-wincmd w
-3wincmd w
-exe 'vert 1resize ' . ((&columns * 105 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 105 + 159) / 318)
-exe 'vert 3resize ' . ((&columns * 106 + 159) / 318)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 158 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 159 + 159) / 318)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
