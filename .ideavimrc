@@ -188,6 +188,7 @@ nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
 nnoremap <leader>so :action OverrideMethods<cr>
 nnoremap <leader>sn :action NewClass<cr>
+nnoremap <leader>sf :action NewFile<cr>
 
 " Errors and diagnostics (leader e)
 map <leader>en :action GotoNextError<cr>
@@ -356,8 +357,9 @@ let g:WhichKeyDesc_source_actions = "<leader>sa Show source generation actions"
 let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
-let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
 let g:WhichKeyDesc_source_override = "<leader>so Override methods"
+let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
+let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
 
 " Errors and diagnostics (leader e)
 let g:WhichKeyDesc_leader_error = "<leader>e Error and diagnostics actions"
