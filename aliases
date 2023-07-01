@@ -1,0 +1,58 @@
+# Not reusing aliases in the definition of other aliases in order aliases in order to properly autoexpanded it with Ctrl+a (custom ZSH function)
+
+# Command aliases
+alias kitty-theme="cd ~/.config/kitty/themes && fzf --preview 'head -n 40 {} && kitty @ --to unix:/tmp/kitty set-colors -a -c {}'; cd -"
+alias fd=fdfind
+alias o=xdg-open
+alias v=nvim
+alias sptd="/opt/spotifyd/spotifyd --config-path /home/magidc/.config/spotifyd/spotyfd.conf --no-daemon"
+alias icat="kitty +kitten icat"
+alias python="python3"
+alias n="nautilus ."
+alias yd="pwd | xclip -selection c"
+alias yf="copyFilePath"
+# alias ls="exa --icons"
+alias l="exa --icons"
+alias lc="exa --icons -1"
+alias ll="exa --icons -l"
+alias la="exa --icons -l -a"
+alias lt="exa --icons -T --level=2"
+alias ltl="exa --icons -T --level"
+alias t="tree -l -L 2"
+alias tl="tree -l -L"
+alias kk="kill -9 **"
+
+# Pipe commands
+alias yy="xclip -selection c"
+alias G="grep -i --color=auto"
+
+# Utility scripts
+alias restart_gnome="killall -SIGQUIT gnome-shell"
+alias fix_spotify_size="sed -i '/\b\(app.window.position\)\b/d' -- $HOME/.config/spotify/prefs"
+alias purge='sudo apt autoremove -y && sudo apt autoclean -y && sudo apt clean'
+alias calibre-update="sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin"
+alias kitty-update="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
+alias nvim-update="sh ~/.config/nvim/install_nvim.sh"
+alias sync-local-documents="rclone sync magidc:Documentos $HOME/Documentos" 
+alias sync-remote-documents="rclone sync $HOME/Documentos magidc:Documentos"
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# Confirm before overwriting something
+alias cp="cp -i"
+alias mv='mv -i'
+alias rm='rm -i'
+
+# Easier to read disk
+alias df='df -h'     # human-readable sizes
+alias free='free -m' # show sizes in MB
+
+# Top process eating memory
+alias psmem='ps auxf | sort -nr -k 4 | head -5'
+
+# Top process eating cpu ##
+alias pscpu='ps auxf | sort -nr -k 3 | head -5'
+

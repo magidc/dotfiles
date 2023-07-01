@@ -119,7 +119,7 @@ _fzf-item_clipboard() {
   setopt localoptions pipefail no_aliases 2> /dev/null
   local item
   echo $list | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_CTRL_T_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
-    echo -n "${(q)item}" | xclip -selection c | echo -n "${(q)item}"
+    echo -n "${(q)item}" | xclip -selection c | echo ""
   done
   local ret=$?
   echo

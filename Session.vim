@@ -13,13 +13,13 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +166 ~/.ideavimrc
+badd +30 ~/.ideavimrc
 badd +60 ~/.tmux.conf
 badd +1 /mnt/data/Proxectos/dotfiles/.vrapperrc
 badd +1 lua/mappings.lua
-badd +1 lua/plugins/configs/treesitter.lua
-badd +24 ~/.bash_aliases
 badd +1 /mnt/data/Proxectos/dev/projects
+badd +1 /mnt/data/Proxectos/dotfiles/aui_aliases.sh
+badd +1 /mnt/data/Proxectos/dotfiles/aliases
 argglobal
 %argdel
 edit lua/mappings.lua
@@ -39,10 +39,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 158 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 159 + 159) / 318)
+exe 'vert 1resize ' . ((&columns * 157 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 160 + 159) / 318)
 argglobal
-balt lua/plugins/configs/treesitter.lua
 setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -83,11 +82,11 @@ keepjumps 54
 normal! 061|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.ideavimrc", ":p")) | buffer ~/.ideavimrc | else | edit ~/.ideavimrc | endif
+if bufexists(fnamemodify("/mnt/data/Proxectos/dotfiles/aliases", ":p")) | buffer /mnt/data/Proxectos/dotfiles/aliases | else | edit /mnt/data/Proxectos/dotfiles/aliases | endif
 if &buftype ==# 'terminal'
-  silent file ~/.ideavimrc
+  silent file /mnt/data/Proxectos/dotfiles/aliases
 endif
-balt ~/.tmux.conf
+balt /mnt/data/Proxectos/dotfiles/aui_aliases.sh
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -96,17 +95,17 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 30 - ((29 * winheight(0) + 34) / 69)
+let s:l = 1 - ((0 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 30
-normal! 07|
+keepjumps 1
+normal! $
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 158 + 159) / 318)
-exe 'vert 2resize ' . ((&columns * 159 + 159) / 318)
+exe 'vert 1resize ' . ((&columns * 157 + 159) / 318)
+exe 'vert 2resize ' . ((&columns * 160 + 159) / 318)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
