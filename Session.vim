@@ -19,7 +19,8 @@ badd +1 /mnt/data/Proxectos/dotfiles/.vrapperrc
 badd +1 lua/mappings.lua
 badd +1 /mnt/data/Proxectos/dev/projects
 badd +1 /mnt/data/Proxectos/dotfiles/aui_aliases.sh
-badd +1 /mnt/data/Proxectos/dotfiles/aliases
+badd +25 /mnt/data/Proxectos/dotfiles/aliases
+badd +81 /mnt/data/Proxectos/dotfiles/.zshrc
 argglobal
 %argdel
 edit lua/mappings.lua
@@ -74,20 +75,20 @@ silent! normal! zE
 269,275fold
 276,281fold
 let &fdl = &fdl
-let s:l = 54 - ((16 * winheight(0) + 34) / 69)
+let s:l = 64 - ((26 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 54
-normal! 061|
+keepjumps 64
+normal! 01|
 wincmd w
 argglobal
-if bufexists(fnamemodify("/mnt/data/Proxectos/dotfiles/aliases", ":p")) | buffer /mnt/data/Proxectos/dotfiles/aliases | else | edit /mnt/data/Proxectos/dotfiles/aliases | endif
+if bufexists(fnamemodify("/mnt/data/Proxectos/dotfiles/.zshrc", ":p")) | buffer /mnt/data/Proxectos/dotfiles/.zshrc | else | edit /mnt/data/Proxectos/dotfiles/.zshrc | endif
 if &buftype ==# 'terminal'
-  silent file /mnt/data/Proxectos/dotfiles/aliases
+  silent file /mnt/data/Proxectos/dotfiles/.zshrc
 endif
-balt /mnt/data/Proxectos/dotfiles/aui_aliases.sh
-setlocal fdm=expr
+balt /mnt/data/Proxectos/dotfiles/aliases
+setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -95,12 +96,22 @@ setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 34) / 69)
+silent! normal! zE
+4,5fold
+102,107fold
+131,132fold
+135,137fold
+156,157fold
+159,160fold
+161,162fold
+158,163fold
+let &fdl = &fdl
+let s:l = 81 - ((33 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! $
+keepjumps 81
+normal! 0
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
 2wincmd w

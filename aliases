@@ -11,7 +11,8 @@ alias python="python3"
 alias n="nautilus ."
 alias yd="pwd | xclip -selection c"
 alias yf="copyFilePath"
-# alias ls="exa --icons"
+alias yy="xclip -selection c"
+
 alias l="exa --icons"
 alias lc="exa --icons -1"
 alias ll="exa --icons -l"
@@ -21,9 +22,6 @@ alias ltl="exa --icons -T --level"
 alias t="tree -l -L 2"
 alias tl="tree -l -L"
 alias kk="kill -9 **"
-
-# Pipe commands
-alias yy="xclip -selection c"
 alias G="grep -i --color=auto"
 
 # Utility scripts
