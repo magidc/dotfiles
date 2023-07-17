@@ -18,9 +18,9 @@ badd +60 ~/.tmux.conf
 badd +1 /mnt/data/Proxectos/dotfiles/.vrapperrc
 badd +1 lua/mappings.lua
 badd +1 /mnt/data/Proxectos/dev/projects
-badd +1 /mnt/data/Proxectos/dotfiles/aui_aliases.sh
 badd +25 /mnt/data/Proxectos/dotfiles/aliases
 badd +81 /mnt/data/Proxectos/dotfiles/.zshrc
+badd +1 /mnt/data/Proxectos/dev/aui_aliases
 argglobal
 %argdel
 edit lua/mappings.lua
@@ -80,14 +80,14 @@ if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 64
-normal! 01|
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("/mnt/data/Proxectos/dotfiles/.zshrc", ":p")) | buffer /mnt/data/Proxectos/dotfiles/.zshrc | else | edit /mnt/data/Proxectos/dotfiles/.zshrc | endif
+if bufexists(fnamemodify("~/.ideavimrc", ":p")) | buffer ~/.ideavimrc | else | edit ~/.ideavimrc | endif
 if &buftype ==# 'terminal'
-  silent file /mnt/data/Proxectos/dotfiles/.zshrc
+  silent file ~/.ideavimrc
 endif
-balt /mnt/data/Proxectos/dotfiles/aliases
+balt ~/.tmux.conf
 setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -97,20 +97,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-4,5fold
-102,107fold
-131,132fold
-135,137fold
-156,157fold
-159,160fold
-161,162fold
-158,163fold
 let &fdl = &fdl
-let s:l = 81 - ((33 * winheight(0) + 34) / 69)
+let s:l = 30 - ((29 * winheight(0) + 34) / 69)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 81
+keepjumps 30
 normal! 0
 lcd /mnt/data/Proxectos/dotfiles
 wincmd w
