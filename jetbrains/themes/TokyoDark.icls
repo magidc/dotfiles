@@ -1,9 +1,9 @@
 <scheme name="TokyoDark" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2023-06-05T14:53:16</property>
+    <property name="created">2023-08-15T09:32:49</property>
     <property name="ide">Idea</property>
-    <property name="ideVersion">2023.1.2.0.0</property>
-    <property name="modified">2023-06-05T14:53:25</property>
+    <property name="ideVersion">2023.2.0.0</property>
+    <property name="modified">2023-08-15T09:33:02</property>
     <property name="originalScheme">TokyoDark</property>
   </metaInfo>
   <colors>
