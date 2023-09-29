@@ -11,8 +11,8 @@ set smartcase
 set incsearch
 set hlsearch
 set visualbell
-set clipboard+=unnamed   
-set clipboard+=ideaput
+set clipboard+=unnamed
+set clipboard+=unnamedplus   
 let mapleader = " "
 
 "" Choosing handlers in conflicting Intellij/IdeaVim keymaps =======
@@ -31,13 +31,16 @@ sethandler <C-l> n-v-i:vim
 " nnoremap d "_d
 " nnoremap D "_D
 " nnoremap dd "_dd
-nnoremap c "_c
+nnoremap ciw "_ciw
+nnoremap caw "_caw
 nnoremap C "_C
 nnoremap cc "_cc
 nnoremap Y y$
 
 "-- Replace word with paste
-nnoremap <a-p> "_diwp
+nnoremap <a-p> "_diwP
+"-- Replace line with paste
+nnoremap <a-s-p> "_ddP"
 
 nnoremap <a-j> :m .+1<cr>==
 nnoremap <a-k> :m .-2<cr>==
@@ -50,8 +53,8 @@ nnoremap <a-z> "_ci"
 nnoremap <a-x> "_ci(
 
 "-- Change function argument
-nnoremap <a-a> "_cia
-nnoremap <a-s> "_daa
+" nnoremap <a-a> cia
+" nnoremap <a-s> daa
 
 "--  Method text objects operation replacement
 nnoremap vam j:action MethodUp<cr>0v]M
@@ -62,6 +65,7 @@ nnoremap yam j:action MethodUp<cr>0v]My
 nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
 nnoremap cam j:action MethodUp<cr>0v]M"_c
 nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
+
 
 nmap <a-o> o<ESC>
 nmap <a-O> O<ESC>
@@ -83,7 +87,6 @@ nnoremap [] gg :action MethodDown<cr>f{
 
 nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
-map s <Plug>(easymotion-s)
 
 " Windows and buffers (leader w)
 nnoremap <c-h> <c-w>h  
@@ -166,6 +169,7 @@ nnoremap <leader>cc :action CallHierarchy<CR>
 nnoremap <leader>cn :action ShowNavBar<CR>
 nnoremap <leader>cx :action FileStructurePopup<CR> 
 nnoremap <leader>cb :action CompileDirty<CR> 
+nnoremap <leader>cp :action ParameterInfo<CR> 
 
 " Refactoring (leader r)
 map <leader>re :action Refactorings.QuickListPopupAction<CR>
@@ -236,10 +240,11 @@ set highlightedyank
 set sneak
 set nerdtree
 set argtextobj
-set vim-multiple-cursors
+set multicursor
 
 " Easymotion settings
 set easymotion
+map s <Plug>(easymotion-f)
 set notimeout
 
 " Which-key settings
@@ -336,6 +341,7 @@ let g:WhichKeyDesc_code_callhierarchy = "<leader>cc Show call hierarchy"
 let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
 let g:WhichKeyDesc_code_filestructure = "<leader>cx Show file structure"
 let g:WhichKeyDesc_code_build = "<leader>cb Build"
+let g:WhichKeyDesc_code_parameterinfo = "<leader>cp Parameter info"
 
 " Refactoring (leader r)
 let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"
