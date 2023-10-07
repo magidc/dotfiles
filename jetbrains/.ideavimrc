@@ -66,7 +66,6 @@ nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
 nnoremap cam j:action MethodUp<cr>0v]M"_c
 nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
 
-
 nmap <a-o> o<ESC>
 nmap <a-O> O<ESC>
 
@@ -110,10 +109,11 @@ map za :action ExpandCollapseToggleAction<cr>
 " Macros and registers
 "--  Execute macro saved in 'q' register
 nnoremap qj @q
-nnoremap "_ t
+nnoremap t "_
+
+nnoremap <leader>l :nohlsearch<cr>
 
 " Finder (leader f)
-nnoremap ;; :nohlsearch<cr>
 map <leader>fe :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
 map <leader>fp :action ManageRecentProjects<cr>

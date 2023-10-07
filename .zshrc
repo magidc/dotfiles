@@ -121,6 +121,11 @@ export LANGUAGE=$LANG
 neofetch
 nerd
 
+# Autostart tmux
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux attach -t aui
+fi
+
 # Custom color schemes for LS highlight
 eval "$(dircolors ~/.dircolors)";
 
