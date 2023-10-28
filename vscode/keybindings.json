@@ -1,4 +1,3 @@
-// Place your key bindings in this file to override the defaultsauto[]
 [
     {
         "key": "shift+z",
@@ -44,13 +43,13 @@
         "key": "shift+c",
         "command": "vim.remap",
         "when": "textInputFocus && vim.mode == 'Normal'",
-        "args": { "after": [ "c", "$" ], }
+        "args": { "after": [ "c", "$" ] }
     },
     {
         "key": "shift+y" ,
         "command": "vim.remap",
         "when": "textInputFocus && vim.mode == 'Normal'",
-        "args": { "after": [ "y", "$" ], }
+        "args": { "after": [ "y", "$" ] }
     },
     {
         "key": "alt+d",
