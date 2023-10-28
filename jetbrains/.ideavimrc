@@ -53,8 +53,8 @@ nnoremap <a-z> "_ci"
 nnoremap <a-x> "_ci(
 
 "-- Change function argument
-" nnoremap <a-a> cia
-" nnoremap <a-s> daa
+"nnoremap <a-a> cia
+"nnoremap <a-s> daa
 
 "--  Method text objects operation replacement
 nnoremap vam j:action MethodUp<cr>0v]M
@@ -66,8 +66,8 @@ nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
 nnoremap cam j:action MethodUp<cr>0v]M"_c
 nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
 
-nmap <a-o> o<ESC>
-nmap <a-O> O<ESC>
+nmap <a-o> mao<ESC>`a
+nmap <a-s-o> maO<ESC>`a
 
 " Motions
 nnoremap H ^
@@ -87,7 +87,7 @@ nnoremap [] gg :action MethodDown<cr>f{
 nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
 
-" Windows and buffers (leader w)
+" Window navigation
 nnoremap <c-h> <c-w>h  
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k  
@@ -111,9 +111,8 @@ map za :action ExpandCollapseToggleAction<cr>
 nnoremap qj @q
 nnoremap t "_
 
-nnoremap <leader>l :nohlsearch<cr>
-
-" Finder (leader f)
+" Find (leader f)
+nnoremap ;; :nohlsearch<cr>
 map <leader>fe :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
 map <leader>fp :action ManageRecentProjects<cr>
@@ -122,7 +121,7 @@ map <leader>fg :action FindInPath<cr>
 map <leader>fh :action RecentFiles<cr>
 map <leader>fm :action RecentLocations<cr>
 map <leader>fs :action GotoSymbol<cr>
-map <leader>fz :action Find<cr>
+map <leader>fd :action Find<cr>
 map <leader>fr :action Replace<cr>
 map <leader>fR :action ReplaceInPath<cr>
 map <leader>fx :action PasteMultiple<cr>
@@ -222,6 +221,11 @@ inoremap <a-k> <ESC>:m .-2<cr>==gi
 
 " VISUAL MODE
 vnoremap jk <Esc>
+"--  Select all
+nnoremap <c-s> ggVG
+vnoremap <c-s> ggOG
+"-- Select trimmed line
+vnoremap v ^o$
 "--  Easy visual indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -230,9 +234,6 @@ vnoremap + :action EditorSelectWord<cr>
 vnoremap _ :action EditorUnSelectWord<cr>
 vnoremap <a-j> :m '>+1<cr>gv=gv
 vnoremap <a-k> :m '<-2<cr>gv=gv
-"--  Select all
-nnoremap <c-s> ggVG
-vnoremap <c-s> ggOG
 
 " Plugin Settings ==================================================
 set surround
@@ -291,7 +292,7 @@ let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
 let g:WhichKeyDesc_finder_history = "<leader>fh Find recent files (History)"
 let g:WhichKeyDesc_finder_location = "<leader>fm Find recent locations (Marks)"
 let g:WhichKeyDesc_finder_symbol = "<leader>fs Find symbol"
-let g:WhichKeyDesc_finder_find = "<leader>fz Find in current file"
+let g:WhichKeyDesc_finder_find = "<leader>fd Find in current file"
 let g:WhichKeyDesc_finder_replace = "<leader>fr Find and replace in current file <Ctrl-r>"
 let g:WhichKeyDesc_finder_replaceinfiles = "<leader>fR Find and replace in files"
 let g:WhichKeyDesc_finder_clipboard = "<leader>fx Find in clipboard"
