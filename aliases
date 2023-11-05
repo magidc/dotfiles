@@ -29,6 +29,7 @@ alias restart_gnome="killall -SIGQUIT gnome-shell"
 alias fix_spotify_size="sed -i '/\b\(app.window.position\)\b/d' -- $HOME/.config/spotify/prefs"
 alias purge='sudo apt autoremove -y && sudo apt autoclean -y && sudo apt clean'
 alias sup="sudo apt update; sudo apt -y upgrade"
+alias tas="tmux attach -t"
 alias calibre-update="sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin"
 alias kitty-update="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
 alias nvim-update="sh ~/.config/nvim/install_nvim.sh"

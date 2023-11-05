@@ -4,7 +4,7 @@
 export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 #export FZF_CTRL_T_COMMAND='fdfind --type f --follow --exclude .git'
-export FZF_CTRL_Y_COMMAND='fdfind --hidden --follow --exclude .git'
+export FZF_CTRL_Q_COMMAND='fdfind --hidden --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export FZF_ALT_H_COMMAND='fdfind --type d -d1 --follow --exclude .git . $HOME'
 export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
@@ -12,15 +12,15 @@ export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
 export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
 
 
-## Custom binding CTRL-y - Paste the selected file path(s) into the command line
+## Custom binding CTRL-q - Paste the selected file path(s) into the command line
 __fselhidden() {
-  local cmd="${FZF_CTRL_Y_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+  local cmd="${FZF_CTRL_Q_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type f -print \
     -o -type d -print \
     -o -type l -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
   local item
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_CTRL_Y_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_CTRL_Q_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
     echo -n "${(q)item} "
   done
   local ret=$?
@@ -34,9 +34,9 @@ fzf-file-hidden-widget() {
   return $ret
 }
 zle     -N            fzf-file-hidden-widget
-bindkey -M emacs '^Y' fzf-file-hidden-widget
-bindkey -M vicmd '^Y' fzf-file-hidden-widget
-bindkey -M viins '^Y' fzf-file-hidden-widget
+bindkey -M emacs '^q' fzf-file-hidden-widget
+bindkey -M vicmd '^q' fzf-file-hidden-widget
+bindkey -M viins '^q' fzf-file-hidden-widget
 
 ## Custom binding ALT-v - cd into the selected subdirectory of current location
 fzf-cd-subdir-widget() {
