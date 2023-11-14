@@ -81,8 +81,12 @@ nnoremap n nzz
 nnoremap N Nzz
 
 "--  Class motions
-nnoremap [[ gg :action MethodDown<cr> 
-nnoremap [] gg :action MethodDown<cr>f{ 
+nnoremap [c :call search('\<class\>', 'bW')<cr> ^ 
+nnoremap ]c :call search('\<class\>', 'W')<cr> ^ 
+nnoremap [C :call search('\<class\>', 'bW')<cr> f{% 
+nnoremap ]C :call search('\<class\>', 'W')<cr> f{% 
+nnoremap vic gg :action MethodDown<cr>f{vi{ 
+nnoremap vac gg :action MethodDown<cr>f{va{ 
 
 nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
@@ -136,6 +140,7 @@ map <leader>vv :action ActivateServicesToolWindow<cr>
 map <leader>vd :action ActivateDebugToolWindow<cr>
 map <leader>vg :action ActivateVersionControlToolWindow<cr>
 map <leader>vo :action ActivateTODOToolWindow<cr>
+map <leader>vc :action ActivateGitHubCopilotChatToolWindow<cr>
 map <leader>vq :action CloseActiveTab<cr>
 
 " Debug (leader d)
@@ -308,6 +313,7 @@ let g:WhichKeyDesc_views_services = "<leader>vv Services view"
 let g:WhichKeyDesc_views_git = "<leader>vg Git view"
 let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
 let g:WhichKeyDesc_views_todo = "<leader>vo TODO view"
+let g:WhichKeyDesc_views_copilotchat = "<leader>vc Copilot chat"
 let g:WhichKeyDesc_views_close = "<leader>vq Close view"
 
 " Debug (leader d)
