@@ -87,6 +87,12 @@ nnoremap [C :call search('\<class\>', 'bW')<cr> f{%
 nnoremap ]C :call search('\<class\>', 'W')<cr> f{% 
 nnoremap vic gg :action MethodDown<cr>f{vi{ 
 nnoremap vac gg :action MethodDown<cr>f{va{ 
+nnoremap dic gg :action MethodDown<cr>f{di{ 
+nnoremap dac gg :action MethodDown<cr>f{da{ 
+nnoremap cic gg :action MethodDown<cr>f{ci{ 
+nnoremap cac gg :action MethodDown<cr>f{ca{ 
+nnoremap yic gg :action MethodDown<cr>f{yi{ 
+nnoremap yac gg :action MethodDown<cr>f{ya{ 
 
 nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
@@ -173,6 +179,7 @@ nnoremap <leader>cc :action CallHierarchy<CR>
 nnoremap <leader>cn :action ShowNavBar<CR>
 nnoremap <leader>cx :action FileStructurePopup<CR> 
 nnoremap <leader>cb :action CompileDirty<CR> 
+nnoremap <leader>cm :action ExternalSystem.ProjectRefreshAction<CR> 
 nnoremap <leader>cp :action ParameterInfo<CR> 
 
 " Refactoring (leader r)
@@ -250,7 +257,7 @@ set multicursor
 
 " Easymotion settings
 set easymotion
-map s <Plug>(easymotion-f)
+nnoremap <leader>ff <Plug>(easymotion-f)
 set notimeout
 
 " Which-key settings
@@ -301,6 +308,7 @@ let g:WhichKeyDesc_finder_find = "<leader>fd Find in current file"
 let g:WhichKeyDesc_finder_replace = "<leader>fr Find and replace in current file <Ctrl-r>"
 let g:WhichKeyDesc_finder_replaceinfiles = "<leader>fR Find and replace in files"
 let g:WhichKeyDesc_finder_clipboard = "<leader>fx Find in clipboard"
+let g:WhichKeyDesc_finder_easymotion = "<leader>ff Find with easy motion"
 let g:WhichKeyDesc_finder_todo = "<leader>ft Find in TODO list"
 
 " Views (leader v)
@@ -335,7 +343,7 @@ let g:WhichKeyDesc_debug_quickevaluate = "<leader>dx Evaluate selected expressio
 let g:WhichKeyDesc_debug_evaluate = "<leader>dt EvaluaTe expression"
 let g:WhichKeyDesc_debug_watch = "<leader>dw Add to watch"
 
-" Code navigation (leader c)
+" Code (leader c)
 let g:WhichKeyDesc_leader_code = "<leader>c Code actions"
 let g:WhichKeyDesc_code_gotodeclaration = "<leader>cd Go to declaration"
 let g:WhichKeyDesc_code_gototypedeclaration = "<leader>ct Go to type declaration"
@@ -347,8 +355,9 @@ let g:WhichKeyDesc_code_doc = "<leader>cv Show docs (hooVer)"
 let g:WhichKeyDesc_code_callhierarchy = "<leader>cc Show call hierarchy"
 let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
 let g:WhichKeyDesc_code_filestructure = "<leader>cx Show file structure"
-let g:WhichKeyDesc_code_build = "<leader>cb Build"
 let g:WhichKeyDesc_code_parameterinfo = "<leader>cp Parameter info"
+let g:WhichKeyDesc_code_build = "<leader>cb Build"
+let g:WhichKeyDesc_code_mavenrefresh = "<leader>cm Refresh Maven dependencies"
 
 " Refactoring (leader r)
 let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"

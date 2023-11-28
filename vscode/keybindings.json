@@ -265,6 +265,11 @@
         "when": "editorTextFocus && vim.mode == 'Normal'",
         "command": "workbench.action.findInFiles",
     },
+       {
+        "key": "space f a",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+        "command": "workbench.action.showCommands"
+    },
     {
         "key": "space f s",
         "when": "editorTextFocus && vim.mode == 'Normal'",
@@ -322,33 +327,39 @@
     // Code navigation (leader c)
     {
         "key": "space c i",
+        "when": "vim.mode == 'Normal' && editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor",
         "command": "editor.action.goToImplementation",
-        "when": "vim.mode == 'Normal' && editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
         "key": "ctrl+f12",
+        "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor",
         "command": "-editor.action.goToImplementation",
-        "when": "editorHasImplementationProvider && editorTextFocus && !isInEmbeddedEditor"
     }, 
     {
         "key": "space c d",
+        "when": "vim.mode == 'Normal' && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor",
         "command": "editor.action.revealDefinition",
-        "when": "vim.mode == 'Normal' && editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
         "key": "f12",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor",
         "command": "-editor.action.revealDefinition",
-        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     {
         "key": "space c r",
+        "when": "vim.mode == 'Normal' && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor",
         "command": "editor.action.goToReferences",
-        "when": "vim.mode == 'Normal' && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
     },
     {
         "key": "shift+f12",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor",
         "command": "-editor.action.goToReferences",
-        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+    },
+
+    {
+        "key": "space c t",
+        "when": "vim.mode == 'Normal' && editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor",
+        "command": "editor.action.goToTypeDefinition",
     },
 
     // Refactoring (leader r)
