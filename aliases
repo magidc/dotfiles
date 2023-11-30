@@ -12,6 +12,7 @@ alias n="nautilus ."
 alias yd="pwd | xclip -selection c"
 alias yf="copyFilePath"
 alias yy="xclip -selection c"
+alias cx="commitPush"
 
 alias l="exa --icons"
 alias lc="exa --icons -1"

@@ -137,6 +137,10 @@ copyFilePath(){
 	readlink -f $1 | xclip -selection c
 }
 
+commitPush(){
+  git add --all; git commit -m $1; git push origin
+}
+
 function expand-alias() {
 	zle _expand_alias
   zle backward-delete-char
