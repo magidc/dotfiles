@@ -25,6 +25,9 @@ sethandler <C-j> n-v-i:vim
 sethandler <C-k> n-v-i:vim
 sethandler <C-l> n-v-i:vim
 
+" source
+map <leader>9 :source ~/.ideavimrc<cr>
+
 "" Key mappings ====================================================
 " NORMAL MODE
 " Edit 
@@ -208,6 +211,8 @@ nnoremap <leader>sf :action NewFile<cr>
 " Errors and diagnostics (leader e)
 map <leader>en :action GotoNextError<cr>
 map <leader>ep :action GotoPreviousError<cr>
+map <leader>ep :action GotoPreviousError<cr>
+map <leader>ed :action ShowErrorDescription<cr>
 
 " Git (leader g)
 map <leader>gd :action Compare.LastVersion<cr>
@@ -254,11 +259,11 @@ set nerdtree
 set argtextobj
 set multicursor
 set ideajoin
+set ideamarks
 
-" Easymotion settings
-set easymotion
-nnoremap <leader>ff <Plug>(easymotion-f)
-set notimeout
+" Acejump settings
+map \ :action AceAction<cr>
+" map fl :action AceLineAction<cr>
 
 " Which-key settings
 set which-key
@@ -296,6 +301,7 @@ let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in
 
 " Finder (leader f)
 let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
+
 let g:WhichKeyDesc_finder_class = "<leader>fe Find class"
 let g:WhichKeyDesc_finder_actions = "<leader>fa Find actions"
 let g:WhichKeyDesc_finder_projects = "<leader>fp Find recent projects"
@@ -371,6 +377,7 @@ let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
 let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
 let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
+
 let g:WhichKeyDesc_refactor_changesignature = "<leader>rs Change signature"
 let g:WhichKeyDesc_refactor_anonymoustoinner = "<leader>ra Anonymous To inner"
 let g:WhichKeyDesc_refactor_move = "<leader>rm Move"
@@ -389,6 +396,7 @@ let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
 let g:WhichKeyDesc_leader_error = "<leader>e Error and diagnostics actions"
 let g:WhichKeyDesc_error_next = "<leader>en Go to next error"
 let g:WhichKeyDesc_error_previous = "<leader>ep Go to previous error"
+let g:WhichKeyDesc_error_description = "<leader>ed Show error description"
 
 " Git (leader g)
 let g:WhichKeyDesc_leader_git = "<leader>g Git actions"

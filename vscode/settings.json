@@ -1,7 +1,6 @@
 {
   "git.openRepositoryInParentFolders": "never",
   "editor.lineNumbers": "relative",
-  "workbench.colorTheme": "One Dark Pro Monokai Darker",
   "vim.camelCaseMotion.enable": true,
   "vim.easymotion": true,
   "vim.foldfix": true,
@@ -28,4 +27,5 @@
     "vscodevim.vim": 1
   },
   "editor.minimap.enabled": false,
+  "vim.commandLineModeKeyBindings": [],
 }
