@@ -53,6 +53,7 @@ nnoremap <a-c> "_ciw
 nnoremap <a-s-d> ]b[w"_d]w
 nnoremap <a-s-c> ]b[w"_c]w
 nnoremap <a-z> "_ci"
+nnoremap <a-x> "_ci(
 
 "-- Change function argument
 nnoremap <a-a> c<Plug>(InnerArgument)
@@ -114,9 +115,8 @@ nnoremap <leader>wp :action MoveEditorToOppositeTabGroup<cr>
 nnoremap <Leader>wn :action EditSourceInNewWindow<cr>  
 
 " Folds
-map | :action CollapseAllRegions<cr>
-map -- :action ExpandAllRegions<cr>
-map za :action ExpandCollapseToggleAction<cr>
+nnoremap -- :action ExpandAllRegions<cr>
+nnoremap za :action ExpandCollapseToggleAction<cr>
 
 " Macros and registers
 "--  Execute macro saved in 'q' register
