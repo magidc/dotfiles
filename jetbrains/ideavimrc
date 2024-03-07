@@ -192,7 +192,7 @@ map <leader>rc :action IntroduceConstant<cr>
 map <leader>rf :action IntroduceField<cr>
 map <leader>rp :action IntroduceParameter<cr>
 map <leader>rx :action ExtractMethod<cr>
-map <leader>rf :action ReformatCode<cr>
+map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>:action OptimizeImports<cr>
 map <leader>ro :action OptimizeImports<cr>
 map <leader>ri :action Inline<cr>
 map <leader>rs :action ChangeSignature<cr>

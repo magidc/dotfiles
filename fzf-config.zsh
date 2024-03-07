@@ -102,10 +102,21 @@ fzf-z-widget() {
   zle reset-prompt
   return $ret
 }
-zle     -N             fzf-z-widget
-bindkey -M emacs '\ez' fzf-z-widget
-bindkey -M vicmd '\ez' fzf-z-widget
-bindkey -M viins '\ez' fzf-z-widget
+# zle     -N             fzf-z-widget
+# bindkey -M emacs '\ez' fzf-z-widget
+# bindkey -M vicmd '\ez' fzf-z-widget
+# bindkey -M viins '\ez' fzf-z-widget
+
+## Switch to root directory of the project or to the parent directory if not in a project
+fzf-root-widget() {
+  zle push-line # Clear buffer. Auto-restored on next prompt.
+  BUFFER="cd ${CURRENT_PROJECT:--}"
+  zle accept-line
+}
+zle     -N             fzf-root-widget
+bindkey -M emacs '\ez' fzf-root-widget
+bindkey -M vicmd '\ez' fzf-root-widget
+bindkey -M viins '\ez' fzf-root-widget
 
 ## Custom binding ALT-x - Select item from clipboard
 #### To use with GNOME extension "Clipboard indicator"
@@ -151,6 +162,7 @@ fzf-cd-project-widget() {
     zle redisplay
     return 0
   fi
+  export CURRENT_PROJECT="$dir"
   zle push-line # Clear buffer. Auto-restored on next prompt.
   BUFFER="builtin cd -- ${(q)dir}"
   zle accept-line
