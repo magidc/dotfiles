@@ -110,7 +110,7 @@ fzf-z-widget() {
 ## Switch to root directory of the project or to the parent directory if not in a project
 fzf-root-widget() {
   zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="cd ${CURRENT_PROJECT:--}"
+  BUFFER="builtin cd -- ${(q)CURRENT_PROJECT:--}"
   zle accept-line
 }
 zle     -N             fzf-root-widget
