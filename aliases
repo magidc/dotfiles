@@ -5,6 +5,7 @@ alias kitty-theme="cd ~/.config/kitty/themes && fzf --preview 'head -n 40 {} && 
 alias fd=fdfind
 alias o=xdg-open
 alias v=nvim
+alias h=history
 alias sptd="/opt/spotifyd/spotifyd --config-path /home/magidc/.config/spotifyd/spotyfd.conf --no-daemon"
 alias icat="kitty +kitten icat"
 alias python="python3"
