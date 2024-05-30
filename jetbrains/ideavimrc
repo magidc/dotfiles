@@ -113,6 +113,10 @@ nnoremap <leader>ws :action SplitHorizontally<cr>
 nnoremap <leader>wc :action Unsplit<cr>
 nnoremap <leader>wp :action MoveEditorToOppositeTabGroup<cr>
 nnoremap <Leader>wn :action EditSourceInNewWindow<cr>  
+" Tmux like
+nnoremap <a--> :action SplitHorizontally<cr>
+nnoremap <a-\> :action SplitVertically<cr> 
+nnoremap <c-d> :action Unsplit<cr>
 
 " Folds
 nnoremap -- :action ExpandAllRegions<cr>
