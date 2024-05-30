@@ -173,3 +173,5 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+source /home/magidc/.config/broot/launcher/bash/br

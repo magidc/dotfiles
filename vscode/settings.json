@@ -28,4 +28,6 @@
   },
   "editor.minimap.enabled": false,
   "vim.commandLineModeKeyBindings": [],
+  "vim.commandLineModeKeyBindingsNonRecursive": [],
+  "vim.operatorPendingModeKeyBindings": [],
 }

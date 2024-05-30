@@ -267,6 +267,9 @@ map \ :action AceAction<cr>
 
 " Which-key settings
 set which-key
+
+set timeout=5000
+
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
 let g:WhichKey_PrefixColor = "#f335b2"

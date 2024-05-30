@@ -158,6 +158,8 @@ projects_file_path="${FZF_PROJECTS_FILE_PATH:-"$HOME/.projects"}"
 fzf-cd-project-widget() {
   setopt localoptions pipefail no_aliases 2> /dev/null
   local dir="$(eval "cat $projects_file_path" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_P_OPTS-}" $(__fzfcmd) +m)"
+  # Solving possible environment variables in the path
+  dir="$(eval "echo $dir")"
   if [[ -z "$dir" ]]; then
     zle redisplay
     return 0
@@ -184,5 +186,6 @@ zle     -N             fzf-cd-project-widget
 bindkey -M emacs '\ep' fzf-cd-project-widget
 bindkey -M vicmd '\ep' fzf-cd-project-widget
 bindkey -M viins '\ep' fzf-cd-project-widget
+
 
 
