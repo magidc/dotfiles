@@ -30,4 +30,5 @@
   "vim.commandLineModeKeyBindings": [],
   "vim.commandLineModeKeyBindingsNonRecursive": [],
   "vim.operatorPendingModeKeyBindings": [],
+  "redhat.telemetry.enabled": false,
 }

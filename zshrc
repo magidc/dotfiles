@@ -174,4 +174,35 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-source /home/magidc/.config/broot/launcher/bash/br
+# Brot file manager
+source $HOME/.config/broot/launcher/bash/br
+
+getHome() {
+  LBUFFER+=" $HOME"
+}
+
+zle     -N             getHome
+bindkey -M emacs '\e;'  getHome
+bindkey -M vicmd '\e;'  getHome
+bindkey -M viins '\e;'  getHome
+
+getKill() {
+    local proc
+    proc=$(fzf -m --header-lines=1 --preview 'echo {}' --preview-window down:3:wrap --min-height 15 --height ${FZF_TMUX_HEIGHT:-40%} --reverse -- "$@" < <(
+    command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
+      command ps -eo user,pid,ppid,time,args # For BusyBox
+      )
+    )
+    if [[ -n "$proc" ]]; then
+      echo "$proc" | awk '{print $2}' | xargs kill -9
+      echo "Killed process $(echo "$proc" | awk '{print $6}')"
+    else
+      echo "No process selected"
+    fi
+    zle accept-line
+}
+
+zle     -N             getKill
+bindkey -M emacs '\ek'  getKill
+bindkey -M vicmd '\ek'  getKill
+bindkey -M viins '\ek'  getKill
