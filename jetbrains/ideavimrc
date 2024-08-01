@@ -209,7 +209,12 @@ nnoremap <leader>sc :action GenerateConstructor<cr>
 nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
 nnoremap <leader>so :action OverrideMethods<cr>
-nnoremap <leader>sn :action NewClass<cr>
+
+if &ide =~? 'intellij idea'
+  nnoremap <leader>sn :action NewClass<cr>
+elseif &ide =~? 'pycharm'
+  nnoremap <leader>sn :action NewPythonFile<cr>
+endif
 nnoremap <leader>sf :action NewFile<cr>
 
 " Errors and diagnostics (leader e)
@@ -396,7 +401,12 @@ let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
 let g:WhichKeyDesc_source_override = "<leader>so Override methods"
-let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
+if &ide =~? 'intellij idea'
+  let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
+elseif &ide =~? 'pycharm'
+  let g:WhichKeyDesc_source_newpythonfile = "<leader>sn New Python file"
+endif
+
 let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
 
 " Errors and diagnostics (leader e)

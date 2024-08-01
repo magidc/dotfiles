@@ -35,8 +35,6 @@ alias tas="tmux attach -t"
 alias calibre-update="sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin"
 alias kitty-update="curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin"
 alias nvim-update="sh ~/.config/nvim/install_nvim.sh"
-alias sync-local-documents="rclone sync -P magidc:Documentos $HOME/Documentos" 
-alias sync-remote-documents="rclone sync -P $HOME/Documentos magidc:Documentos"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
