@@ -13,6 +13,8 @@ alias n="nautilus ."
 alias yd="pwd | xclip -selection c"
 alias yf="copyFilePath"
 alias yy="xclip -selection c"
+alias pp="xclip -selection clipboard -o" # Paste from clipboard
+alias jj="pp | jless" # Paste JSON from clipboard and open with jless
 alias cx="commitPush"
 
 alias l="exa --icons"

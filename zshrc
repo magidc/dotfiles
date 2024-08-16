@@ -178,7 +178,7 @@ unset __conda_setup
 source $HOME/.config/broot/launcher/bash/br
 
 getHome() {
-  LBUFFER+=" $HOME"
+  LBUFFER+=" $HOME/"
 }
 
 zle     -N             getHome
