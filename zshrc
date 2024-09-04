@@ -206,3 +206,9 @@ zle     -N             getKill
 bindkey -M emacs '\ek'  getKill
 bindkey -M vicmd '\ek'  getKill
 bindkey -M viins '\ek'  getKill
+
+
+# Copy command that creates destination directory if it doesn't exist
+cpmk() { 
+  mkdir -p `dirname $2` && cp "$1" "$2"; 
+}

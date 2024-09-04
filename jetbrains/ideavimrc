@@ -1,5 +1,5 @@
 "" .ideavimrc - magidc
-"" https://github.com/magidc/dotfiles/blob/master/.ideavimrc
+"" https://github.com/magidc/dotfiles/blob/master/jetbrains/ideavimrc
 
 "" Settings ========================================================
 set scrolloff=10
