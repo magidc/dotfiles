@@ -212,3 +212,8 @@ bindkey -M viins '\ek'  getKill
 cpmk() { 
   mkdir -p `dirname $2` && cp "$1" "$2"; 
 }
+
+# Clear to the end of the line. Usually bound to ^U but this shortcut is used by tmux-vim to switch focus in tmux panes
+bindkey '\ee' kill-line
+# The same as above but cleaning to the start of line. Equivalent to ^WZ
+bindkey '\ea' backward-kill-line

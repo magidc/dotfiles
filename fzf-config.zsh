@@ -85,41 +85,8 @@ bindkey -M emacs '\eh' fzf-cd-home-subdir-widget
 bindkey -M vicmd '\eh' fzf-cd-home-subdir-widget
 bindkey -M viins '\eh' fzf-cd-home-subdir-widget
 
-## Switch to recent locations with Z
-### Z plugins must be installed. If using .oh-my-zsh add this to .zshrc: plugins=(z)
-fzf-z-widget() {
-  setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "sort -t'|' -nrk3 ${ZSHZ_DATA:-$HOME/.z} | awk -F '|' '{print \$1}'" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-}" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="builtin cd -- ${(q)dir}"
-  zle accept-line
-  local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
-  zle reset-prompt
-  return $ret
-}
-# zle     -N             fzf-z-widget
-# bindkey -M emacs '\ez' fzf-z-widget
-# bindkey -M vicmd '\ez' fzf-z-widget
-# bindkey -M viins '\ez' fzf-z-widget
-
-## Switch to root directory of the project or to the parent directory if not in a project
-fzf-root-widget() {
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="builtin cd -- ${(q)CURRENT_PROJECT:--}"
-  zle accept-line
-}
-zle     -N             fzf-root-widget
-bindkey -M emacs '\ez' fzf-root-widget
-bindkey -M vicmd '\ez' fzf-root-widget
-bindkey -M viins '\ez' fzf-root-widget
-
 ## Custom binding ALT-x - Select item from clipboard
-#### To use with GNOME extension "Clipboard indicator"
+### To use with GNOME extension "Clipboard indicator"
 _fzf-item_clipboard() {
   local items=("${(@f)$(jq '.[].contents' $HOME/.cache/clipboard-indicator@tudmotu.com/registry.txt)}")
   local list=""
@@ -153,6 +120,7 @@ bindkey -M viins '\ex'  fzf-item_clipboard-widget
 
 ## Switch to project directory
 ### File ".projects" must be externaly mantained in order to incluse paths to project directories
+
 projects_file_path="${FZF_PROJECTS_FILE_PATH:-"$HOME/.projects"}"
 
 fzf-cd-project-widget() {
@@ -186,6 +154,17 @@ zle     -N             fzf-cd-project-widget
 bindkey -M emacs '\ep' fzf-cd-project-widget
 bindkey -M vicmd '\ep' fzf-cd-project-widget
 bindkey -M viins '\ep' fzf-cd-project-widget
+
+## Switch to root directory of the project or to the parent directory if not in a project
+fzf-root-widget() {
+  zle push-line # Clear buffer. Auto-restored on next prompt.
+  BUFFER="builtin cd -- ${(q)CURRENT_PROJECT:--}"
+  zle accept-line
+}
+zle     -N             fzf-root-widget
+bindkey -M emacs '\ez' fzf-root-widget
+bindkey -M vicmd '\ez' fzf-root-widget
+bindkey -M viins '\ez' fzf-root-widget
 
 
 
