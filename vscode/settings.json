@@ -31,5 +31,5 @@
   "vim.commandLineModeKeyBindingsNonRecursive": [],
   "vim.operatorPendingModeKeyBindings": [],
   "redhat.telemetry.enabled": false,
-  "workbench.colorTheme": "Tokyo Night",
+  "workbench.preferredHighContrastColorTheme": "Default Dark Modern",
 }

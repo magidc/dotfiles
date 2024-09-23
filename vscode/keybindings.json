@@ -519,7 +519,7 @@
     },
     {
         "key": "space d e",
-        "when": "vim.mode == 'Normal' && debuggersAvailable && debugState == 'inactive'",
+        "when": "editorTextFocus && vim.mode == 'Normal' && debuggersAvailable && debugState == 'inactive'",
         "command": "workbench.action.debug.start",
     },
     {
