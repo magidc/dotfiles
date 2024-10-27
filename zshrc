@@ -2,7 +2,7 @@
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips mvn poetry zoxide)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips mvn poetry zoxide fzf-tab)
 
 export ZSH_HIGHLIGHT_MAXLENGTH=10
 
@@ -100,11 +100,11 @@ export LANG=en_US.UTF-8
 export LANGUAGE=$LANG
 
 # Preferred editor for local and remote sessions
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='nvim'
- else
-   export EDITOR='vim'
- fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='nvim'
+else
+    export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -134,16 +134,16 @@ eval "$(dircolors ~/.dircolors)";
 
 # To be used with an alias
 copyFilePath(){
-	readlink -f $1 | xclip -selection c
+    readlink -f $1 | xclip -selection c
 }
 
 commitPush(){
-  git add --all; git commit -m $1; git push origin
+    git add --all; git commit -m $1; git push origin
 }
 
 function expand-alias() {
-	zle _expand_alias
-  zle backward-delete-char
+    zle _expand_alias
+    zle backward-delete-char
 }
 
 zle -N expand-alias
@@ -178,7 +178,7 @@ unset __conda_setup
 source $HOME/.config/broot/launcher/bash/br
 
 getHome() {
-  LBUFFER+=" $HOME/"
+    LBUFFER+=" $HOME/"
 }
 
 zle     -N             getHome
@@ -189,15 +189,15 @@ bindkey -M viins '\e;'  getHome
 getKill() {
     local proc
     proc=$(fzf -m --header-lines=1 --preview 'echo {}' --preview-window down:3:wrap --min-height 15 --height ${FZF_TMUX_HEIGHT:-40%} --reverse -- "$@" < <(
-    command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
-      command ps -eo user,pid,ppid,time,args # For BusyBox
-      )
+            command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
+            command ps -eo user,pid,ppid,time,args # For BusyBox
+        )
     )
     if [[ -n "$proc" ]]; then
-      echo "$proc" | awk '{print $2}' | xargs kill -9
-      echo "Killed process $(echo "$proc" | awk '{print $6}')"
+        echo "$proc" | awk '{print $2}' | xargs kill -9
+        echo "Killed process $(echo "$proc" | awk '{print $6}')"
     else
-      echo "No process selected"
+        echo "No process selected"
     fi
     zle accept-line
 }
@@ -209,8 +209,8 @@ bindkey -M viins '\ek'  getKill
 
 
 # Copy command that creates destination directory if it doesn't exist
-cpmk() { 
-  mkdir -p `dirname $2` && cp "$1" "$2"; 
+cpmk() {
+    mkdir -p `dirname $2` && cp "$1" "$2";
 }
 
 # Clear to the end of the line. Usually bound to ^U but this shortcut is used by tmux-vim to switch focus in tmux panes

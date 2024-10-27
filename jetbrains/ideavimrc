@@ -84,10 +84,17 @@ nnoremap n nzz
 nnoremap N Nzz
 
 "--  Class motions
-nnoremap [c :call search('\<class\>', 'bW')<cr> ^ 
-nnoremap ]c :call search('\<class\>', 'W')<cr> ^ 
-nnoremap [C :call search('\<class\>', 'bW')<cr> f{% 
-nnoremap ]C :call search('\<class\>', 'W')<cr> f{% 
+if &ide =~? 'intellij idea'
+  "--- Next class opening
+  nnoremap [c 0?\<class\> <cr>f{:nohlsearch<cr>  
+  "--- Previous class opening
+  nnoremap ]c $/\<class\> <cr>f{:nohlsearch<cr>
+  "--- Next class closing
+  nnoremap [C $?\<class\> <cr>nf{%:nohlsearch<cr>
+  "--- Previous class closing
+  nnoremap ]C 0/\<class\> <cr>f{%:nohlsearch<cr>
+endif
+
 nnoremap vic gg :action MethodDown<cr>f{vi{ 
 nnoremap vac gg :action MethodDown<cr>f{va{ 
 nnoremap dic gg :action MethodDown<cr>f{di{ 
