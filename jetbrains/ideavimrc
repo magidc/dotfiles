@@ -85,13 +85,13 @@ nnoremap N Nzz
 
 "--  Class motions
 if &ide =~? 'intellij idea'
-  "--- Next class opening
-  nnoremap [c 0?\<class\> <cr>f{:nohlsearch<cr>  
   "--- Previous class opening
+  nnoremap [c 0?\<class\> <cr>f{:nohlsearch<cr>  
+  "--- Next class opening
   nnoremap ]c $/\<class\> <cr>f{:nohlsearch<cr>
-  "--- Next class closing
-  nnoremap [C $?\<class\> <cr>nf{%:nohlsearch<cr>
   "--- Previous class closing
+  nnoremap [C $?\<class\> <cr>nf{%:nohlsearch<cr>
+  "--- Next class closing
   nnoremap ]C 0/\<class\> <cr>f{%:nohlsearch<cr>
 endif
 
