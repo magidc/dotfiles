@@ -213,7 +213,8 @@ cpmk() {
     mkdir -p `dirname $2` && cp "$1" "$2";
 }
 
-# Clear to the end of the line. Usually bound to ^U but this shortcut is used by tmux-vim to switch focus in tmux panes
+# Clear to the end of the line. Usually bound to ^k
 bindkey '\ee' kill-line
-# The same as above but cleaning to the start of line. Equivalent to ^WZ
+# The same as above but cleaning to the start of line. Usually bound to ^u
 bindkey '\ea' backward-kill-line
+# To clear whole line use ^u
