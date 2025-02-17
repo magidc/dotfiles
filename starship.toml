@@ -1,0 +1,161 @@
+format = """
+$os\
+$username\
+$hostname\
+$localip\
+$shlvl\
+$singularity\
+$kubernetes\
+$directory\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$docker_context\
+$package\
+$c\
+$cmake\
+$cobol\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$gleam\
+$golang\
+$guix_shell\
+$haskell\
+$haxe\
+$helm\
+$java\
+$julia\
+$kotlin\
+$gradle\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$opa\
+$perl\
+$php\
+$pulumi\
+$purescript\
+$python\
+$quarto\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$solidity\
+$swift\
+$terraform\
+$typst\
+$vlang\
+$vagrant\
+$zig\
+$buf\
+$nix_shell\
+$conda\
+$meson\
+$spack\
+$memory_usage\
+$aws\
+$gcloud\
+$openstack\
+$azure\
+$nats\
+$direnv\
+$env_var\
+$crystal\
+$custom\
+$sudo\
+$cmd_duration\
+$jobs\
+$battery\
+$time\
+$status\
+$container\
+$shell\
+$character"""
+
+
+[username]
+show_always = false
+format = '[$user ]($style)'
+disabled = false
+
+[directory]
+read_only = " 󰌾"
+format = "[ $path ]($style)"
+truncate_to_repo = true
+truncation_length = 3
+
+# Here is how you can shorten some long paths by text replacement
+# similar to mapped_locations in Oh My Posh:
+[directory.substitutions]
+"Documents" = "󰈙 Documents"
+"Documentos" = "󰈙 Documentos"
+"Downloads" = " Downloads"
+"Descargas" = " Descargas"
+"Projects" = " Projects"
+"Proxectos" = " Proxectos"
+"Libros" = " Libros"
+# Keep in mind that the order matters. For example:
+# "Important Documents" = " 󰈙 "
+# will not be replaced, because "Documents" was already substituted before.
+# So either put "Important Documents" before "Documents" or use the substituted version:
+# "Important 󰈙 " = " 󰈙 "
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+format = '[$time ]($style)'
+
+# An alternative to the username module which displays a symbol that
+# represents the current operating system
+[os]
+disabled = true # Disabled by default
+
+
+[aws]
+symbol = " AWS "
+format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
+
+[docker_context]
+symbol = " "
+format = '[ $symbol $context ]($style)'
+
+
+[gcloud]
+symbol = '️🇬️'
+format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+disabled = true
+
+[git_branch]
+symbol = " "
+
+[git_commit]
+tag_symbol = '  '
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style) )'
+stashed = "[*${count}](green)" 
+modified = "[!${count}](yellow)" 
+deleted =  "[-${count}](red)" 
+conflicted =  "[x${count}](red)" 
+ahead = "⇡${count}"
+behind = "⇣${count}"
+untracked = "[?${count}](blue)" 
+staged = "[+${count}](green)" 
+
