@@ -203,6 +203,7 @@ getKill() {
     zle accept-line
 }
 
+
 zle     -N             getKill
 bindkey -M emacs '\ek'  getKill
 bindkey -M vicmd '\ek'  getKill

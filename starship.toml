@@ -3,18 +3,23 @@ $os\
 $username\
 $hostname\
 $localip\
-$shlvl\
-$singularity\
-$kubernetes\
 $directory\
-$vcsh\
-$fossil_branch\
-$fossil_metrics\
 $git_branch\
 $git_commit\
 $git_state\
 $git_metrics\
 $git_status\
+${custom.giturl}\
+$shell\
+$character\
+"""
+right_format = """
+$shlvl\
+$singularity\
+$kubernetes\
+$vcsh\
+$fossil_branch\
+$fossil_metrics\
 $hg_branch\
 $pijul_channel\
 $docker_context\
@@ -78,7 +83,7 @@ $nats\
 $direnv\
 $env_var\
 $crystal\
-$custom\
+${custom.docker}\
 $sudo\
 $cmd_duration\
 $jobs\
@@ -86,8 +91,7 @@ $battery\
 $time\
 $status\
 $container\
-$shell\
-$character"""
+"""
 
 
 [username]
@@ -132,14 +136,19 @@ disabled = true # Disabled by default
 symbol = " AWS "
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
 
+
 [docker_context]
 symbol = " "
 format = '[ $symbol $context ]($style)'
 
+[custom.docker]
+description = "Shows the docker symbol if the current directory has Dockerfile or docker-compose.yml files"
+command = "echo 🐳"
+files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml"]
+when = """ command -v docker &> /dev/null; exit (echo $?); """
 
 [gcloud]
-symbol = '️🇬️'
-format = 'on [$symbol$account(@$domain)(\($project\))]($style) '
+format='on [$symbol$account(@$domain)(\($region\))]($style) '
 disabled = true
 
 [git_branch]
@@ -159,3 +168,29 @@ behind = "⇣${count}"
 untracked = "[?${count}](blue)" 
 staged = "[+${count}](green)" 
 
+[custom.giturl]
+# disabled = true
+description = "Display symbol for remote Git server"
+command = '''
+GIT_REMOTE=$(git ls-remote --get-url 2> /dev/null);
+if [[ "$GIT_REMOTE" =~ "github" ]]; then
+    echo " ";
+elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
+    echo " ";
+elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
+    echo " ";
+elif [[ "$GIT_REMOTE" =~ "git" ]]; then
+    echo " ";
+else
+    echo " ";
+fi
+'''
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+shell = "zsh"
+format = "$output  "
+
+
+[java]
+format = '[${symbol}(${version} )]($style)'
+version_format = "v${raw}"
+style = "red"
