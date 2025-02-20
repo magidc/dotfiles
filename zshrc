@@ -186,6 +186,9 @@ zle     -N             getHome
 bindkey -M emacs '\e;'  getHome
 bindkey -M vicmd '\e;'  getHome
 bindkey -M viins '\e;'  getHome
+bindkey -M emacs '^];'  getHome
+bindkey -M vicmd '^];'  getHome
+bindkey -M viins '^];'  getHome
 
 getKill() {
     local proc

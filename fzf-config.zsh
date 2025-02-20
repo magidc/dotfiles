@@ -1,13 +1,24 @@
 # FZF config
-# export FZF_CTRL_T_OPTS="--preview 'cat {}'"
-# export FZF_CTRL_Y_OPTS="--preview 'cat {}'"
-export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git'
-export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
-#export FZF_CTRL_T_COMMAND='fdfind --type f --follow --exclude .git'
-export FZF_CTRL_Q_COMMAND='fdfind --hidden --follow --exclude .git'
-export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
-export FZF_ALT_H_COMMAND='fdfind --type d -d1 --follow --exclude .git . $HOME'
-export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git'
+# ** default fzf substitution
+# Ctrl-t - Find non hidden files from current directory
+# Ctrl-q - Find all files from current directory
+# Alt-h  - Find all files from home
+#
+# Alt-v  - Change directory from current directory
+# Alt-c  - Change directory from home
+# 
+# Alt-x  - Select item from clipboard
+# Alt-p  - Switch to project directory (from file FZF_PROJECTS_FILE_PATH)
+# Alt-z  - Switch to root directory of the project or to the parent directory if not in a project
+#
+export FZF_DEFAULT_COMMAND='fdfind --hidden --follow --exclude .git' 
+export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git' 
+export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME' 
+
+# Custom
+export FZF_ALT_H_COMMAND='fdfind . --follow --exclude .git $HOME'
+export FZF_CTRL_Q_COMMAND='fdfind --hidden --follow --exclude .git' 
+export FZF_ALT_V_COMMAND='fdfind --hidden --follow --exclude .git' 
 ## Must create and maintain ".project" file with a plain list of paths to your project directories
 export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
 
@@ -62,28 +73,31 @@ bindkey -M vicmd '\ev' fzf-cd-subdir-widget
 bindkey -M viins '\ev' fzf-cd-subdir-widget
 
 
-## Custom binding ALT-h - cd into the home first level subdirectories
-fzf-cd-home-subdir-widget() {
+## Custom binding ALT-h - Paste the selected file path(s) into the command line
+__fselhome() {
   local cmd="${FZF_ALT_H_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
-    -o -type d -print 2> /dev/null | cut -b3-"}"
+    -o -type f -print \
+    -o -type d -print \
+    -o -type l -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_V_OPTS-}" $(__fzfcmd) +m)"
-  if [[ -z "$dir" ]]; then
-    zle redisplay
-    return 0
-  fi
-  zle push-line # Clear buffer. Auto-restored on next prompt.
-  BUFFER="builtin cd -- ${(q)dir}"
-  zle accept-line
+  local item
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_H_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
+    echo -n "${(q)item} "
+  done
   local ret=$?
-  unset dir # ensure this doesn't end up appearing in prompt expansion
+  return $ret
+}
+
+fzf-file-home-widget() {
+  LBUFFER="${LBUFFER}$(__fselhome)"
+  local ret=$?
   zle reset-prompt
   return $ret
 }
-zle     -N             fzf-cd-home-subdir-widget
-bindkey -M emacs '\eh' fzf-cd-home-subdir-widget
-bindkey -M vicmd '\eh' fzf-cd-home-subdir-widget
-bindkey -M viins '\eh' fzf-cd-home-subdir-widget
+zle     -N             fzf-file-home-widget
+bindkey -M emacs '\eh' fzf-file-home-widget
+bindkey -M vicmd '\eh' fzf-file-home-widget
+bindkey -M viins '\eh' fzf-file-home-widget
 
 ## Custom binding ALT-x - Select item from clipboard
 ### To use with GNOME extension "Clipboard indicator"
