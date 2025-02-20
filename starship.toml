@@ -93,7 +93,6 @@ $status\
 $container\
 """
 
-
 [username]
 show_always = false
 format = '[$user ]($style)'
@@ -126,8 +125,6 @@ disabled = false
 time_format = "%R" # Hour:Minute Format
 format = '[$time ]($style)'
 
-# An alternative to the username module which displays a symbol that
-# represents the current operating system
 [os]
 disabled = true # Disabled by default
 
@@ -169,7 +166,6 @@ untracked = "[?${count}](blue)"
 staged = "[+${count}](green)" 
 
 [custom.giturl]
-# disabled = true
 description = "Display symbol for remote Git server"
 command = '''
 GIT_REMOTE=$(git ls-remote --get-url 2> /dev/null);
@@ -194,3 +190,6 @@ format = "$output  "
 format = '[${symbol}(${version} )]($style)'
 version_format = "v${raw}"
 style = "red"
+
+[python]
+symbol = " "
