@@ -32,4 +32,7 @@
   "vim.operatorPendingModeKeyBindings": [],
   "redhat.telemetry.enabled": false,
   "workbench.preferredHighContrastColorTheme": "Default Dark Modern",
+  "workbench.colorTheme": "Tokyo Night",
+  "terminal.integrated.fontFamily": "'Firacode Nerd Font' , monospace",
+  "terminal.integrated.defaultProfile.linux": "zsh",
 }
