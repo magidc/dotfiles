@@ -2,7 +2,7 @@
 # ** default fzf substitution
 # Ctrl-t - Find non hidden files from current directory
 # Ctrl-q - Find all files from current directory
-# Alt-h  - Find all files from home
+# Alt-h  - Find non hidden files from home
 #
 # Alt-v  - Change directory from current directory
 # Alt-c  - Change directory from home
@@ -16,7 +16,7 @@ export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME' 
 
 # Custom
-export FZF_ALT_H_COMMAND='fdfind . --follow --exclude .git $HOME'
+export FZF_ALT_H_COMMAND='fdfind --follow --exclude .git . $HOME'
 export FZF_CTRL_Q_COMMAND='fdfind --hidden --follow --exclude .git' 
 export FZF_ALT_V_COMMAND='fdfind --hidden --follow --exclude .git' 
 ## Must create and maintain ".project" file with a plain list of paths to your project directories
