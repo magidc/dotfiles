@@ -1,7 +1,7 @@
 # Not reusing aliases in the definition of other aliases in order aliases in order to properly autoexpanded it with Ctrl+a (custom ZSH function)
 
 # Command aliases
-alias kitty-theme="cd ~/.config/kitty/themes && fzf --preview 'head -n 40 {} && kitty @ --to unix:/tmp/kitty set-colors -a -c {}'; cd -"
+alias kitty-theme="ls ~/.config/kitty/themes/*.conf | fzf --preview 'head -n 40 {} && kitty @ --to unix:/tmp/kitty set-colors -a -c {}'"
 alias fd=fdfind
 alias o=xdg-open
 alias v=nvim
