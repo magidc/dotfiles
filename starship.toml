@@ -178,10 +178,8 @@ elif [[ "$GIT_REMOTE" =~ "gitlab" ]]; then
     echo " ";
 elif [[ "$GIT_REMOTE" =~ "bitbucket" ]]; then
     echo " ";
-elif [[ "$GIT_REMOTE" =~ "git" ]]; then
-    echo " ";
 else
-    echo " ";
+    echo " ";
 fi
 '''
 when = 'git rev-parse --is-inside-work-tree 2> /dev/null'

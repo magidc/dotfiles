@@ -15,7 +15,6 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="powerlevel10k/powerlevel10k"
 eval "$(starship init zsh)"
 
 # Set list of themes to pick from when loading at random
@@ -130,15 +129,12 @@ nerd
 # Custom color schemes for LS highlight
 eval "$(dircolors ~/.dircolors)";
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # To be used with an alias
-copyFilePath(){
+copy_file_path(){
     readlink -f $1 | xclip -selection c
 }
 
-commitPush(){
+commit_push(){
     git add --all; git commit -m $1; git push origin
 }
 
@@ -178,16 +174,16 @@ unset __conda_setup
 # Brot file manager
 source $HOME/.config/broot/launcher/bash/br
 
-getHome() {
+get_home() {
     LBUFFER+=" $HOME/"
 }
 
-zle     -N             getHome
-bindkey -M emacs '\e;'  getHome
-bindkey -M vicmd '\e;'  getHome
-bindkey -M viins '\e;'  getHome
+zle     -N             get_home
+bindkey -M emacs '\e;'  get_home
+bindkey -M vicmd '\e;'  get_home
+bindkey -M viins '\e;'  get_home
 
-getKill() {
+get_kill() {
     local proc
     proc=$(fzf -m --header-lines=1 --preview 'echo {}' --preview-window down:3:wrap --min-height 15 --height ${FZF_TMUX_HEIGHT:-40%} --reverse -- "$@" < <(
             command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
@@ -204,10 +200,10 @@ getKill() {
 }
 
 
-zle     -N             getKill
-bindkey -M emacs '\ek'  getKill
-bindkey -M vicmd '\ek'  getKill
-bindkey -M viins '\ek'  getKill
+zle     -N             get_kill
+bindkey -M emacs '\ek'  get_kill
+bindkey -M vicmd '\ek'  get_kill
+bindkey -M viins '\ek'  get_kill
 
 
 # Copy command that creates destination directory if it doesn't exist
@@ -220,3 +216,36 @@ bindkey '\ee' kill-line
 # The same as above but cleaning to the start of line. Usually bound to ^u
 bindkey '\ea' backward-kill-line
 # To clear whole line use ^u
+
+
+# Dected if there is a directory or subdirectory in the current directory that corresponded to a particular IDE project and launch the IDE
+launch_project_ide() {
+    local idea_project_path
+    # Recursively find directory containing the latest modified .idea directory
+    idea_project_path=$(fdfind -t d '^\.idea$' . --hidden --follow --no-ignore | xargs -I {} stat --format '%Y %n' {} | sort -n | tail -n 1 | cut -d' ' -f2- | xargs dirname)
+
+    local vim_project_path
+    # Recursively find the latest modified Session.vim file
+    vim_project_path=$(fdfind -t f '^\Session.vim$' . --hidden --follow --no-ignore | xargs -I {} stat --format '%Y %n' {} | sort -n | tail -n 1 | cut -d' ' -f2-)
+
+    if [ -d "$idea_project_path" ]; then
+        # Jetbrains IDEs
+        local ide_exec
+        local project_path
+        if [ -f "$idea_project_path/.idea/jarRepositories.xml" ]; then
+            ide_exec="/opt/jetbrains/intellij/bin/idea"
+        elif [ -d "$idea_project_path/.venv" ] || [ -f "$idea_project_path/requirements.txt" ] || [ -f "$idea_project_path/pyproject.toml" ]; then
+            ide_exec="/opt/jetbrains/pycharm/bin/pycharm"
+        else
+            echo "Unknown Idea project type."
+            return
+        fi
+        nohup $ide_exec "$idea_project_path" > /dev/null 2>&1 &
+    elif [ -f "$vim_project_path" ]; then
+        # Neovim
+        nvim -S "$vim_project_path"
+    else
+        echo "No IDE project directory found."
+    fi
+}
+

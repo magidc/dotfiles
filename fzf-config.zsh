@@ -1,8 +1,8 @@
 # FZF config
 # ** default fzf substitution
-# Ctrl-t - Find non hidden files from current directory
 # Ctrl-q - Find all files from current directory
-# Alt-h  - Find non hidden files from home
+# Ctrl-t - Find non hidden files from current directory
+# Ctrl-y - Find non hidden files from home
 #
 # Alt-v  - Change directory from current directory
 # Alt-c  - Change directory from home
@@ -16,9 +16,9 @@ export FZF_CTRL_T_COMMAND='fdfind --follow --exclude .git'
 export FZF_ALT_C_COMMAND='fdfind --type d --follow --exclude .git . $HOME' 
 
 # Custom
-export FZF_ALT_H_COMMAND='fdfind --follow --exclude .git . $HOME'
+export FZF_CTRL_Y_COMMAND='fdfind --follow --exclude .git . $HOME'
 export FZF_CTRL_Q_COMMAND='fdfind --hidden --follow --exclude .git' 
-export FZF_ALT_V_COMMAND='fdfind --hidden --follow --exclude .git' 
+export FZF_ALT_V_COMMAND='fdfind --type d --hidden --follow --exclude .git' 
 ## Must create and maintain ".project" file with a plain list of paths to your project directories
 export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
 
@@ -73,15 +73,15 @@ bindkey -M vicmd '\ev' fzf-cd-subdir-widget
 bindkey -M viins '\ev' fzf-cd-subdir-widget
 
 
-## Custom binding ALT-h - Paste the selected file path(s) into the command line
+## Custom binding Ctrl-y - Paste the selected file path(s) into the command line
 __fselhome() {
-  local cmd="${FZF_ALT_H_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
+  local cmd="${FZF_CTRL_Y_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type f -print \
     -o -type d -print \
     -o -type l -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
   local item
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_H_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_CTRL_Y_OPTS-}" $(__fzfcmd) -m "$@" | while read item; do
     echo -n "${(q)item} "
   done
   local ret=$?
@@ -95,9 +95,9 @@ fzf-file-home-widget() {
   return $ret
 }
 zle     -N             fzf-file-home-widget
-bindkey -M emacs '\eh' fzf-file-home-widget
-bindkey -M vicmd '\eh' fzf-file-home-widget
-bindkey -M viins '\eh' fzf-file-home-widget
+bindkey -M emacs '^y' fzf-file-home-widget
+bindkey -M vicmd '^y' fzf-file-home-widget
+bindkey -M viins '^y' fzf-file-home-widget
 
 ## Custom binding ALT-x - Select item from clipboard
 ### To use with GNOME extension "Clipboard indicator"

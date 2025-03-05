@@ -73,8 +73,8 @@ nmap <a-o> mao<ESC>`a
 nmap <a-s-o> maO<ESC>`a
 
 " Motions
-nnoremap H ^
-nnoremap L $
+map H ^
+map L $
 map W [w
 map B [b
 map E ]w

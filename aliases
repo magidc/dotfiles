@@ -11,11 +11,12 @@ alias icat="kitty +kitten icat"
 alias python="python3"
 alias n="nautilus ."
 alias yd="pwd | xclip -selection c"
-alias yf="copyFilePath"
+alias yf="copy_file_path"
 alias yy="xclip -selection c"
 alias pp="xclip -selection clipboard -o" # Paste from clipboard
 alias jj="pp | jless" # Paste JSON from clipboard and open with jless
-alias cx="commitPush"
+alias cx="commit_push"
+alias i="launch_project_ide"
 
 alias l="exa --icons"
 alias lc="exa --icons -1"
