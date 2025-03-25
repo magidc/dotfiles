@@ -233,8 +233,8 @@ map <leader>ed :action ShowErrorDescription<cr>
 
 " Git (leader g)
 map <leader>gd :action Compare.LastVersion<cr>
-map ]d :action NextDiff<cr>
-map [d :action PreviousDiff<cr>
+map gn :action NextDiff<cr>
+map gp :action PreviousDiff<cr>
 
 " Display Modes (leader m)
 map <leader>md :action ToggleDistractionFreeMode<cr>
