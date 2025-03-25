@@ -57,7 +57,7 @@ nnoremap <a-x> "_ci(
 
 "-- Change function argument
 nnoremap <a-a> c<Plug>(InnerArgument)
-nnoremap <a-s> d<Plug>(InnerArgument)
+nnoremap <a-a> c<Plug>(InnerArgument)
 
 "--  Method text objects operation replacement
 nnoremap vam j:action MethodUp<cr>0v]M
@@ -82,6 +82,7 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
+
 
 "--  Class motions
 if &ide =~? 'intellij idea'
@@ -232,8 +233,8 @@ map <leader>ed :action ShowErrorDescription<cr>
 
 " Git (leader g)
 map <leader>gd :action Compare.LastVersion<cr>
-map <leader>gn :action NextDiff<cr>
-map <leader>gp :action PreviousDiff<cr>
+map ]d :action NextDiff<cr>
+map [d :action PreviousDiff<cr>
 
 " Display Modes (leader m)
 map <leader>md :action ToggleDistractionFreeMode<cr>
