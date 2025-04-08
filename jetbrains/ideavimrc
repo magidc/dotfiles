@@ -161,7 +161,9 @@ map <leader>vd :action ActivateDebugToolWindow<cr>
 map <leader>vg :action ActivateVersionControlToolWindow<cr>
 map <leader>vo :action ActivateTODOToolWindow<cr>
 map <leader>vc :action ActivateGitHubCopilotChatToolWindow<cr>
+map <leader>vm :action ActivateBookmarksToolWindow<cr>
 map <leader>vq :action CloseActiveTab<cr>
+
 
 " Debug (leader d)
 nnoremap <leader>de :action Debug<cr>
@@ -348,6 +350,7 @@ let g:WhichKeyDesc_views_git = "<leader>vg Git view"
 let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
 let g:WhichKeyDesc_views_todo = "<leader>vo TODO view"
 let g:WhichKeyDesc_views_copilotchat = "<leader>vc Copilot chat"
+let g:WhichKeyDesc_views_bookmarks = "<leader>vm Bookmarks"
 let g:WhichKeyDesc_views_close = "<leader>vq Close view"
 
 " Debug (leader d)

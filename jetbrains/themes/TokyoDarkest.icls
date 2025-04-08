@@ -1,18 +1,14 @@
-<scheme name="TokyoDark" version="142" parent_scheme="Darcula">
+<scheme name="TokyoDarkest" version="142" parent_scheme="Darcula">
   <metaInfo>
-    <property name="created">2023-08-15T09:32:49</property>
-    <property name="ide">Idea</property>
-    <property name="ideVersion">2023.2.0.0</property>
-    <property name="modified">2023-08-15T09:33:02</property>
-    <property name="originalScheme">TokyoDark</property>
+    <property name="ide">idea</property>
+    <property name="ideVersion">2024.3.5.0.0</property>
   </metaInfo>
   <colors>
     <option name="ADDED_LINES_COLOR" value="73daca" />
     <option name="ANNOTATIONS_COLOR" value="c0caf5" />
-    <option name="BREADCRUMBS_BORDER_COLOR" value="2c2e40" />
     <option name="CARET_COLOR" value="c0caf5" />
-    <option name="CARET_ROW_COLOR" value="373850" />
-    <option name="CONSOLE_BACKGROUND_KEY" value="161720" />
+    <option name="CARET_ROW_COLOR" value="232433" />
+    <option name="CONSOLE_BACKGROUND_KEY" value="11121d" />
     <option name="DELETED_LINES_COLOR" value="f7768e" />
     <option name="DIAGRAM_ANNOTATION_EDGE" value="e0af68" />
     <option name="DIAGRAM_DEFAULT_EDGE" value="c0caf5" />
@@ -24,48 +20,39 @@
     <option name="DIAGRAM_NOTE_BORDER" value="414868" />
     <option name="DIAGRAM_REALIZATION_EDGE" value="73daca" />
     <option name="DIFF_SEPARATORS_BACKGROUND" value="2c2e40" />
-    <option name="EDITOR_GUTTER_BACKGROUND" value="" />
+    <option name="DOCUMENTATION_COLOR" value="232433" />
+    <option name="DOCUMENTATION_POPUP_COLOR" value="232433" />
     <option name="ERROR_HINT" value="414868" />
-    <option name="FILESTATUS_ADDED" value="c3e887" />
-    <option name="FILESTATUS_COPIED" value="a6cc70" />
-    <option name="FILESTATUS_DELETED" value="f77669" />
-    <option name="FILESTATUS_HIJACKED" value="ffcb6b" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_DELETED_FROM_FILE_SYSTEM" value="6272a4" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_IGNORED" value="6272a4" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_BOTH_CONFLICTS" value="ff5555" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_CONFLICTS" value="ff5555" />
-    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_PROPERTY_CONFLICTS" value="ff5555" />
-    <option name="FILESTATUS_IDEA_SVN_FILESTATUS_EXTERNAL" value="ffb86c" />
-    <option name="FILESTATUS_IDEA_SVN_FILESTATUS_OBSTRUCTED" value="f1fa8c" />
-    <option name="FILESTATUS_IDEA_SVN_REPLACED" value="50fa7b" />
-    <option name="FILESTATUS_MERGED" value="bd93f9" />
-    <option name="FILESTATUS_MODIFIED" value="80cbc4" />
-    <option name="FILESTATUS_NOT_CHANGED_IMMEDIATE" value="80cbc4" />
-    <option name="FILESTATUS_NOT_CHANGED_RECURSIVE" value="80cbc4" />
-    <option name="FILESTATUS_OBSOLETE" value="ffcb6b" />
-    <option name="FILESTATUS_RENAMED" value="ff79c6" />
-    <option name="FILESTATUS_SUPPRESSED" value="546e7a" />
-    <option name="FILESTATUS_SWITCHED" value="f77669" />
-    <option name="FILESTATUS_UNKNOWN" value="f77669" />
-    <option name="FILESTATUS_addedOutside" value="50fa7b" />
-    <option name="FILESTATUS_changelistConflict" value="ff5555" />
-    <option name="FILESTATUS_modifiedOutside" value="40dbfc" />
-    <option name="GUTTER_BACKGROUND" value="1a1b26" />
+    <option name="FILESTATUS_ADDED" value="73daca" />
+    <option name="FILESTATUS_DELETED" value="f7768e" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_DELETED_FROM_FILE_SYSTEM" value="5e658d" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_IGNORED" value="5e658d" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_BOTH_CONFLICTS" value="e0af68" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_CONFLICTS" value="e0af68" />
+    <option name="FILESTATUS_IDEA_FILESTATUS_MERGED_WITH_PROPERTY_CONFLICTS" value="e0af68" />
+    <option name="FILESTATUS_MERGED" value="73daca" />
+    <option name="FILESTATUS_MODIFIED" value="e0af68" />
+    <option name="FILESTATUS_NOT_CHANGED_IMMEDIATE" value="7aa2f7" />
+    <option name="FILESTATUS_NOT_CHANGED_RECURSIVE" value="7aa2f7" />
+    <option name="FILESTATUS_UNKNOWN" value="f7768e" />
+    <option name="FILESTATUS_addedOutside" value="73daca" />
+    <option name="FILESTATUS_changelistConflict" value="e0af68" />
+    <option name="FILESTATUS_modifiedOutside" value="e0af68" />
+    <option name="GUTTER_BACKGROUND" value="11121d" />
     <option name="INDENT_GUIDE" value="2c2e40" />
     <option name="INFORMATION_HINT" value="414868" />
-    <option name="LINE_NUMBERS_COLOR" value="c0caf5" />
-    <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="c0caf5" />
+    <option name="LINE_NUMBERS_COLOR" value="696d98" />
+    <option name="LINE_NUMBER_ON_CARET_ROW_COLOR" value="f9963f" />
     <option name="LOOKUP_COLOR" value="1f2335" />
     <option name="METHOD_SEPARATORS_COLOR" value="c0caf5" />
     <option name="MODIFIED_LINES_COLOR" value="e0af68" />
     <option name="NOTIFICATION_BACKGROUND" value="2c2e40" />
     <option name="QUESTION_HINT" value="414868" />
     <option name="RECURSIVE_CALL_ATTRIBUTES" value="" />
-    <option name="RIGHT_MARGIN_COLOR" value="" />
+    <option name="RIGHT_MARGIN_COLOR" value="2c2e40" />
     <option name="SELECTED_INDENT_GUIDE" value="565f89" />
-    <option name="SELECTED_TEARLINE_COLOR" value="2c2e40" />
-    <option name="SELECTION_BACKGROUND" value="65709f" />
-    <option name="SELECTION_FOREGROUND" value="ebebf1" />
+    <option name="SELECTED_TEARLINE_COLOR" value="414868" />
+    <option name="SELECTION_BACKGROUND" value="414868" />
     <option name="SEPARATOR_ABOVE_COLOR" value="2c2e40" />
     <option name="SEPARATOR_BELOW_COLOR" value="2c2e40" />
     <option name="SOFT_WRAP_SIGN_COLOR" value="2c2e40" />
@@ -75,7 +62,7 @@
     <option name="VCS_ANNOTATIONS_COLOR_3" value="232433" />
     <option name="VCS_ANNOTATIONS_COLOR_4" value="232433" />
     <option name="VCS_ANNOTATIONS_COLOR_5" value="232433" />
-    <option name="VISUAL_INDENT_GUIDE" value="" />
+    <option name="VISUAL_INDENT_GUIDE" value="2c2e40" />
     <option name="WHITESPACES" value="2c2e40" />
     <option name="WHITESPACES_MODIFIED_LINES_COLOR" value="e0af68" />
   </colors>
@@ -634,7 +621,7 @@
     </option>
     <option name="IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="4d4e70" />
+        <option name="BACKGROUND" value="263562" />
       </value>
     </option>
     <option name="INACTIVE_HYPERLINK_ATTRIBUTES">
@@ -716,6 +703,7 @@
         <option name="FOREGROUND" value="c792ea" />
       </value>
     </option>
+    <option name="JS.GLOBAL_VARIABLE" baseAttributes="DEFAULT_GLOBAL_VARIABLE" />
     <option name="JS.INSTANCE_MEMBER_VARIABLE">
       <value>
         <option name="FOREGROUND" value="73daca" />
@@ -774,7 +762,7 @@
         <option name="FOREGROUND" value="7aa2f7" />
       </value>
     </option>
-    <option name="JSP_DIRECTIVE_NAME" baseAttributes="" />
+    <option name="JSP_DIRECTIVE_NAME" baseAttributes="DEFAULT_KEYWORD" />
     <option name="KOTLIN_BUILTIN_ANNOTATION">
       <value>
         <option name="FOREGROUND" value="9d7cd8" />
@@ -963,7 +951,6 @@
     <option name="MATCHED_BRACE_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="ffffff" />
-        <option name="BACKGROUND" value="65709f" />
         <option name="FONT_TYPE" value="1" />
         <option name="EFFECT_COLOR" value="42465d" />
       </value>
@@ -1116,7 +1103,7 @@
     </option>
     <option name="SEARCH_RESULT_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="283357" />
+        <option name="BACKGROUND" value="364a88" />
       </value>
     </option>
     <option name="SPEL.IDENTIFIER">
@@ -1129,19 +1116,6 @@
         <option name="FOREGROUND" value="ff9e64" />
       </value>
     </option>
-    <option name="TAB_SELECTED">
-      <value>
-        <option name="FOREGROUND" value="a9b1d6" />
-        <option name="BACKGROUND" value="16161e" />
-        <option name="EFFECT_TYPE" value="1" />
-      </value>
-    </option>
-    <option name="TAB_SELECTED_INACTIVE">
-      <value>
-        <option name="FOREGROUND" value="787c99" />
-        <option name="BACKGROUND" value="16161e" />
-      </value>
-    </option>
     <option name="TEMPLATE_VARIABLE_ATTRIBUTES">
       <value>
         <option name="FOREGROUND" value="bb9af7" />
@@ -1149,8 +1123,8 @@
     </option>
     <option name="TEXT">
       <value>
-        <option name="FOREGROUND" value="c0caf5" />
-        <option name="BACKGROUND" value="1a1b26" />
+        <option name="FOREGROUND" value="a9b1d6" />
+        <option name="BACKGROUND" value="11121d" />
       </value>
     </option>
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
@@ -1213,8 +1187,8 @@
         <option name="FOREGROUND" value="9aa5ce" />
       </value>
     </option>
-    <option name="VELOCITY_DIRECTIVE" baseAttributes="" />
-    <option name="VELOCITY_SCRIPTING_BACKGROUND" baseAttributes="" />
+    <option name="VELOCITY_DIRECTIVE" baseAttributes="DEFAULT_KEYWORD" />
+    <option name="VELOCITY_SCRIPTING_BACKGROUND" baseAttributes="DEFAULT_TEMPLATE_LANGUAGE_COLOR" />
     <option name="WARNING_ATTRIBUTES">
       <value>
         <option name="EFFECT_COLOR" value="e0af68" />
@@ -1224,12 +1198,12 @@
     </option>
     <option name="WRITE_IDENTIFIER_UNDER_CARET_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="4d4e70" />
+        <option name="BACKGROUND" value="2a418f" />
       </value>
     </option>
     <option name="WRITE_SEARCH_RESULT_ATTRIBUTES">
       <value>
-        <option name="BACKGROUND" value="283357" />
+        <option name="BACKGROUND" value="3851a1" />
       </value>
     </option>
     <option name="WRONG_REFERENCES_ATTRIBUTES">
