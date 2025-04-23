@@ -32,7 +32,7 @@ alias G="grep -i --color=auto"
 # Utility scripts
 alias restart_gnome="killall -SIGQUIT gnome-shell"
 alias purge='sudo apt autoremove -y && sudo apt autoclean -y && sudo apt clean'
-alias sup="sudo apt update; sudo apt -y upgrade"
+alias sup="sudo apt update; sudo apt -y upgrade; flatpak update"
 alias tas="tmux attach -t"
 
 # Colorize grep output (good for log files)
