@@ -347,7 +347,7 @@
     },
     // Find (leader f)
     {
-        "key": "; ;",
+        "key": ";",
         "command": "vim.remap",
         "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine')",
         "args": {

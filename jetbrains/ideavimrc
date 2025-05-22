@@ -16,14 +16,15 @@ set clipboard+=unnamedplus
 let mapleader = " "
 
 "" Choosing handlers in conflicting Intellij/IdeaVim keymaps =======
-sethandler <C-i> n-v-i:vim
-sethandler <C-o> n-v-i:vim
-sethandler <C-d> n-v-i:vim
-sethandler <C-u> n-v-i:vim
-sethandler <C-h> n-v-i:vim
-sethandler <C-j> n-v-i:vim
-sethandler <C-k> n-v-i:vim
-sethandler <C-l> n-v-i:vim
+sethandler <c-i> n-v-i:vim
+sethandler <c-o> n-v-i:vim
+sethandler <c-d> n-v-i:vim
+sethandler <c-u> n-v-i:vim
+sethandler <c-h> n-v-i:vim
+sethandler <c-j> n-v-i:vim
+sethandler <c-k> n-v-i:vim
+sethandler <c-l> n-v-i:vim
+sethandler <c-a-d> n-v-i:vim
 
 " source
 map <leader>9 :source ~/.ideavimrc<cr>
@@ -124,11 +125,12 @@ nnoremap <Leader>wn :action EditSourceInNewWindow<cr>
 " Tmux like
 nnoremap <a--> :action SplitHorizontally<cr>
 nnoremap <a-\> :action SplitVertically<cr> 
-nnoremap <c-d> :action Unsplit<cr>
+nnoremap <c-a-d> :action Unsplit<cr>
 
 " Folds
-nnoremap -- :action ExpandAllRegions<cr>
+nnoremap - :action ExpandAllRegions<cr>
 nnoremap za :action ExpandCollapseToggleAction<cr>
+nnoremap | :action ExpandCollapseToggleAction<cr>
 
 " Macros and registers
 "--  Execute macro saved in 'q' register
@@ -136,7 +138,7 @@ nnoremap qj @q
 nnoremap t "_
 
 " Find (leader f)
-nnoremap ;; :nohlsearch<cr>
+nnoremap ; :nohlsearch<cr>
 map <leader>fe :action GotoClass<cr>
 map <leader>fn :action GotoFile<cr>
 map <leader>fp :action ManageRecentProjects<cr>
@@ -235,6 +237,7 @@ map <leader>ed :action ShowErrorDescription<cr>
 
 " Git (leader g)
 map <leader>gd :action Compare.LastVersion<cr>
+map <leader>gD :action Compare.Selected<cr>
 map gn :action NextDiff<cr>
 map gp :action PreviousDiff<cr>
 
@@ -429,6 +432,7 @@ let g:WhichKeyDesc_error_description = "<leader>ed Show error description"
 " Git (leader g)
 let g:WhichKeyDesc_leader_git = "<leader>g Git actions"
 let g:WhichKeyDesc_leader_diff = "<leader>gd Show differences"
+let g:WhichKeyDesc_leader_diff = "<leader>gD Show differences with revision"
 let g:WhichKeyDesc_leader_nextdiff = "<leader>gn Next difference"
 let g:WhichKeyDesc_leader_previousdiff = "<leader>gp Previous difference"
 
