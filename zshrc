@@ -77,7 +77,7 @@ eval "$(starship init zsh)"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions extract sudo colored-man-pages cd-ls update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips mvn poetry zoxide fzf-tab)
+plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-completions sudo colored-man-pages update-custom-plugins aws gcloud zsh-random-quotes copybuffer web-search dirhistory alias-tips mvn poetry zoxide fzf-tab)
 
 export ZSH_HIGHLIGHT_MAXLENGTH=10
 
@@ -129,7 +129,6 @@ nerd
 # Custom color schemes for LS highlight
 eval "$(dircolors ~/.dircolors)";
 
-# To be used with an alias
 copy_file_path(){
     readlink -f $1 | xclip -selection c
 }
@@ -138,6 +137,7 @@ commit_push(){
     git add --all; git commit -m $1; git push origin
 }
 
+# Expading alias
 function expand-alias() {
     zle _expand_alias
     zle backward-delete-char
@@ -150,11 +150,19 @@ bindkey -M viins '^z' expand-alias
 
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
-## Custom binding for kill -9 ** assited with fzf
-# bindkey '^i' 'kill -9 ** autosuggest-accept'
 
-# CD-LS config
-export CDLS_COMMAND='exa --icons'
+# Show files after chagin directory 
+export CD_LS_COMMAND='exa --icons'
+# 'ls' after every 'cd'
+if ! (( $chpwd_functions[(I)chpwd_cdls] )); then
+  chpwd_functions+=(chpwd_cdls)
+fi
+function chpwd_cdls() {
+  if [[ -o interactive ]]; then
+    emulate -L zsh
+    eval ${CD_LS_COMMAND:-ls}
+  fi
+}
 
 # >>> conda initialize >>>
 ## !! Contents within this block are managed by 'conda init' !!
@@ -174,6 +182,7 @@ unset __conda_setup
 # Brot file manager
 source $HOME/.config/broot/launcher/bash/br
 
+# Get home path binding
 get_home() {
     LBUFFER+=" $HOME/"
 }
@@ -183,27 +192,6 @@ bindkey -M emacs '\e;'  get_home
 bindkey -M vicmd '\e;'  get_home
 bindkey -M viins '\e;'  get_home
 
-get_kill() {
-    local proc
-    proc=$(fzf -m --header-lines=1 --preview 'echo {}' --preview-window down:3:wrap --min-height 15 --height ${FZF_TMUX_HEIGHT:-40%} --reverse -- "$@" < <(
-            command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
-            command ps -eo user,pid,ppid,time,args # For BusyBox
-        )
-    )
-    if [[ -n "$proc" ]]; then
-        echo "$proc" | awk '{print $2}' | xargs kill -9
-        echo "Killed process $(echo "$proc" | awk '{print $6}')"
-    else
-        echo "No process selected"
-    fi
-    zle accept-line
-}
-
-
-zle     -N             get_kill
-bindkey -M emacs '\ek'  get_kill
-bindkey -M vicmd '\ek'  get_kill
-bindkey -M viins '\ek'  get_kill
 
 
 # Copy command that creates destination directory if it doesn't exist
@@ -249,6 +237,25 @@ launch_project_ide() {
     fi
 }
 
+
+# Extract archives intelligently
+extract() {
+  case $1 in
+    *.tar.gz|*.tgz) tar -xzf "$1";;
+    *.tar.bz2|*.tbz2) tar -xjf "$1";;
+    *.zip) unzip "$1";;
+    *.rar) unrar x "$1";;
+    *) echo "Unknown archive format";;
+  esac
+}
+
+# Find and kill processes by name
+pskill() {
+  ps aux | grep "$1" | grep -v grep | awk '{print $2}' | xargs kill
+}
+
+
+# Pyenv config
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"

@@ -106,8 +106,8 @@ _fzf-item_clipboard() {
   local list=""
   for i in "${items[@]}" 
   do 
-    local str="${i:1}"
-    str=$(sed 's/.\{1\}$//' <<< "$str")
+    # Removing enclosing quotes
+    local str="${i:1:${#i}-2}"
     list="$str"$'\n'"$list"
   done
   setopt localoptions pipefail no_aliases 2> /dev/null
@@ -156,12 +156,11 @@ fzf-cd-project-widget() {
   return $ret
 }
 
+## Adding current path to project file
 add-project(){
-  sed -i '$a\'"$1"'' $projects_file_path
-}
-
-remove-project(){
-  sed -i '/\<sds\>/d' $projects_file_path 
+  # Expanding the path stored in project_file_path as it may have other variables enbedded (i.e. $HOME)
+  file_path=$(eval echo "$projects_file_path")
+  echo "$(pwd)" >> "$file_path"
 }
 
 zle     -N             fzf-cd-project-widget
@@ -181,4 +180,26 @@ bindkey -M vicmd '\ez' fzf-root-widget
 bindkey -M viins '\ez' fzf-root-widget
 
 
+## Kill process by name
+get_kill() {
+    local proc
+    proc=$(fzf -m --header-lines=1 --preview 'echo {}' --preview-window down:3:wrap --min-height 15 --height ${FZF_TMUX_HEIGHT:-40%} --reverse -- "$@" < <(
+            command ps -eo user,pid,ppid,start,time,command 2> /dev/null ||
+            command ps -eo user,pid,ppid,time,args # For BusyBox
+        )
+    )
+    if [[ -n "$proc" ]]; then
+        echo "$proc" | awk '{print $2}' | xargs kill -9
+        echo "Killed process $(echo "$proc" | awk '{print $6}')"
+    else
+        echo "No process selected"
+    fi
+    zle accept-line
+}
+
+
+zle     -N             get_kill
+bindkey -M emacs '\ek'  get_kill
+bindkey -M vicmd '\ek'  get_kill
+bindkey -M viins '\ek'  get_kill
 
