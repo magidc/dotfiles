@@ -15,7 +15,7 @@ set clipboard+=unnamed
 set clipboard+=unnamedplus   
 let mapleader = " "
 
-"" Choosing handlers in conflicting Intellij/IdeaVim keymaps =======
+"" Choosing handlers in conflicting IDE/IdeaVim keymaps =======
 sethandler <c-i> n-v-i:vim
 sethandler <c-o> n-v-i:vim
 sethandler <c-d> n-v-i:vim
@@ -56,20 +56,24 @@ nnoremap <a-s-c> ]b[w"_c]w
 nnoremap <a-z> "_ci"
 nnoremap <a-x> "_ci(
 
-"-- Change function argument
-nnoremap <a-a> c<Plug>(InnerArgument)
-nnoremap <a-a> c<Plug>(InnerArgument)
+"-- Change function argument (argtextobj plugin)
+nnoremap <a-a> ci<Plug>(InnerArgument)
 
 "--  Method text objects operation replacement
-nnoremap vam j:action MethodUp<cr>0v]M
-nnoremap vim j:action MethodUp<cr>]m<cr>v]M<bs>
-nnoremap dam j:action MethodUp<cr>0v]M"_d
-nnoremap dim j:action MethodUp<cr>]m<cr>v]M<bs>"_d
-nnoremap yam j:action MethodUp<cr>0v]My
-nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
-nnoremap cam j:action MethodUp<cr>0v]M"_c
-nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
+"--- Custom mapping, no plugins
+" nnoremap vam j:action MethodUp<cr>0v]M
+" nnoremap vim j:action MethodUp<cr>]m<cr>v]M<bs>
+" nnoremap dam j:action MethodUp<cr>0v]M"_d
+" nnoremap dim j:action MethodUp<cr>]m<cr>v]M<bs>"_d
+" nnoremap yam j:action MethodUp<cr>0v]My
+" nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
+" nnoremap cam j:action MethodUp<cr>0v]M"_c
+" nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
+"---- With FunctionTextObj plugin, using 'm' instead of default 'f'
+map im <Plug>InnerFunction
+map am <Plug>OuterFunction
 
+"-- New line in normal mode
 nmap <a-o> mao<ESC>`a
 nmap <a-s-o> maO<ESC>`a
 
@@ -86,7 +90,7 @@ nnoremap N Nzz
 
 
 "--  Class motions
-if &ide =~? 'intellij idea'
+if &ide =~? 'intellij'
   "--- Previous class opening
   nnoremap [c 0?\<class\> <cr>f{:nohlsearch<cr>  
   "--- Next class opening
@@ -152,6 +156,9 @@ map <leader>fr :action Replace<cr>
 map <leader>fR :action ReplaceInPath<cr>
 map <leader>fx :action PasteMultiple<cr>
 map <leader>ft :action ActivateTODOToolWindow<cr>
+"-- Acejump plugin settings
+map \ :action AceAction<cr>
+
 
 " Views (leader v)
 map <leader>vf :action ActivateProjectToolWindow<cr>
@@ -222,10 +229,13 @@ nnoremap <leader>sg :action GenerateGetterAndSetter<cr>
 nnoremap <leader>se :action GenerateEquals<cr>
 nnoremap <leader>so :action OverrideMethods<cr>
 
-if &ide =~? 'intellij idea'
+" To check ide name run :echo &ide
+if &ide =~? 'intellij'
   nnoremap <leader>sn :action NewClass<cr>
 elseif &ide =~? 'pycharm'
   nnoremap <leader>sn :action NewPythonFile<cr>
+elseif &ide =~? 'rustrover'
+  nnoremap <leader>sn :action Rust.NewRustFile<cr>
 endif
 nnoremap <leader>sf :action NewFile<cr>
 
@@ -273,23 +283,23 @@ vnoremap _ :action EditorUnSelectWord<cr>
 vnoremap <a-j> :m '>+1<cr>gv=gv
 vnoremap <a-k> :m '<-2<cr>gv=gv
 
+
 " Plugin Settings ==================================================
+set matchit
+set commentary
+set functiontextobj
+set peekaboo
 set surround
 set highlightedyank
-set sneak
+set easymotion
 set nerdtree
 set argtextobj
 set multicursor
 set ideajoin
 set ideamarks
-
-" Acejump settings
-map \ :action AceAction<cr>
-" map fl :action AceLineAction<cr>
-
-" Which-key settings
 set which-key
 
+" Which-key settings
 set timeout=5000
 
 let g:WhichKey_FontSize = 16
@@ -297,16 +307,17 @@ let g:WhichKey_CommandColor = "#41ead4"
 let g:WhichKey_PrefixColor = "#f335b2"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
 
+"-- Whichkey mappings descriptions
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
-let g:WhichKeyDesc_leader_deleteargument = "<leader>x Delete function argument"
-let g:WhichKeyDesc_leader_changeargument = "<leader>a Delete function argument"
-let g:WhichKeyDesc_leader_replacewithpaste = "<leader>p Replace with paste"
-let g:WhichKeyDesc_leader_changeparentheses = "<leader>/ Change inside parentheses"
-let g:WhichKeyDesc_leader_changequotes = "<leader>z Change inside quotes"
-let g:WhichKeyDesc_leader_changeword = "<leader>c Change whole word"
-let g:WhichKeyDesc_leader_newline = "<leader>o New line in normal mode"
-let g:WhichKeyDesc_leader_newprevline = "<leader>O New line before in normal mode"
+let g:WhichKeyDesc_leader_changeargument = "<a-a> Change function argument"
+let g:WhichKeyDesc_leader_replacewithpaste = "<a-p> Replace word with paste"
+let g:WhichKeyDesc_leader_replacelinewithpaste = "<a-s-p> Replace line with paste"
+let g:WhichKeyDesc_leader_changeparentheses = "<a-x> Change inside parentheses"
+let g:WhichKeyDesc_leader_changequotes = "<a-z> Change inside quotes"
+let g:WhichKeyDesc_leader_changeword = "<a-c> Change whole word"
+let g:WhichKeyDesc_leader_newline = "<a-o> New line in normal mode"
+let g:WhichKeyDesc_leader_newprevline = "<a-s-o> New line before in normal mode"
 
 " Windows and buffers (leader w)
 let g:WhichKeyDesc_leader_window = "<leader>w Window actions"
@@ -326,7 +337,6 @@ let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in
 
 " Finder (leader f)
 let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
-
 let g:WhichKeyDesc_finder_class = "<leader>fe Find class"
 let g:WhichKeyDesc_finder_actions = "<leader>fa Find actions"
 let g:WhichKeyDesc_finder_projects = "<leader>fp Find recent projects"
@@ -403,7 +413,6 @@ let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
 let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
 let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
-
 let g:WhichKeyDesc_refactor_changesignature = "<leader>rs Change signature"
 let g:WhichKeyDesc_refactor_anonymoustoinner = "<leader>ra Anonymous To inner"
 let g:WhichKeyDesc_refactor_move = "<leader>rm Move"
@@ -415,10 +424,12 @@ let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
 let g:WhichKeyDesc_source_override = "<leader>so Override methods"
-if &ide =~? 'intellij idea'
+if &ide =~? 'intellij'
   let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
 elseif &ide =~? 'pycharm'
   let g:WhichKeyDesc_source_newpythonfile = "<leader>sn New Python file"
+elseif &ide =~? 'rustrover'
+  let g:WhichKeyDesc_source_newrustfile = "<leader>sn New Rust file"
 endif
 
 let g:WhichKeyDesc_source_newfile = "<leader>sf New file"

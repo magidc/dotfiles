@@ -224,6 +224,8 @@ launch_project_ide() {
             ide_exec="/opt/jetbrains/intellij/bin/idea"
         elif [ -d "$idea_project_path/.venv" ] || [ -f "$idea_project_path/requirements.txt" ] || [ -f "$idea_project_path/pyproject.toml" ]; then
             ide_exec="/opt/jetbrains/pycharm/bin/pycharm"
+        elif [ -f "$idea_project_path/Cargo.toml" ]; then
+            ide_exec="/opt/jetbrains/rustrover/bin/rustrover.sh"
         else
             echo "Unknown Idea project type."
             return
@@ -233,7 +235,7 @@ launch_project_ide() {
         # Neovim
         nvim -S "$vim_project_path"
     else
-        echo "No IDE project directory found."
+        nvim .
     fi
 }
 
