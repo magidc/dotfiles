@@ -70,19 +70,19 @@ nnoremap <a-a> ci<Plug>(InnerArgument)
 " nnoremap cam j:action MethodUp<cr>0v]M"_c
 " nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
 "---- With FunctionTextObj plugin, using 'm' instead of default 'f'
-map im <Plug>InnerFunction
-map am <Plug>OuterFunction
+snoremap im <Plug>InnerFunction
+snoremap am <Plug>OuterFunction
 
 "-- New line in normal mode
-nmap <a-o> mao<ESC>`a
-nmap <a-s-o> maO<ESC>`a
+nnoremap <a-o> mao<ESC>`a
+nnoremap <a-s-o> maO<ESC>`a
 
 " Motions
-map H ^
-map L $
-map W [w
-map B [b
-map E ]w
+nnoremap H ^
+nnoremap L $
+nnoremap W [w
+nnoremap B [b
+nnoremap E ]w
 nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 nnoremap n nzz
@@ -287,21 +287,22 @@ vnoremap <a-k> :m '<-2<cr>gv=gv
 " Plugin Settings ==================================================
 set matchit
 set commentary
-set functiontextobj
-set peekaboo
 set surround
 set highlightedyank
-set easymotion
 set nerdtree
 set argtextobj
-set multicursor
 set ideajoin
 set ideamarks
+"-- Required plugin installations
+"---- AceJump
+set easymotion
+set multicursor
+set functiontextobj
+set peekaboo
 set which-key
 
 " Which-key settings
 set timeout=5000
-
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
 let g:WhichKey_PrefixColor = "#f335b2"
