@@ -220,7 +220,7 @@ launch_project_ide() {
         # Jetbrains IDEs
         local ide_exec
         local project_path
-        if [ -f "$idea_project_path/.idea/jarRepositories.xml" ]; then
+        if [ -f "$idea_project_path/.idea/jarRepositories.xml" ] || [ -f "$idea_project_path/.idea/gradle.xml" ]; then
             ide_exec="/opt/jetbrains/intellij/bin/idea"
         elif [ -d "$idea_project_path/.venv" ] || [ -f "$idea_project_path/requirements.txt" ] || [ -f "$idea_project_path/pyproject.toml" ]; then
             ide_exec="/opt/jetbrains/pycharm/bin/pycharm"

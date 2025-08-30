@@ -14,7 +14,7 @@ alias yd="pwd | xclip -selection c"
 alias yf="copy_file_path"
 alias yy="xclip -selection c"
 alias pp="xclip -selection clipboard -o" # Paste from clipboard
-alias jj="pp | jless" # Paste JSON from clipboard and open with jless
+alias jj="xclip -selection clipboard -o | jless" # Paste JSON from clipboard and open with jless
 alias cx="commit_push"
 alias i="launch_project_ide"
 
@@ -26,8 +26,6 @@ alias lt="exa --icons -T --level=2"
 alias ltl="exa --icons -T --level"
 alias t="tree -l -L 2"
 alias tl="tree -l -L"
-alias kk="kill -9 **"
-alias G="grep -i --color=auto"
 
 # Utility scripts
 alias restart_gnome="killall -SIGQUIT gnome-shell"
@@ -37,8 +35,8 @@ alias tas="tmux attach -t"
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias egrep='grep -E --color=auto'
+alias fgrep='grep -F --color=auto'
 
 # Confirm before overwriting something
 alias cp="cp -i"

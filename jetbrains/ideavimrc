@@ -25,6 +25,7 @@ sethandler <c-j> n-v-i:vim
 sethandler <c-k> n-v-i:vim
 sethandler <c-l> n-v-i:vim
 sethandler <c-a-d> n-v-i:vim
+sethandler <c-r> n-v-i:vim
 
 " source
 map <leader>9 :source ~/.ideavimrc<cr>
@@ -41,8 +42,8 @@ nnoremap C "_C
 nnoremap cc "_cc
 nnoremap Y y$
 
-"-- Replace word with paste
-nnoremap <a-p> "_diwP
+"-- Replace block content with paste
+nnoremap <a-p> "_di"P
 "-- Replace line with paste
 nnoremap <a-s-p> "_ddP"
 
@@ -70,8 +71,10 @@ nnoremap <a-a> ci<Plug>(InnerArgument)
 " nnoremap cam j:action MethodUp<cr>0v]M"_c
 " nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
 "---- With FunctionTextObj plugin, using 'm' instead of default 'f'
-snoremap im <Plug>InnerFunction
-snoremap am <Plug>OuterFunction
+omap im <Plug>InnerFunction
+omap am <Plug>OuterFunction
+vmap im <Plug>InnerFunction
+vmap am <Plug>OuterFunction
 
 "-- New line in normal mode
 nnoremap <a-o> mao<ESC>`a
@@ -112,6 +115,7 @@ nnoremap yac gg :action MethodDown<cr>f{ya{
 
 nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
+
 
 " Window navigation
 nnoremap <c-h> <c-w>h  
@@ -159,7 +163,6 @@ map <leader>ft :action ActivateTODOToolWindow<cr>
 "-- Acejump plugin settings
 map \ :action AceAction<cr>
 
-
 " Views (leader v)
 map <leader>vf :action ActivateProjectToolWindow<cr>
 map <leader>vp :action ActivateProblemsViewToolWindow<cr>
@@ -204,8 +207,13 @@ nnoremap <leader>cc :action CallHierarchy<CR>
 nnoremap <leader>cn :action ShowNavBar<CR>
 nnoremap <leader>cx :action FileStructurePopup<CR> 
 nnoremap <leader>cb :action CompileDirty<CR> 
-nnoremap <leader>cm :action ExternalSystem.ProjectRefreshAction<CR> 
 nnoremap <leader>cp :action ParameterInfo<CR> 
+if &ide =~? 'intellij'
+  "--- Refresh Maven project
+  nnoremap <leader>cm :action ExternalSystem.ProjectRefreshAction<CR> 
+elseif &ide =~? 'pycharm'
+  nnoremap <leader>cm :action PoetryUpdateAction<cr>
+endif
 
 " Refactoring (leader r)
 map <leader>re :action Refactorings.QuickListPopupAction<CR>
@@ -294,14 +302,19 @@ set argtextobj
 set ideajoin
 set ideamarks
 "-- Required plugin installations
-"---- AceJump
 set easymotion
 set multicursor
 set functiontextobj
 set peekaboo
-set which-key
+set anyobject
+
+" Dial settings
+set dial
+nnoremap <C-a> :DialIncrement<cr>
+nnoremap <C-x> :DialDecrement<cr>
 
 " Which-key settings
+set which-key
 set timeout=5000
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
@@ -312,7 +325,7 @@ let g:WhichKey_SortOrder = "by_key_prefix_first"
 let g:WhichKeyDesc_leader = "<leader> Leader key"
 let g:WhichKeyDesc_easymotion = "s Jump with Easymotion"
 let g:WhichKeyDesc_leader_changeargument = "<a-a> Change function argument"
-let g:WhichKeyDesc_leader_replacewithpaste = "<a-p> Replace word with paste"
+let g:WhichKeyDesc_leader_replacewithpaste = "<a-p> Replace block content with paste"
 let g:WhichKeyDesc_leader_replacelinewithpaste = "<a-s-p> Replace line with paste"
 let g:WhichKeyDesc_leader_changeparentheses = "<a-x> Change inside parentheses"
 let g:WhichKeyDesc_leader_changequotes = "<a-z> Change inside quotes"
@@ -400,7 +413,11 @@ let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
 let g:WhichKeyDesc_code_filestructure = "<leader>cx Show file structure"
 let g:WhichKeyDesc_code_parameterinfo = "<leader>cp Parameter info"
 let g:WhichKeyDesc_code_build = "<leader>cb Build"
-let g:WhichKeyDesc_code_mavenrefresh = "<leader>cm Refresh Maven dependencies"
+if &ide =~? 'intellij'
+  let g:WhichKeyDesc_code_mavenrefresh = "<leader>cm Refresh Maven dependencies"
+elseif &ide =~? 'pycharm'
+  let g:WhichKeyDesc_code_poetryrefresh = "<leader>cm Refresh Poetry dependencies"
+endif
 
 " Refactoring (leader r)
 let g:WhichKeyDesc_leader_refactor = "<leader>r Refactoring actions"
@@ -425,6 +442,7 @@ let g:WhichKeyDesc_source_constructor = "<leader>sc Generate constructor"
 let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setters"
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
 let g:WhichKeyDesc_source_override = "<leader>so Override methods"
+let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
 if &ide =~? 'intellij'
   let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
 elseif &ide =~? 'pycharm'
@@ -432,8 +450,6 @@ elseif &ide =~? 'pycharm'
 elseif &ide =~? 'rustrover'
   let g:WhichKeyDesc_source_newrustfile = "<leader>sn New Rust file"
 endif
-
-let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
 
 " Errors and diagnostics (leader e)
 let g:WhichKeyDesc_leader_error = "<leader>e Error and diagnostics actions"
