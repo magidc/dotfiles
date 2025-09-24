@@ -132,6 +132,9 @@ eval "$(dircolors ~/.dircolors)";
 copy_file_path(){
     readlink -f $1 | xclip -selection c
 }
+copy_file_content(){
+    cat $1 | xclip -selection c
+}
 
 commit_push(){
     git add --all; git commit -m $1; git push origin

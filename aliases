@@ -12,9 +12,11 @@ alias python="python3"
 alias n="nautilus ."
 alias yd="pwd | xclip -selection c"
 alias yf="copy_file_path"
-alias yy="xclip -selection c"
+alias y="xclip -selection c"
+alias yy="copy_file_content"
 alias pp="xclip -selection clipboard -o" # Paste from clipboard
 alias jj="xclip -selection clipboard -o | jless" # Paste JSON from clipboard and open with jless
+alias jc='eval "$(xclip -selection clipboard -o)" | jless' # Run command (i.e curl) from clipboard and open with jless
 alias cx="commit_push"
 alias i="launch_project_ide"
 

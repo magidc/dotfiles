@@ -35,4 +35,5 @@
   "workbench.colorTheme": "Tokyo Night",
   "terminal.integrated.fontFamily": "'Firacode Nerd Font' , monospace",
   "terminal.integrated.defaultProfile.linux": "zsh",
+  "github.copilot.nextEditSuggestions.enabled": true,
 }

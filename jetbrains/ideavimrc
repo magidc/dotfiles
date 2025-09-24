@@ -42,39 +42,24 @@ nnoremap C "_C
 nnoremap cc "_cc
 nnoremap Y y$
 
-"-- Replace block content with paste
-nnoremap <a-p> "_di"P
-"-- Replace line with paste
-nnoremap <a-s-p> "_ddP"
+"-- Replace block with paste
+" nnoremap <a-s-p> v<Plug>InnerAnyBracketP
+"-- Replace line with paste 
+nnoremap <a-p> v^o$P
 
-nnoremap <a-j> :m .+1<cr>==
-nnoremap <a-k> :m .-2<cr>==
-
+"-- Alt utililty shortcuts
+nnoremap <a-j> ma:m+1<cr>`a
+nnoremap <a-k> ma:m-2<cr>`a
 nnoremap <a-d> "_diw
-nnoremap <a-c> "_ciw
 nnoremap <a-s-d> ]b[w"_d]w
+nnoremap <a-c> "_ciw
 nnoremap <a-s-c> ]b[w"_c]w
-nnoremap <a-z> "_ci"
-nnoremap <a-x> "_ci(
+map <a-z> "_ciq
+map <a-s-z> "_diq
+map <a-x> "_cio
+map <a-s-x> "_dio
+map <a-a> "_caa
 
-"-- Change function argument (argtextobj plugin)
-nnoremap <a-a> ci<Plug>(InnerArgument)
-
-"--  Method text objects operation replacement
-"--- Custom mapping, no plugins
-" nnoremap vam j:action MethodUp<cr>0v]M
-" nnoremap vim j:action MethodUp<cr>]m<cr>v]M<bs>
-" nnoremap dam j:action MethodUp<cr>0v]M"_d
-" nnoremap dim j:action MethodUp<cr>]m<cr>v]M<bs>"_d
-" nnoremap yam j:action MethodUp<cr>0v]My
-" nnoremap yim j:action MethodUp<cr>]m<cr>v]M<bs>y
-" nnoremap cam j:action MethodUp<cr>0v]M"_c
-" nnoremap cim j:action MethodUp<cr>]m<cr>v]M<bs>"_c
-"---- With FunctionTextObj plugin, using 'm' instead of default 'f'
-omap im <Plug>InnerFunction
-omap am <Plug>OuterFunction
-vmap im <Plug>InnerFunction
-vmap am <Plug>OuterFunction
 
 "-- New line in normal mode
 nnoremap <a-o> mao<ESC>`a
@@ -91,6 +76,8 @@ nnoremap <C-u> <C-u>zz
 nnoremap n nzz
 nnoremap N Nzz
 
+nnoremap <C-o> :action Back<cr>
+nnoremap <C-i> :action Forward<cr>
 
 "--  Class motions
 if &ide =~? 'intellij'
@@ -104,19 +91,6 @@ if &ide =~? 'intellij'
   nnoremap ]C 0/\<class\> <cr>f{%:nohlsearch<cr>
 endif
 
-nnoremap vic gg :action MethodDown<cr>f{vi{ 
-nnoremap vac gg :action MethodDown<cr>f{va{ 
-nnoremap dic gg :action MethodDown<cr>f{di{ 
-nnoremap dac gg :action MethodDown<cr>f{da{ 
-nnoremap cic gg :action MethodDown<cr>f{ci{ 
-nnoremap cac gg :action MethodDown<cr>f{ca{ 
-nnoremap yic gg :action MethodDown<cr>f{yi{ 
-nnoremap yac gg :action MethodDown<cr>f{ya{ 
-
-nnoremap <C-o> :action Back<cr>
-nnoremap <C-i> :action Forward<cr>
-
-
 " Window navigation
 nnoremap <c-h> <c-w>h  
 nnoremap <c-j> <c-w>j
@@ -124,26 +98,42 @@ nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l  
 nnoremap <a-w> :action CloseAllEditorsButActive<cr>
 nnoremap <a-q> :action CloseContent<cr>
-nnoremap <a-t> :action NewScratchFile<cr>
 nnoremap <leader>wv :action SplitVertically<cr>
 nnoremap <leader>ws :action SplitHorizontally<cr>
 nnoremap <leader>wc :action Unsplit<cr>
 nnoremap <leader>wp :action MoveEditorToOppositeTabGroup<cr>
-nnoremap <Leader>wn :action EditSourceInNewWindow<cr>  
+nnoremap <Leader>ww :action EditSourceInNewWindow<cr>  
 " Tmux like
 nnoremap <a--> :action SplitHorizontally<cr>
 nnoremap <a-\> :action SplitVertically<cr> 
 nnoremap <c-a-d> :action Unsplit<cr>
 
+" Toggle line number relative
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber
+  else
+    set relativenumber number
+  endif
+endfunction
+
+nnoremap <leader>wn :call NumberToggle()<cr>
+
 " Folds
 nnoremap - :action ExpandAllRegions<cr>
 nnoremap za :action ExpandCollapseToggleAction<cr>
-nnoremap | :action ExpandCollapseToggleAction<cr>
 
 " Macros and registers
 "--  Execute macro saved in 'q' register
 nnoremap qj @q
 nnoremap t "_
+
+" Bookmarks (leader b)
+nnoremap <leader>bv :action Bookmarks<cr>
+nnoremap <leader>bb :action ToggleBookmark<cr>
+nnoremap <leader>be :action EditBookmark<cr>
+nnoremap <leader>bp :action GotoPreviousBookmark<cr>
+nnoremap <leader>bn :action GotoNextBookmark<cr>
 
 " Find (leader f)
 nnoremap ; :nohlsearch<cr>
@@ -153,13 +143,15 @@ map <leader>fp :action ManageRecentProjects<cr>
 map <leader>fa :action GotoAction<cr>
 map <leader>fg :action FindInPath<cr>
 map <leader>fh :action RecentFiles<cr>
-map <leader>fm :action RecentLocations<cr>
+map <leader>fl :action RecentLocations<cr>
+map <leader>fm :action ShowBookmarks<cr>
 map <leader>fs :action GotoSymbol<cr>
 map <leader>fd :action Find<cr>
 map <leader>fr :action Replace<cr>
 map <leader>fR :action ReplaceInPath<cr>
 map <leader>fx :action PasteMultiple<cr>
-map <leader>ft :action ActivateTODOToolWindow<cr>
+map <leader>fk :action ViewBreakpoints<cr>
+
 "-- Acejump plugin settings
 map \ :action AceAction<cr>
 
@@ -173,9 +165,8 @@ map <leader>vd :action ActivateDebugToolWindow<cr>
 map <leader>vg :action ActivateVersionControlToolWindow<cr>
 map <leader>vo :action ActivateTODOToolWindow<cr>
 map <leader>vc :action ActivateGitHubCopilotChatToolWindow<cr>
-map <leader>vm :action ActivateBookmarksToolWindow<cr>
+map <leader>vb :action ActivateBookmarksToolWindow<cr>
 map <leader>vq :action CloseActiveTab<cr>
-
 
 " Debug (leader d)
 nnoremap <leader>de :action Debug<cr>
@@ -186,11 +177,11 @@ nnoremap <leader>dk :action Stop<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
 nnoremap <leader>dm :action XDebugger.MuteBreakpoints<cr>
 nnoremap <leader>dd :action Debugger.RemoveAllBreakpoints<cr>
-nnoremap <leader>ds :action ViewBreakpoints<cr>
 nnoremap <leader>dv :action StepOver<cr>
 nnoremap <leader>di :action StepInto<cr>e
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
+
 map <leader>dx :action QuickEvaluateExpression<cr>
 map <leader>dt :action EvaluateExpression<cr>
 map <leader>dw :action Debugger.AddToWatch<cr>
@@ -202,12 +193,15 @@ nnoremap <leader>ci :action GotoImplementation<cr>
 nnoremap <leader>cs :action GotoSuperMethod<cr>
 nnoremap <leader>cr :action ShowUsages<cr>
 nnoremap <leader>cu :action HighlightUsagesInFile<cr>
-nnoremap <leader>cv :action QuickJavaDoc<cr>
+nnoremap <leader>cv :action ShowHoverInfo<cr>
 nnoremap <leader>cc :action CallHierarchy<CR>  
 nnoremap <leader>cn :action ShowNavBar<CR>
 nnoremap <leader>cx :action FileStructurePopup<CR> 
 nnoremap <leader>cb :action CompileDirty<CR> 
 nnoremap <leader>cp :action ParameterInfo<CR> 
+nnoremap <leader>cq :action QuickImplementations<cr>
+
+
 if &ide =~? 'intellij'
   "--- Refresh Maven project
   nnoremap <leader>cm :action ExternalSystem.ProjectRefreshAction<CR> 
@@ -224,7 +218,6 @@ map <leader>rf :action IntroduceField<cr>
 map <leader>rp :action IntroduceParameter<cr>
 map <leader>rx :action ExtractMethod<cr>
 map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>:action OptimizeImports<cr>
-map <leader>ro :action OptimizeImports<cr>
 map <leader>ri :action Inline<cr>
 map <leader>rs :action ChangeSignature<cr>
 map <leader>ra :action AnonymousToInner<cr>
@@ -246,6 +239,8 @@ elseif &ide =~? 'rustrover'
   nnoremap <leader>sn :action Rust.NewRustFile<cr>
 endif
 nnoremap <leader>sf :action NewFile<cr>
+nnoremap <leader>ss :action NewScratchFile<cr>
+
 
 " Errors and diagnostics (leader e)
 map <leader>en :action GotoNextError<cr>
@@ -267,13 +262,20 @@ map <leader>mf :action ToggleFullScreen<cr>
 " INSERT MODE
 inoremap jk <Esc>
 inoremap <a-s> <Del>
-inoremap <a-d> <Esc>"_diwi
-inoremap <a-c> <Esc>"_ciw
+inoremap <a-d> <C-o>"_diw
+inoremap <a-s-d> <ESC>]b[w"_d]wi
+inoremap <a-c> <C-o>"_ciw
+inoremap <a-s-c> <ESC>]b[w"_c]w
+inoremap <a-z> <C-o>"_ciq
+inoremap <a-s-z> <C-o>"_diq
+inoremap <a-x> <C-o>"_cio
+inoremap <a-s-x> <C-o>"_dio
 inoremap <a-w> <C-o>w
 inoremap <a-b> <C-o>b
-inoremap <a-e> <Esc>ea
-inoremap <a-j> <ESC>:m .+1<cr>==gi
-inoremap <a-k> <ESC>:m .-2<cr>==gi 
+inoremap <a-e> <C-o>ea
+inoremap <a-j> <ESC>ma:m+1<cr>`ai
+inoremap <a-k> <ESC>ma:m-2<cr>`ai
+
 
 " VISUAL MODE
 vnoremap jk <Esc>
@@ -297,16 +299,21 @@ set matchit
 set commentary
 set surround
 set highlightedyank
-set nerdtree
-set argtextobj
 set ideajoin
 set ideamarks
+set NERDTree
 "-- Required plugin installations
 set easymotion
 set multicursor
-set functiontextobj
-set peekaboo
+set ReplaceWithRegister
+"
+" AnyObject settings
 set anyobject
+"---- Using 'm' instead of default 'f'
+omap im <Plug>InnerAnyFunction
+omap am <Plug>OuterAnyFunction
+vmap im <Plug>InnerAnyFunction  
+vmap am <Plug>OuterAnyFunction
 
 " Dial settings
 set dial
@@ -315,11 +322,28 @@ nnoremap <C-x> :DialDecrement<cr>
 
 " Which-key settings
 set which-key
-set timeout=5000
 let g:WhichKey_FontSize = 16
 let g:WhichKey_CommandColor = "#41ead4"
 let g:WhichKey_PrefixColor = "#f335b2"
 let g:WhichKey_SortOrder = "by_key_prefix_first"
+let g:WhichKey_ShowTypedSequence = "true"
+
+"-- Toggle which-key plugin
+let s:whichKeyEnabled = 0
+function! WhichKeyToggle()
+  if s:whichKeyEnabled
+    set which-key!
+    set notimeout!
+    let s:whichKeyEnabled = 0
+  else
+    set which-key
+    set notimeout
+    let s:whichKeyEnabled = 1
+  endif
+endfunction
+
+nnoremap <leader>8 :call WhichKeyToggle()<cr>
+let g:WhichKeyDesc_toggle_which_key = "<leader>8 Toggle WhichKey"
 
 "-- Whichkey mappings descriptions
 let g:WhichKeyDesc_leader = "<leader> Leader key"
@@ -339,7 +363,11 @@ let g:WhichKeyDesc_window_splitvertical = "<leader>wv Split vertically"
 let g:WhichKeyDesc_window_splithorizontal = "<leader>ws Split horizontally"
 let g:WhichKeyDesc_window_splitundo = "<leader>wc Unsplit"
 let g:WhichKeyDesc_window_movetooppositetabgroup = "<leader>wp Move editor to opposite tab group"
-let g:WhichKeyDesc_window_editinnewwindow = "<leader>wn Edit in new window"
+let g:WhichKeyDesc_window_editinnewwindow = "<leader>ww Edit in new window"
+let g:WhichKeyDesc_window_toggle_line_numbers = "<leader>wn Toggle line numbers"
+let g:WhichKeyDesc_window_splithorizontal_tmux = "<a--> Split horizontally"
+let g:WhichKeyDesc_window_splitvertical_tmux = "<a-\\> Split vertically"
+let g:WhichKeyDesc_window_splitundo_tmux = "<c-a-d> Unsplit"
 
 " Folds
 let g:WhichKeyDesc_fold_collapseall = "| Collapse all folds"
@@ -349,7 +377,15 @@ let g:WhichKeyDesc_fold_toggle = "za Toggle fold under the cursor"
 " Macros and registers
 let g:WhichKeyDesc_leader_executequickmacro = "<leader>q Execute macro stored in 'q' register"
 
-" Finder (leader f)
+" Bookmarks (leader b)
+let g:WhichKeyDesc_bookmarks = "<leader>b Bookmarks"
+let g:WhichKeyDesc_bookmarks_menu = "<leader>bv Bookmark Menu"
+let g:WhichKeyDesc_bookmarks_toggle_bookmark = "<leader>bb Toggle Bookmark"
+let g:WhichKeyDesc_bookmarks_edit = "<leader>be Edit Bookmark"
+let g:WhichKeyDesc_bookmarks_prev = "<leader>bp Previous Bookmark"
+let g:WhichKeyDesc_bookmarks_next = "<leader>bn Next Bookmark"
+
+" Find (leader f)
 let g:WhichKeyDesc_leader_finder = "<leader>f Finder actions"
 let g:WhichKeyDesc_finder_class = "<leader>fe Find class"
 let g:WhichKeyDesc_finder_actions = "<leader>fa Find actions"
@@ -357,14 +393,15 @@ let g:WhichKeyDesc_finder_projects = "<leader>fp Find recent projects"
 let g:WhichKeyDesc_finder_file = "<leader>fn Find files (Name)"
 let g:WhichKeyDesc_finder_grep = "<leader>fg Find in files (Grep)"
 let g:WhichKeyDesc_finder_history = "<leader>fh Find recent files (History)"
-let g:WhichKeyDesc_finder_location = "<leader>fm Find recent locations (Marks)"
+let g:WhichKeyDesc_finder_location = "<leader>fl Find recent Locations"
+let g:WhichKeyDesc_finder_bookmarks = "<leader>fm Find bookmarks"
+let g:WhichKeyDesc_finder_breakpoints = "<leader>fk Find breaKpoints"
 let g:WhichKeyDesc_finder_symbol = "<leader>fs Find symbol"
 let g:WhichKeyDesc_finder_find = "<leader>fd Find in current file"
 let g:WhichKeyDesc_finder_replace = "<leader>fr Find and replace in current file <Ctrl-r>"
 let g:WhichKeyDesc_finder_replaceinfiles = "<leader>fR Find and replace in files"
 let g:WhichKeyDesc_finder_clipboard = "<leader>fx Find in clipboard"
 let g:WhichKeyDesc_finder_easymotion = "<leader>ff Find with easy motion"
-let g:WhichKeyDesc_finder_todo = "<leader>ft Find in TODO list"
 
 " Views (leader v)
 let g:WhichKeyDesc_leader_views = "<leader>v View actions"
@@ -377,7 +414,7 @@ let g:WhichKeyDesc_views_git = "<leader>vg Git view"
 let g:WhichKeyDesc_views_debug = "<leader>vd Debug view"
 let g:WhichKeyDesc_views_todo = "<leader>vo TODO view"
 let g:WhichKeyDesc_views_copilotchat = "<leader>vc Copilot chat"
-let g:WhichKeyDesc_views_bookmarks = "<leader>vm Bookmarks"
+let g:WhichKeyDesc_views_bookmarks = "<leader>vb Bookmarks"
 let g:WhichKeyDesc_views_close = "<leader>vq Close view"
 
 " Debug (leader d)
@@ -412,6 +449,7 @@ let g:WhichKeyDesc_code_callhierarchy = "<leader>cc Show call hierarchy"
 let g:WhichKeyDesc_code_navbar = "<leader>cn Show navigation bar"
 let g:WhichKeyDesc_code_filestructure = "<leader>cx Show file structure"
 let g:WhichKeyDesc_code_parameterinfo = "<leader>cp Parameter info"
+let g:WhichKeyDesc_code_quickimplementations = "<leader>cq Show (quick) implementations"
 let g:WhichKeyDesc_code_build = "<leader>cb Build"
 if &ide =~? 'intellij'
   let g:WhichKeyDesc_code_mavenrefresh = "<leader>cm Refresh Maven dependencies"
@@ -429,7 +467,6 @@ let g:WhichKeyDesc_refactor_introducefield = "<leader>rf Introduce field"
 let g:WhichKeyDesc_refactor_introduceparameter = "<leader>rp Introduce parameter"
 let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
-let g:WhichKeyDesc_refactor_optimizeimports = "<leader>ro Optmize imports"
 let g:WhichKeyDesc_refactor_inline = "<leader>ri Inline"
 let g:WhichKeyDesc_refactor_changesignature = "<leader>rs Change signature"
 let g:WhichKeyDesc_refactor_anonymoustoinner = "<leader>ra Anonymous To inner"
@@ -443,6 +480,7 @@ let g:WhichKeyDesc_source_gettersetter = "<leader>sg Generate getters and setter
 let g:WhichKeyDesc_source_equals = "<leader>se Generate equals and hashCode"
 let g:WhichKeyDesc_source_override = "<leader>so Override methods"
 let g:WhichKeyDesc_source_newfile = "<leader>sf New file"
+let g:WhichKeyDesc_source_newscratchfile = "<leader>ss New scratch file"
 if &ide =~? 'intellij'
   let g:WhichKeyDesc_source_newclass = "<leader>sn New class"
 elseif &ide =~? 'pycharm'
