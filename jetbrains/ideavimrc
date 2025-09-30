@@ -80,16 +80,16 @@ nnoremap <C-o> :action Back<cr>
 nnoremap <C-i> :action Forward<cr>
 
 "--  Class motions
-if &ide =~? 'intellij'
-  "--- Previous class opening
-  nnoremap [c 0?\<class\> <cr>f{:nohlsearch<cr>  
-  "--- Next class opening
-  nnoremap ]c $/\<class\> <cr>f{:nohlsearch<cr>
-  "--- Previous class closing
-  nnoremap [C $?\<class\> <cr>nf{%:nohlsearch<cr>
-  "--- Next class closing
-  nnoremap ]C 0/\<class\> <cr>f{%:nohlsearch<cr>
-endif
+" if &ide =~? 'intellij'
+"   "--- Previous class opening
+"   nnoremap [c 0?\<class\> <cr>f{:nohlsearch<cr>  
+"   "--- Next class opening
+"   nnoremap ]c $/\<class\> <cr>f{:nohlsearch<cr>
+"   "--- Previous class closing
+"   nnoremap [C $?\<class\> <cr>nf{%:nohlsearch<cr>
+"   "--- Next class closing
+"   nnoremap ]C 0/\<class\> <cr>f{%:nohlsearch<cr>
+" endif
 
 " Window navigation
 nnoremap <c-h> <c-w>h  
@@ -314,7 +314,9 @@ omap im <Plug>InnerAnyFunction
 omap am <Plug>OuterAnyFunction
 vmap im <Plug>InnerAnyFunction  
 vmap am <Plug>OuterAnyFunction
-
+nmap ]m <Plug>NextAnyFunction
+nmap [m <Plug>PrevAnyFunction
+"
 " Dial settings
 set dial
 nnoremap <C-a> :DialIncrement<cr>

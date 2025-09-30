@@ -225,15 +225,23 @@ launch_project_ide() {
         local project_path
         if [ -f "$idea_project_path/.idea/jarRepositories.xml" ] || [ -f "$idea_project_path/.idea/gradle.xml" ]; then
             ide_exec="/opt/jetbrains/intellij/bin/idea"
+            ide_wm_class="jetbrains-idea.jetbrains-idea"
         elif [ -d "$idea_project_path/.venv" ] || [ -f "$idea_project_path/requirements.txt" ] || [ -f "$idea_project_path/pyproject.toml" ]; then
             ide_exec="/opt/jetbrains/pycharm/bin/pycharm"
+            ide_wm_class="jetbrains-pycharm.jetbrains-pycharm"
         elif [ -f "$idea_project_path/Cargo.toml" ]; then
             ide_exec="/opt/jetbrains/rustrover/bin/rustrover.sh"
+            ide_wm_class="jetbrains-rustrover.jetbrains-rustrover"
         else
             echo "Unknown Idea project type."
             return
         fi
         nohup $ide_exec "$idea_project_path" > /dev/null 2>&1 &
+        # Wait until the IDE window appears and then moved it to workspace 0
+        while ! wmctrl -lx | grep -q $ide_wm_class; do
+          sleep 0.5
+        done
+        wmctrl -x -r $ide_wm_class -t 0
     elif [ -f "$vim_project_path" ]; then
         # Neovim
         nvim -S "$vim_project_path"
