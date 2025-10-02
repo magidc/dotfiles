@@ -254,6 +254,7 @@ launch_project_ide() {
 # Extract archives intelligently
 extract() {
   case $1 in
+    *.tar.*|*.tgz) tar -xvf "$1";;
     *.tar.gz|*.tgz) tar -xzf "$1";;
     *.tar.bz2|*.tbz2) tar -xjf "$1";;
     *.zip) unzip "$1";;

@@ -310,13 +310,8 @@ set ReplaceWithRegister
 " AnyObject settings
 set anyobject
 "---- Using 'm' instead of default 'f'
-omap im <Plug>InnerAnyFunction
-omap am <Plug>OuterAnyFunction
-vmap im <Plug>InnerAnyFunction  
-vmap am <Plug>OuterAnyFunction
-nmap ]m <Plug>NextAnyFunction
-nmap [m <Plug>PrevAnyFunction
-"
+let g:anyobject_map_anyfunction = "m"
+
 " Dial settings
 set dial
 nnoremap <C-a> :DialIncrement<cr>
