@@ -1,10 +1,3 @@
-
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -82,6 +75,10 @@ plugins=(git zsh-syntax-highlighting zsh-autosuggestions zsh-autopair zsh-comple
 export ZSH_HIGHLIGHT_MAXLENGTH=10
 
 source $ZSH/oh-my-zsh.sh
+
+# Key bindings for zsh-autosuggestions
+bindkey '^ ' autosuggest-accept
+
 
 # FZF
 source $HOME/.fzf-config.zsh
