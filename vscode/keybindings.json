@@ -363,6 +363,11 @@
     {
         "key": "space f e",
         "when": "editorTextFocus && vim.mode == 'Normal'",
+        "command": "workbench.action.gotoSymbol",
+    },
+    {
+        "key": "space f n",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
         "command": "workbench.action.quickOpen",
     },
     {
