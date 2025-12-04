@@ -3,3 +3,5 @@
 [user]
 	name = magidc
 	email = ricardo.rodcas@gmail.com
+[core]
+	autocrlf = input
