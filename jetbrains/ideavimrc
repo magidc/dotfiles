@@ -175,10 +175,12 @@ nnoremap <leader>dk :action Stop<cr>
 nnoremap <leader>db :action ToggleLineBreakpoint<cr>
 nnoremap <leader>dm :action XDebugger.MuteBreakpoints<cr>
 nnoremap <leader>dd :action Debugger.RemoveAllBreakpoints<cr>
+nnoremap <leader>dx :action EditBreakpoint<cr>
 nnoremap <leader>dv :action StepOver<cr>
 nnoremap <leader>di :action StepInto<cr>e
 nnoremap <leader>do :action StepOut<cr>
 nnoremap <leader>dc :action Resume<cr>
+
 
 map <leader>dx :action QuickEvaluateExpression<cr>
 map <leader>dt :action EvaluateExpression<cr>
@@ -304,8 +306,6 @@ set ReplaceWithRegister
 "
 " AnyObject settings
 set anyobject
-"---- Using 'm' instead of default 'f'
-let g:anyobject_map_anyfunction = "m"
 
 " Dial settings
 set dial
@@ -419,6 +419,7 @@ let g:WhichKeyDesc_debug_stop = "<leader>dk Stop (Kill)"
 let g:WhichKeyDesc_debug_togglelinebreakpoint = "<leader>db Toggle breakpoint"
 let g:WhichKeyDesc_debug_removeallbreakpoints = "<leader>dd Remove all breakpoints"
 let g:WhichKeyDesc_debug_muteallbreakpoints = "<leader>dm Mute All breakpoints"
+let g:WhichKeyDesc_debug_editbreakpoint = "<leader>dx Edit breakpoint"
 let g:WhichKeyDesc_debug_showbreakpoints = "<leader>ds Show all breakpoints"
 let g:WhichKeyDesc_debug_stepover = "<leader>dv Step oVer"
 let g:WhichKeyDesc_debug_stepinto = "<leader>di Step into"
