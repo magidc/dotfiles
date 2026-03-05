@@ -115,8 +115,12 @@ fi
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-neofetch
-nerd
+
+# Skip neofetch and nerd when inside tmux
+if [[ -z "$TMUX" ]]; then
+  neofetch
+  nerd
+fi
 
 # Autostart tmux
 #if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
