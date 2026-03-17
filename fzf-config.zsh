@@ -22,6 +22,7 @@ export FZF_ALT_V_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 ## Must create and maintain ".project" file with a plain list of paths to your project directories
 export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
 
+export FZF_DEFAULT_OPTS="--style full --preview '$HOME/.local/bin/fzf-preview.sh {}'"
 
 ## Custom binding CTRL-q - Paste the selected file path(s) into the command line
 __fselhidden() {
@@ -54,7 +55,7 @@ fzf-cd-subdir-widget() {
   local cmd="${FZF_ALT_V_COMMAND:-"command find -L . -mindepth 1 \\( -path '*/\\.*' -o -fstype 'sysfs' -o -fstype 'devfs' -o -fstype 'devtmpfs' -o -fstype 'proc' \\) -prune \
     -o -type d -print 2> /dev/null | cut -b3-"}"
   setopt localoptions pipefail no_aliases 2> /dev/null
-  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_V_OPTS-}" $(__fzfcmd) +m)"
+  local dir="$(eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore ${FZF_DEFAULT_OPTS-} ${FZF_ALT_C_OPTS-}" $(__fzfcmd) +m)"
   if [[ -z "$dir" ]]; then
     zle redisplay
     return 0
@@ -202,4 +203,3 @@ zle     -N             get_kill
 bindkey -M emacs '\ek'  get_kill
 bindkey -M vicmd '\ek'  get_kill
 bindkey -M viins '\ek'  get_kill
-
