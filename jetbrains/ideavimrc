@@ -14,6 +14,8 @@ set visualbell
 set clipboard+=unnamed
 set clipboard+=unnamedplus   
 let mapleader = " "
+"" Time to wait for a mapped sequence to complete (in milliseconds)
+set timeoutlen=10000
 
 "" Choosing handlers in conflicting IDE/IdeaVim keymaps =======
 sethandler <c-i> n-v-i:vim

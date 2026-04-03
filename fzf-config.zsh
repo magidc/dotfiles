@@ -23,6 +23,7 @@ export FZF_ALT_V_COMMAND='fdfind --type d --follow --exclude .git . $HOME'
 export FZF_PROJECTS_FILE_PATH='$HOME/.projects'
 
 export FZF_DEFAULT_OPTS="--style full --preview '$HOME/.local/bin/fzf-preview.sh {}'"
+export FZF_CTRL_R_OPTS="--style default --height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore --no-preview"
 
 ## Custom binding CTRL-q - Paste the selected file path(s) into the command line
 __fselhidden() {

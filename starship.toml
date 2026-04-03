@@ -129,11 +129,9 @@ format = '[$time ]($style)'
 [os]
 disabled = true 
 
-
 [aws]
 symbol = " AWS "
 format = 'on [$symbol($profile )(\($region\) )(\[$duration\] )]($style)'
-
 
 [docker_context]
 symbol = " "
