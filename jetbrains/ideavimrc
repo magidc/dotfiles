@@ -216,7 +216,7 @@ map <leader>re :action Refactorings.QuickListPopupAction<CR>
 map <leader>rn :action RenameElement<cr>
 map <leader>rv :action IntroduceVariable<cr>
 map <leader>rc :action IntroduceConstant<cr>
-map <leader>rx :action IntroduceField<cr>
+map <leader>rd :action IntroduceField<cr>
 map <leader>rp :action IntroduceParameter<cr>
 map <leader>rx :action ExtractMethod<cr>
 map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>
@@ -459,7 +459,7 @@ let g:WhichKeyDesc_refactor_showactions = "<leader>re Show actions"
 let g:WhichKeyDesc_refactor_renameelement = "<leader>rn Rename element"
 let g:WhichKeyDesc_refactor_introducevariable = "<leader>rv Introduce variable"
 let g:WhichKeyDesc_refactor_introduceconstant = "<leader>rc Introduce constant"
-let g:WhichKeyDesc_refactor_introducefield = "<leader>rx Introduce field"
+let g:WhichKeyDesc_refactor_introducefield = "<leader>rd Introduce field"
 let g:WhichKeyDesc_refactor_introduceparameter = "<leader>rp Introduce parameter"
 let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
