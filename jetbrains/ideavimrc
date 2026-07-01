@@ -216,10 +216,10 @@ map <leader>re :action Refactorings.QuickListPopupAction<CR>
 map <leader>rn :action RenameElement<cr>
 map <leader>rv :action IntroduceVariable<cr>
 map <leader>rc :action IntroduceConstant<cr>
-map <leader>rf :action IntroduceField<cr>
+map <leader>rx :action IntroduceField<cr>
 map <leader>rp :action IntroduceParameter<cr>
 map <leader>rx :action ExtractMethod<cr>
-map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>:action OptimizeImports<cr>
+map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>
 map <leader>ri :action Inline<cr>
 map <leader>rs :action ChangeSignature<cr>
 map <leader>ra :action AnonymousToInner<cr>
@@ -235,6 +235,7 @@ nnoremap <leader>so :action OverrideMethods<cr>
 " To check ide name run :echo &ide
 if &ide =~? 'intellij'
   nnoremap <leader>sn :action NewClass<cr>
+  map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>:action OptimizeImports<cr>
 elseif &ide =~? 'pycharm'
   nnoremap <leader>sn :action NewPythonFile<cr>
 elseif &ide =~? 'rustrover'
@@ -458,7 +459,7 @@ let g:WhichKeyDesc_refactor_showactions = "<leader>re Show actions"
 let g:WhichKeyDesc_refactor_renameelement = "<leader>rn Rename element"
 let g:WhichKeyDesc_refactor_introducevariable = "<leader>rv Introduce variable"
 let g:WhichKeyDesc_refactor_introduceconstant = "<leader>rc Introduce constant"
-let g:WhichKeyDesc_refactor_introducefield = "<leader>rf Introduce field"
+let g:WhichKeyDesc_refactor_introducefield = "<leader>rx Introduce field"
 let g:WhichKeyDesc_refactor_introduceparameter = "<leader>rp Introduce parameter"
 let g:WhichKeyDesc_refactor_extractmethod = "<leader>rx Extract method"
 let g:WhichKeyDesc_refactor_formatcode = "<leader>rf Format code"
