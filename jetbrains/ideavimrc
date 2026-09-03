@@ -219,7 +219,7 @@ map <leader>rc :action IntroduceConstant<cr>
 map <leader>rd :action IntroduceField<cr>
 map <leader>rp :action IntroduceParameter<cr>
 map <leader>rx :action ExtractMethod<cr>
-map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>
+map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>:action OptimizeImports<cr>
 map <leader>ri :action Inline<cr>
 map <leader>rs :action ChangeSignature<cr>
 map <leader>ra :action AnonymousToInner<cr>
@@ -235,7 +235,6 @@ nnoremap <leader>so :action OverrideMethods<cr>
 " To check ide name run :echo &ide
 if &ide =~? 'intellij'
   nnoremap <leader>sn :action NewClass<cr>
-  map <leader>rf :action ReformatCode<cr>:action RearrangeCode<cr>:action OptimizeImports<cr>
 elseif &ide =~? 'pycharm'
   nnoremap <leader>sn :action NewPythonFile<cr>
 elseif &ide =~? 'rustrover'
