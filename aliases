@@ -16,16 +16,16 @@ alias y="xclip -selection c"
 alias yy="copy_file_content"
 alias pp="xclip -selection clipboard -o" # Paste from clipboard
 alias jj="xclip -selection clipboard -o | jless" # Paste JSON from clipboard and open with jless
-alias jc='eval "$(xclip -selection clipboard -o)" | jless' # Run command (i.e curl) from clipboard and open with jless
+alias jc="xclip -selection clipboard -o | bash | jless" # Run command (i.e curl) from clipboard and open with jless
 alias cx="commit_push"
 alias i="launch_project_ide"
 
-alias l="exa --icons"
-alias lc="exa --icons -1"
-alias ll="exa --icons -l"
-alias la="exa --icons -l -a"
-alias lt="exa --icons -T --level=2"
-alias ltl="exa --icons -T --level"
+alias l="eza --icons"
+alias lc="eza --icons -1"
+alias ll="eza --icons -l"
+alias la="eza --icons -l -a"
+alias lt="eza --icons -T --level=2"
+alias ltl="eza --icons -T --level"
 alias t="tree -l -L 2"
 alias tl="tree -l -L"
 

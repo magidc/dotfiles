@@ -156,7 +156,7 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=30
 
 
 # Show files after chagin directory 
-export CD_LS_COMMAND='exa --icons'
+export CD_LS_COMMAND='eza --icons'
 # 'ls' after every 'cd'
 if ! (( $chpwd_functions[(I)chpwd_cdls] )); then
   chpwd_functions+=(chpwd_cdls)
@@ -234,8 +234,10 @@ launch_project_ide() {
             ide_exec="jetbrains-rustrover"
             ide_wm_class="jetbrains-rustrover.jetbrains-rustrover"
         else
-            echo "Unknown Idea project type."
-            return
+            echo "Unknown Idea project type. Opening with Intellij"
+            ide_exec="jetbrains-idea"
+            ide_wm_class="jetbrains-idea.jetbrains-idea"
+            # return
         fi
         nohup gtk-launch $ide_exec "$idea_project_path" > /dev/null 2>&1 &
         # Wait until the IDE window appears and then moved it to workspace 0
